@@ -57,8 +57,8 @@
 html, body {
   width: 100%;
   max-width: 100vw;
-  overflow-x: hidden; /* Prevent horizontal scroll */
-  touch-action: manipulation; /* Prevent double tap zoom */
+  overflow-x: hidden;
+  touch-action: manipulation;
   position: relative;
 }
 
@@ -85,87 +85,73 @@ svg.ico {
 }
 svg.ico-fill { fill: currentColor; stroke: currentColor; }
 
-#setup-screen{
-  min-height:100vh;display:flex;align-items:center;
-  justify-content:center;padding:20px;
-  background:var(--bg);
-}
-.setup-card{
-  background:var(--s1);border:1px solid var(--border2);
-  border-radius:var(--card-rad);padding:36px;max-width:500px;width:100%;
-}
-.setup-card h2{font-size:18px;font-weight:700;margin-bottom:8px;color:var(--accent-l);display:flex;align-items:center;gap:8px;}
-.setup-card p{color:var(--text2);font-size:14px;line-height:1.7;margin-bottom:12px;}
-.setup-card code{
-  display:block;background:var(--s2);border:1px solid var(--border2);
-  border-radius:8px;padding:12px;font-size:12px;color:var(--text);
-  font-family:monospace;white-space:pre-wrap;margin:8px 0;
-}
-.setup-card .step{
-  display:flex;gap:10px;align-items:flex-start;
-  padding:10px 0;border-bottom:1px solid var(--border2);font-size:13px;color:var(--text2);
-}
-.step-num{
-  background:var(--accent);color:var(--text-inv);border-radius:50%;
-  width:22px;height:22px;display:flex;align-items:center;
-  justify-content:center;font-size:11px;font-weight:700;flex-shrink:0;margin-top:2px;
-}
-.setup-card a{color:var(--accent-l);text-decoration:underline;}
-
+/* Enhanced Auth Screen */
 #auth-screen{
   min-height:100vh;display:flex;align-items:center;
   justify-content:center;padding:20px;
-  background:var(--bg);
+  background: linear-gradient(135deg, var(--bg) 0%, var(--s2) 50%, var(--s1) 100%);
   display:none;
 }
 .auth-card{
-  background:var(--s1);border:1px solid var(--border2);
-  border-radius:var(--card-rad);padding:40px 36px;width:100%;max-width:400px;
-  box-shadow:0 10px 40px #0000001a;
+  background: var(--s1); 
+  border: 1px solid var(--border2);
+  border-radius: 32px; 
+  padding: 48px 40px; 
+  width: 100%; 
+  max-width: 440px;
+  box-shadow: 0 24px 60px rgba(0,0,0,0.15);
+  position: relative;
+  overflow: hidden;
 }
-.auth-brand{text-align:center;margin-bottom:28px;}
+.auth-card::before {
+  content: "";
+  position: absolute; top: -50px; left: -50px; width: 100px; height: 100px;
+  background: var(--accent); opacity: 0.1; filter: blur(40px); border-radius: 50%;
+}
+.auth-brand{text-align:center;margin-bottom:36px; position:relative; z-index:2;}
 .auth-brand .logo{
-  font-size:32px;font-weight:700;color:var(--text);
-  font-family:var(--en);letter-spacing:-1px;display:block;
+  font-size:36px;font-weight:800;color:var(--text);
+  font-family:var(--en);letter-spacing:-1.5px;display:block;
 }
-.auth-brand .tagline{font-size:13px;color:var(--text3);margin-top:4px;}
 
 .tab-row{
-  display:flex;background:var(--s2);border-radius:10px;
-  padding:3px;gap:3px;margin-bottom:24px;
+  display:flex;background:var(--s2);border-radius:12px;
+  padding:4px;gap:4px;margin-bottom:28px; position:relative; z-index:2;
 }
 .tab-btn{
-  flex:1;padding:9px;border:none;border-radius:8px;
+  flex:1;padding:10px;border:none;border-radius:10px;
   background:transparent;color:var(--text2);font-size:14px;
-  font-weight:500;cursor:pointer;transition:.15s;font-family:inherit;
+  font-weight:600;cursor:pointer;transition:.2s;font-family:inherit;
 }
-.tab-btn.on{background:var(--accent);color:var(--text-inv);}
+.tab-btn.on{background:var(--accent);color:var(--text-inv); box-shadow: 0 4px 10px rgba(0,0,0,0.05);}
 
-.field{margin-bottom:14px;}
-.field label{display:block;font-size:13px;color:var(--text2);margin-bottom:5px;font-weight:500;}
+.field{margin-bottom:18px; position:relative; z-index:2;}
+.field label{display:block;font-size:13px;color:var(--text2);margin-bottom:6px;font-weight:600;}
 .field input, .field select{
   width:100%;background:var(--s2);border:1.5px solid var(--border2);
-  border-radius:10px;padding:11px 14px;color:var(--text);
-  font-size:14px;font-family:inherit;outline:none;
-  transition:border-color .15s;
+  border-radius:12px;padding:14px 16px;color:var(--text);
+  font-size:15px;font-family:inherit;outline:none;
+  transition:all .2s;
 }
-.field input:focus, .field select:focus{border-color:var(--accent);}
+.field input:focus, .field select:focus{border-color:var(--accent); box-shadow: 0 0 0 3px rgba(255,255,255,0.05);}
+[data-theme="light"] .field input:focus { box-shadow: 0 0 0 3px rgba(0,0,0,0.05); }
 .field input::placeholder{color:var(--text3);}
 
 .err-box{
   background:#f43f5e18;border:1px solid #f43f5e44;
-  border-radius:8px;padding:10px 14px;font-size:13px;
-  color:var(--danger);margin-bottom:14px;display:none;
+  border-radius:10px;padding:12px 16px;font-size:13px;
+  color:var(--danger);margin-bottom:16px;display:none; font-weight:500;
 }
 
 .btn-main{
-  width:100%;padding:12px;background:var(--accent);
-  border:none;border-radius:10px;color:var(--text-inv);
-  font-size:15px;font-weight:600;cursor:pointer;
-  font-family:inherit;transition:.15s;margin-top:4px;
+  width:100%;padding:14px;background:var(--accent);
+  border:none;border-radius:12px;color:var(--text-inv);
+  font-size:16px;font-weight:700;cursor:pointer;
+  font-family:inherit;transition:all .2s;margin-top:8px;
+  position:relative; z-index:2;
 }
-.btn-main:hover{background:var(--accent-h);}
-.btn-main:disabled{opacity:.5;cursor:not-allowed;}
+.btn-main:hover{background:var(--accent-h); transform:translateY(-1px);}
+.btn-main:disabled{opacity:.5;cursor:not-allowed; transform:none;}
 
 #app{display:none;}
 
@@ -324,7 +310,7 @@ svg.ico-fill { fill: currentColor; stroke: currentColor; }
   border-radius:var(--card-rad);padding:24px;
   display:flex;gap:16px;transition:.2s ease;
   box-shadow:0 4px 15px rgba(0,0,0,0.03);
-  max-width: 100%; overflow: hidden; /* Fix for horizontal overflow */
+  max-width: 100%; overflow: hidden;
   word-wrap: break-word; overflow-wrap: break-word;
 }
 .post:hover{ transform:translateY(-2px); box-shadow:0 12px 30px rgba(0,0,0,0.08); }
@@ -350,13 +336,18 @@ svg.ico-fill { fill: currentColor; stroke: currentColor; }
 .act.delete-btn { color: var(--danger); margin-left: auto; background:transparent;}
 .act.delete-btn:hover { background: #f43f5e1a; color: var(--danger); }
 
-/* --- Fixed Comment Section Overflow --- */
+/* Comments Section */
 .comments-sec{
   display:none; margin-top:16px; border-top:1px solid var(--border2); padding-top:16px;
   width: 100%; max-width: 100%; overflow-x: hidden; box-sizing: border-box; 
 }
 .clist{ margin-bottom:12px; max-height:220px; overflow-y:auto; font-size:14px; color:var(--text); }
-.c-item{ margin-bottom:10px; padding:10px 14px; border-radius:12px; background:var(--s2); border:1px solid var(--border2); word-break: break-word; }
+.c-item{ margin-bottom:10px; padding:10px 14px; border-radius:12px; background:var(--s2); border:1px solid var(--border2); word-break: break-word; position:relative;}
+
+.c-actions { display:flex; gap:8px; margin-left:auto; }
+.c-act-btn { background:none; border:none; color:var(--text3); cursor:pointer; font-size:12px; font-weight:600; transition:.2s; }
+.c-act-btn:hover { color:var(--text); }
+.c-act-btn.del:hover { color:var(--danger); }
 
 .c-in-box{ display:flex; gap:8px; align-items:center; width: 100%; box-sizing: border-box; }
 .c-in-box input{
@@ -369,7 +360,9 @@ svg.ico-fill { fill: currentColor; stroke: currentColor; }
   border-radius:20px; cursor:pointer; font-weight:700; font-size:14px; font-family:inherit;
 }
 .c-in-box button:hover{ background:var(--accent-h); }
-/* -------------------------------------- */
+
+.mention { color: #3b82f6; cursor: pointer; font-weight: 600; }
+.mention:hover { text-decoration: underline; }
 
 .spinner-wrap{display:none;justify-content:center;padding:36px;}
 .spinner{
@@ -420,7 +413,6 @@ svg.ico-fill { fill: currentColor; stroke: currentColor; }
 .btn-follow:hover{background:var(--text);color:var(--bg);}
 .btn-follow.on{background:var(--s2);border-color:var(--border);color:var(--text3);}
 
-/* ── PROFILE PAGE REVAMP ── */
 .profile-card {
   background: var(--s1);
   border: 1px solid var(--border2);
@@ -459,9 +451,7 @@ svg.ico-fill { fill: currentColor; stroke: currentColor; }
   margin-top: 55px;
   height: auto;
 }
-.p-act-wrap {
-  display: flex; gap: 8px; justify-content: center;
-}
+.p-act-wrap { display: flex; gap: 8px; justify-content: center; }
 .btn-outline{
   display: inline-flex; align-items: center; gap: 8px;
   padding: 8px 20px; border: 1.5px solid var(--border);
@@ -470,10 +460,7 @@ svg.ico-fill { fill: currentColor; stroke: currentColor; }
   transition: .2s; font-family: inherit;
 }
 .btn-outline:hover{background: var(--s2); border-color: var(--text2);}
-.p-info{
-  padding: 0 20px 24px 20px; 
-  text-align: center;
-}
+.p-info{ padding: 0 20px 24px 20px; text-align: center; }
 .p-dname{font-size: 24px; font-weight: 800; margin-bottom: 2px; display:flex; align-items:center; justify-content:center;}
 .p-uname{font-size: 15px; color: var(--text3); margin-bottom: 12px;}
 .p-bio{
@@ -486,6 +473,17 @@ svg.ico-fill { fill: currentColor; stroke: currentColor; }
 }
 .sn{font-weight: 800; color: var(--text); font-size: 16px;}
 .sl{color: var(--text3);}
+
+.notif-item {
+  background: var(--s1); border: 1px solid var(--border2); border-radius: 16px;
+  padding: 16px; margin-bottom: 12px; display: flex; align-items: flex-start; gap: 12px;
+}
+.notif-item .n-icon {
+  background: var(--s2); color: var(--accent-l); border-radius: 50%;
+  width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+}
+.notif-item .n-content { flex: 1; font-size: 14px; }
+.notif-item .n-time { font-size: 12px; color: var(--text3); margin-top: 4px; }
 
 .overlay{
   position:fixed;inset:0;background:#000b;backdrop-filter:blur(4px);
@@ -502,8 +500,6 @@ svg.ico-fill { fill: currentColor; stroke: currentColor; }
 .modal-head h3{font-size:20px;font-weight:800;}
 .cls-btn{background:var(--s2);border:none;color:var(--text2);cursor:pointer;display:flex;align-items:center;justify-content:center;padding:6px; border-radius:50%; transition:.2s;}
 .cls-btn:hover{background:var(--border2);color:var(--text);}
-
-.cropper-container { border-radius: 12px; overflow: hidden; }
 
 .toast-box{
   position:fixed;bottom:24px;right:24px;z-index:200;
@@ -547,20 +543,16 @@ svg.ico-fill { fill: currentColor; stroke: currentColor; }
   .layout{grid-template-columns:1fr; padding:10px 8px; box-sizing: border-box; width: 100%;}
   .rp{display:none;}
   .post { padding: 16px 12px; gap: 10px; width: 100%; box-sizing: border-box; } 
-  .post-r { width: calc(100% - 60px); } /* Limits the width carefully beside avatar */
+  .post-r { width: calc(100% - 60px); }
 }
 </style>
 </head>
 <body>
 
-<div id="setup-screen" style="display:none">
-</div>
-
 <div id="auth-screen">
   <div class="auth-card">
     <div class="auth-brand">
       <span class="logo">AniRDB</span>
-      <span class="tagline" data-i18n="tagline">Your voice, your world</span>
     </div>
 
     <div class="tab-row">
@@ -609,7 +601,7 @@ svg.ico-fill { fill: currentColor; stroke: currentColor; }
     <div class="s-logo">AniRDB</div>
     
     <button class="nav-btn on" id="nb-home" onclick="goPage('home')">
-      <span class="ni"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg></span>
+      <span class="ni"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg></span>
       <span data-i18n="nav_home">Home</span>
     </button>
     
@@ -623,6 +615,11 @@ svg.ico-fill { fill: currentColor; stroke: currentColor; }
       <span data-i18n="nav_follow">Following</span>
     </button>
     
+    <button class="nav-btn" id="nb-notifications" onclick="goPage('notifications')">
+      <span class="ni"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path><path d="M13.73 21a2 2 0 0 1-3.46 0"></path></svg></span>
+      <span data-i18n="nav_notifications">Notifications</span>
+    </button>
+
     <button class="nav-btn" id="nb-profile" onclick="myProfile()">
       <span class="ni"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg></span>
       <span data-i18n="nav_profile">Profile</span>
@@ -665,27 +662,18 @@ svg.ico-fill { fill: currentColor; stroke: currentColor; }
 
       <div class="search-wrap" style="margin-bottom: 20px;">
         <span class="s-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg></span>
-        <input id="home-search" data-i18n-ph="ph_search_home" placeholder="পোস্ট খুঁজুন..." oninput="filterHomePosts()">
+        <input id="home-search" data-i18n-ph="ph_search_home" placeholder="Find post..." oninput="filterHomePosts()">
       </div>
       
       <div class="compose">
         <div class="av" id="c-av" style="width:48px;height:48px;font-size:18px"></div>
         <div class="compose-body">
-          <textarea class="compose-ta" id="c-text" data-i18n-ph="ph_compose" placeholder="What's on your mind? Share it..." rows="2" oninput="this.style.height='auto';this.style.height=this.scrollHeight+'px'"></textarea>
+          <textarea class="compose-ta" id="c-text" data-i18n-ph="ph_compose" placeholder="What's on your mind? Mention users using @..." rows="2" oninput="this.style.height='auto';this.style.height=this.scrollHeight+'px'"></textarea>
           
           <div id="c-preview" style="display:none">
             <div class="img-preview-wrap">
               <img id="c-pimg" src="" alt="">
               <button class="rm-img" onclick="rmImg()"><svg class="ico" style="width:14px;height:14px" viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg></button>
-            </div>
-            
-            <div class="img-opts-wrap" id="c-img-opts" style="display:none;">
-               <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><circle cx="8.5" cy="8.5" r="1.5"></circle><polyline points="21 15 16 10 5 21"></polyline></svg>
-               <label>Image Display Style:</label>
-               <select id="c-img-style">
-                 <option value="cover">Crop to Fit (Standard)</option>
-                 <option value="contain">Show Full Image</option>
-               </select>
             </div>
           </div>
           
@@ -731,6 +719,16 @@ svg.ico-fill { fill: currentColor; stroke: currentColor; }
       <div id="fw-posts"></div>
     </div>
 
+    <div id="pg-notifications" class="page">
+      <div class="feed-top" data-i18n="nav_notifications">Notifications</div>
+      <div class="spinner-wrap" id="n-spin"><div class="spinner"></div></div>
+      <div class="empty" id="n-empty">
+        <div class="ei"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path><path d="M13.73 21a2 2 0 0 1-3.46 0"></path></svg></div>
+        <p>No notifications yet.</p>
+      </div>
+      <div id="n-list"></div>
+    </div>
+
     <div id="pg-profile" class="page">
       <div class="feed-top">
         <button onclick="goBack()" style="background:var(--s2);border:none;color:var(--text);cursor:pointer;font-size:20px; border-radius:50%; width:36px;height:36px; display:flex;align-items:center;justify-content:center; margin-right:12px;">
@@ -767,16 +765,16 @@ svg.ico-fill { fill: currentColor; stroke: currentColor; }
       <div style="display:flex; flex-direction:column; gap:20px;">
         
         <div class="rp-card">
-          <h3 style="margin-bottom:16px;font-size:18px;" data-i18n="theme_title">Theme</h3>
-          <select id="theme-sel" onchange="setTheme(this.value)" style="width:100%; padding:12px; border-radius:12px; background:var(--s2); border:1px solid var(--border2); color:var(--text); font-family:inherit; outline:none; margin-bottom: 20px;">
-            <option value="dark" data-i18n="theme_dark">Dark</option>
-            <option value="light" data-i18n="theme_light">Light</option>
-          </select>
-
           <h3 style="margin-bottom:16px;font-size:18px;" data-i18n="lang_title">Language</h3>
-          <select id="lang-sel" onchange="setLang(this.value)" style="width:100%; padding:12px; border-radius:12px; background:var(--s2); border:1px solid var(--border2); color:var(--text); font-family:inherit; outline:none;">
+          <select id="lang-sel" onchange="setLang(this.value)" style="width:100%; padding:12px; border-radius:12px; background:var(--s2); border:1px solid var(--border2); color:var(--text); font-family:inherit; outline:none; margin-bottom: 20px;">
             <option value="en">English</option>
             <option value="bn">Bangla</option>
+          </select>
+
+          <h3 style="margin-bottom:16px;font-size:18px;" data-i18n="theme_title">Theme</h3>
+          <select id="theme-sel" onchange="setTheme(this.value)" style="width:100%; padding:12px; border-radius:12px; background:var(--s2); border:1px solid var(--border2); color:var(--text); font-family:inherit; outline:none;">
+            <option value="dark" data-i18n="theme_dark">Dark</option>
+            <option value="light" data-i18n="theme_light">Light</option>
           </select>
         </div>
 
@@ -892,13 +890,11 @@ const IBB  = "611a45563b3cc91726dd136441dc319c";
 
 const i18n = {
   en: {
-    setup_req: "Firebase Setup Required", setup_msg: "Please perform the following in Firebase console:",
-    setup_s1: "Enable <b>Authentication</b>", setup_s2: "Enable <b>Firestore Database</b>", setup_s3: "Add these rules to Firestore Rules:", setup_reload: "Reload Page",
-    tagline: "Your voice, your world", tab_in: "Login", tab_up: "Register", lbl_user: "Username", lbl_pass: "Password", lbl_name: "Full Name",
+    tab_in: "Login", tab_up: "Register", lbl_user: "Username", lbl_pass: "Password", lbl_name: "Full Name",
     btn_in: "Login", btn_up: "Create Account", ph_user: "Your username", ph_pass: "••••••••", ph_name: "Your name", ph_user_up: "cooluser123",
     err_fill: "Please fill all fields.", err_user: "Username 3-20 chars, a-z 0-9 _ only.", err_pass: "Password must be at least 6 characters.", err_taken: "Username already taken.", err_login: "Invalid username or password.",
-    btn_loading: "Loading...", btn_creating: "Creating...", msg_created: "Account created!", nav_home: "Home", nav_explore: "Explore", nav_follow: "Following", nav_profile: "Profile", nav_settings: "Settings", nav_logout: "Logout",
-    ph_compose: "What's on your mind? Share it...", btn_post: "Post", empty_home: "No posts yet.", ph_search: "Search username or name...", ph_search_home: "Find post...", empty_search: "Find someone", empty_follow: "You are not following anyone yet.",
+    btn_loading: "Loading...", btn_creating: "Creating...", msg_created: "Account created!", nav_home: "Home", nav_explore: "Explore", nav_follow: "Following", nav_notifications: "Notifications", nav_profile: "Profile", nav_settings: "Settings", nav_logout: "Logout",
+    ph_compose: "What's on your mind? Mention users using @...", btn_post: "Post", empty_home: "No posts yet.", ph_search: "Search username or name...", ph_search_home: "Find post...", empty_search: "Find someone", empty_follow: "You are not following anyone yet.",
     stat_posts: "Posts", stat_followers: "Followers", stat_following: "Following", title_sug: "Suggested Users", btn_edit: "Edit Profile", btn_follow: "Follow", btn_unfollow: "Unfollow", title_edit: "Edit Profile",
     lbl_pfp: "Profile Picture", btn_change_pic: "Change Picture", lbl_bio: "Bio", ph_bio: "Something about yourself...", btn_save: "Save", err_no_post: "Write something or attach an image", btn_posting: "Posting...", msg_posted: "Posted!",
     btn_del: "Delete", msg_del_conf: "Are you sure you want to delete this post?", msg_del: "Post deleted", err_no_user: "User not found", msg_unfollow: "Unfollowed", msg_follow: "Followed!", msg_all_followed: "You've followed everyone!", msg_no_res: "No one found",
@@ -907,10 +903,9 @@ const i18n = {
     pass_title: "Change Password", ph_new_pass: "New Password", btn_upd_pass: "Update Password", msg_pass_upd: "Password updated!", cover_title: "Cover Photo", btn_change_cover: "Change Cover", btn_rgb_remove: "RGB Remove", err_pass_len: "Password must be 6+ chars"
   },
   bn: {
-    setup_req: "Firebase সেটআপ প্রয়োজন", setup_msg: "Firebase console-এ নিচের কাজগুলো করুন:", setup_s1: "<b>Authentication</b> চালু করুন", setup_s2: "<b>Firestore Database</b> চালু করুন", setup_s3: "Firestore Rules এ এই rules দিন:", setup_reload: "রিলোড করুন",
-    tagline: "আপনার কথা, আপনার জগৎ", tab_in: "লগইন", tab_up: "নিবন্ধন", lbl_user: "ইউজারনেম", lbl_pass: "পাসওয়ার্ড", lbl_name: "পূর্ণ নাম", btn_in: "লগইন করুন", btn_up: "অ্যাকাউন্ট তৈরি করুন", ph_user: "আপনার ইউজারনেম", ph_pass: "••••••••", ph_name: "আপনার নাম", ph_user_up: "cooluser123",
+    tab_in: "লগইন", tab_up: "নিবন্ধন", lbl_user: "ইউজারনেম", lbl_pass: "পাসওয়ার্ড", lbl_name: "পূর্ণ নাম", btn_in: "লগইন করুন", btn_up: "অ্যাকাউন্ট তৈরি করুন", ph_user: "আপনার ইউজারনেম", ph_pass: "••••••••", ph_name: "আপনার নাম", ph_user_up: "cooluser123",
     err_fill: "সব তথ্য পূরণ করুন।", err_user: "ইউজারনেম ৩-২০ অক্ষর, শুধু a-z 0-9 _", err_pass: "পাসওয়ার্ড কমপক্ষে ৬ অক্ষর হতে হবে।", err_taken: "এই ইউজারনেম ইতিমধ্যে ব্যবহৃত।", err_login: "ইউজারনেম বা পাসওয়ার্ড ভুল।", btn_loading: "লগইন হচ্ছে...", btn_creating: "তৈরি হচ্ছে...", msg_created: "অ্যাকাউন্ট তৈরি হয়েছে!",
-    nav_home: "হোম", nav_explore: "খুঁজুন", nav_follow: "ফলোয়িং", nav_profile: "প্রোফাইল", nav_settings: "সেটিংস", nav_logout: "লগআউট", ph_compose: "কী ভাবছেন? শেয়ার করুন...", btn_post: "পোস্ট করুন", empty_home: "এখনো কোনো পোস্ট নেই।", ph_search: "ইউজারনেম বা নাম লিখুন...", ph_search_home: "পোস্ট খুঁজুন...", empty_search: "কাউকে খুঁজুন", empty_follow: "এখনো কাউকে ফলো করেননি।",
+    nav_home: "হোম", nav_explore: "খুঁজুন", nav_follow: "ফলোয়িং", nav_notifications: "নোটিফিকেশন", nav_profile: "প্রোফাইল", nav_settings: "সেটিংস", nav_logout: "লগআউট", ph_compose: "@ দিয়ে বন্ধুদের মেনশন করুন...", btn_post: "পোস্ট করুন", empty_home: "এখনো কোনো পোস্ট নেই।", ph_search: "ইউজারনেম বা নাম লিখুন...", ph_search_home: "পোস্ট খুঁজুন...", empty_search: "কাউকে খুঁজুন", empty_follow: "এখনো কাউকে ফলো করেননি।",
     stat_posts: "পোস্ট", stat_followers: "ফলোয়ার", stat_following: "ফলোয়িং", title_sug: "পরামর্শকৃত ইউজার", btn_edit: "সম্পাদনা", btn_follow: "ফলো করুন", btn_unfollow: "আনফলো", title_edit: "প্রোফাইল সম্পাদনা", lbl_pfp: "প্রোফাইল ছবি", btn_change_pic: "ছবি পরিবর্তন", lbl_bio: "বায়ো", ph_bio: "নিজের সম্পর্কে কিছু...", btn_save: "সেভ করুন", err_no_post: "কিছু লিখুন বা ছবি দিন", btn_posting: "পোস্ট হচ্ছে...", msg_posted: "পোস্ট করা হয়েছে!",
     btn_del: "মুছুন", msg_del_conf: "আপনি কি নিশ্চিতভাবে এই পোস্টটি মুছতে চান?", msg_del: "পোস্ট মুছে গেছে", err_no_user: "ইউজার পাওয়া যায়নি", msg_unfollow: "আনফলো করা হয়েছে", msg_follow: "ফলো করা হয়েছে!", msg_all_followed: "সবাইকে ফলো করেছেন!", msg_no_res: "কেউ পাওয়া যায়নি", btn_saving: "সংরক্ষণ হচ্ছে...", msg_saved: "প্রোফাইল আপডেট হয়েছে!", err_size: "ছবির সাইজ ৫MB এর বেশি", err_upload: "ছবি আপলোড ব্যর্থ হয়েছে", time_just: "এইমাত্র", time_min: "মিনিট আগে", time_hr: "ঘণ্টা আগে", time_day: "দিন আগে",
     lang_title: "ভাষা / Language", theme_title: "থিম / Theme", theme_dark: "ডার্ক", theme_light: "লাইট", no_bio: "কোনো বায়ো নেই।", empty_profile: "কোনো পোস্ট নেই।", page_home: "হোম", page_explore: "খুঁজুন", page_following: "ফলোয়িং ফিড", page_settings: "সেটিংস", ph_comment: "কমেন্ট লিখুন...", btn_send: "পাঠান",
@@ -918,10 +913,9 @@ const i18n = {
   }
 };
 
-let currentLang = localStorage.getItem('appLang') || 'bn';
+let currentLang = localStorage.getItem('appLang') || 'en';
 window.t = key => i18n[currentLang][key] || key;
 
-// VERIFIED BADGE SVG FUNCTION
 window.getBadgeSVG = () => `<svg class="v-badge" viewBox="0 0 24 24" style="width:16px;height:16px;vertical-align:middle;margin-left:4px;display:inline-block;"><path fill="#1d9bf0" d="M22.5 12.5c0-1.58-.875-2.95-2.148-3.6.154-.435.238-.905.238-1.4 0-2.21-1.71-3.998-3.918-3.998-.47 0-.92.084-1.336.25C14.818 2.415 13.51 1.5 12 1.5s-2.816.917-3.337 2.25c-.416-.165-.866-.25-1.336-.25-2.21 0-3.918 1.79-3.918 4 0 .495.084.965.238 1.4-1.273.65-2.148 2.02-2.148 3.6 0 1.46.827 2.76 2.034 3.4-.086.326-.134.663-.134 1 0 2.21 1.71 3.998 3.918 3.998.47 0 .92-.084 1.336-.25C9.184 21.585 10.49 22.5 12 22.5s2.816-.917 3.337-2.25c.416.165.866.25 1.336.25 2.21 0 3.918-1.79 3.918-4 0-.337-.048-.674-.134-1 1.207-.64 2.034-1.94 2.034-3.4z"></path><path fill="#fff" d="M10.64 16.216l-3.536-3.536 1.414-1.414 2.122 2.122 5.656-5.656 1.414 1.414-7.07 7.07z"></path></svg>`;
 
 window.setLang = (lang) => {
@@ -946,11 +940,9 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 let me = null, meData = null;
-let selFile = null, pfpFile = null;
-let coverFile = null, isCoverRgbRemoved = false;
-let cropper = null;
-let prevPg  = 'home', viewUid = null;
-let searchTimer = null;
+let selFile = null, pfpFile = null, coverFile = null;
+let isCoverRgbRemoved = false, cropper = null;
+let prevPg  = 'home', viewUid = null, searchTimer = null;
 
 const $ = id => document.getElementById(id);
 
@@ -991,6 +983,47 @@ function setAv(el, data){
 
 function esc(s){ if(!s) return ''; return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
 
+function formatTextWithMentions(text) {
+    if(!text) return '';
+    let safe = esc(text);
+    return safe.replace(/@([a-zA-Z0-9_]+)/g, '<span class="mention" onclick="goToUser(\'$1\', event)">@$1</span>');
+}
+
+function extractMentions(text) {
+    const matches = text.match(/@([a-zA-Z0-9_]+)/g);
+    return matches ? [...new Set(matches.map(m => m.slice(1)))] : [];
+}
+
+async function notifyMentions(text, postId) {
+    const usernames = extractMentions(text);
+    for(let un of usernames) {
+        if(un.toLowerCase() === meData.username.toLowerCase()) continue;
+        const uq = query(collection(db, 'users'), where('username', '==', un.toLowerCase()));
+        const usnap = await getDocs(uq);
+        if(!usnap.empty) {
+            await addDoc(collection(db, 'notifications'), {
+                uid: usnap.docs[0].id,
+                fromUid: me.uid,
+                fromUsername: meData.username,
+                type: 'mention',
+                postId: postId,
+                createdAt: serverTimestamp()
+            });
+        }
+    }
+}
+
+window.goToUser = async (username, ev) => {
+    if(ev) ev.stopPropagation();
+    const q = query(collection(db, 'users'), where('username', '==', username.toLowerCase()));
+    const snap = await getDocs(q);
+    if(!snap.empty) {
+        loadProfile(snap.docs[0].id);
+    } else {
+        toast('User not found', 'err');
+    }
+};
+
 async function uploadIBB(file){
   const fd = new FormData();
   fd.append('image', file);
@@ -999,9 +1032,7 @@ async function uploadIBB(file){
     const j = await r.json();
     if (j.success) return j.data.url;
     throw new Error(j.error?.message || t('err_upload'));
-  } catch(err) {
-    throw new Error('Image upload failed: ' + err.message);
-  }
+  } catch(err) { throw new Error('Image upload failed: ' + err.message); }
 }
 
 window.toggleMobMenu = () => {
@@ -1072,7 +1103,6 @@ function friendlyErr(e){
 }
 
 onAuthStateChanged(auth, async user => {
-  $('setup-screen').style.display = 'none';
   if (user) {
     me = user;
     try {
@@ -1088,7 +1118,6 @@ onAuthStateChanged(auth, async user => {
 function bootApp(){
   $('auth-screen').style.display = 'none'; $('app').style.display = 'block';
 
-  // Check Expiry for Verified Badge
   if(meData.isVerified && meData.verifiedExpiry && meData.verifiedExpiry <= Date.now()) {
       updateDoc(doc(db, 'users', me.uid), { isVerified: false });
       meData.isVerified = false;
@@ -1106,6 +1135,7 @@ window.goPage = pg => {
   document.querySelectorAll('.nav-btn[id^="nb-"]').forEach(b=>b.classList.remove('on')); $('nb-'+pg)?.classList.add('on');
   closeMobMenu();
   if (pg==='follow') loadFollowFeed();
+  if (pg==='notifications') loadNotifications();
   if (pg==='settings') renderVerifyUI();
 };
 
@@ -1145,6 +1175,32 @@ async function loadFollowFeed(){
   } catch(e){ $('fw-spin').style.display = 'none'; }
 }
 
+async function loadNotifications() {
+  $('n-spin').style.display = 'flex'; $('n-list').innerHTML = ''; $('n-empty').style.display = 'none';
+  try {
+    const q = query(collection(db, 'notifications'), where('uid', '==', me.uid), orderBy('createdAt', 'desc'), limit(30));
+    const snap = await getDocs(q);
+    $('n-spin').style.display = 'none';
+    if (snap.empty) { $('n-empty').style.display = 'block'; return; }
+    
+    snap.forEach(d => {
+      const data = d.data();
+      const div = document.createElement('div');
+      div.className = 'notif-item';
+      let action = data.type === 'comment' ? 'commented on your post.' : 'mentioned you in a post/comment.';
+      
+      div.innerHTML = `
+        <div class="n-icon"><svg class="ico" viewBox="0 0 24 24"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path><path d="M13.73 21a2 2 0 0 1-3.46 0"></path></svg></div>
+        <div class="n-content">
+          <strong class="mention" onclick="goToUser('${data.fromUsername}')">@${data.fromUsername}</strong> ${action}
+          <div class="n-time">${timeAgo(data.createdAt)}</div>
+        </div>
+      `;
+      $('n-list').appendChild(div);
+    });
+  } catch(e) { $('n-spin').style.display = 'none'; console.error(e); }
+}
+
 function buildPost(id, data){
   const div = document.createElement('div'); div.className = 'post';
   const liked = (data.likes||[]).includes(me.uid);
@@ -1168,14 +1224,21 @@ function buildPost(id, data){
   let commentsHTML = '';
   comments.forEach(c => { 
     const uniqueCAvId = 'cav-' + id + '-' + c.ts + '-' + Math.floor(Math.random() * 10000);
-    commentsHTML += `<div class="c-item" style="display:flex; gap:10px; align-items:flex-start;">
-      <div class="av ${uniqueCAvId}" style="width:32px; height:32px; font-size:12px; cursor:pointer;" onclick="loadProfile('${c.uid}')"></div>
-      <div style="flex:1; min-width:0;">
-        <div style="display:flex; gap:6px; align-items:center; flex-wrap:wrap;">
-          <strong style="cursor:pointer" onclick="loadProfile('${c.uid}')">${esc(c.name)} ${c.isVerified ? getBadgeSVG() : ''}</strong>
-          <span style="color:var(--text3); cursor:pointer; font-size:13px;" onclick="loadProfile('${c.uid}')">@${esc(c.handle)}</span>
+    commentsHTML += `<div class="c-item" data-ts="${c.ts}">
+      <div style="display:flex; gap:10px; align-items:flex-start;">
+        <div class="av ${uniqueCAvId}" style="width:32px; height:32px; font-size:12px; cursor:pointer;" onclick="loadProfile('${c.uid}')"></div>
+        <div style="flex:1; min-width:0;">
+          <div style="display:flex; gap:6px; align-items:center; flex-wrap:wrap;">
+            <strong class="mention" onclick="loadProfile('${c.uid}')">@${esc(c.handle)}</strong>${c.isVerified ? getBadgeSVG() : ''}
+            ${c.uid === me.uid ? `
+              <div class="c-actions">
+                <button class="c-act-btn" onclick="editComment('${id}', ${c.ts}, this)">Edit</button>
+                <button class="c-act-btn del" onclick="delComment('${id}', ${c.ts}, this)">Delete</button>
+              </div>
+            ` : ''}
+          </div>
+          <div class="c-text-content" style="color:var(--text2); margin-top:2px; word-break: break-word;">${formatTextWithMentions(c.text)}</div>
         </div>
-        <div style="color:var(--text2); margin-top:2px; word-break: break-word;">${esc(c.text)}</div>
       </div>
     </div>`; 
     requestAnimationFrame(() => {
@@ -1192,7 +1255,7 @@ function buildPost(id, data){
         <span class="p-handle">@${esc(data.authorUsername)}</span>
         <span class="p-time">${timeAgo(data.createdAt)}</span>
       </div>
-      ${data.text ? `<div class="p-text">${esc(data.text)}</div>` : ''}
+      ${data.text ? `<div class="p-text">${formatTextWithMentions(data.text)}</div>` : ''}
       ${data.imageURL ? `<img class="p-img" src="${data.imageURL}" alt="" style="object-fit:${imgStyleCSS};" onclick="openLB('${data.imageURL}')">` : ''}
       <div class="p-acts">
         <button class="act ${liked?'liked':''}" id="${uniqueLikeBtnId}" onclick="toggleLike('${id}', '${uniqueLikeBtnId}', '${uniqueLikeCntId}')">
@@ -1213,7 +1276,7 @@ function buildPost(id, data){
         <div class="clist" id="${uniqueListId}">${commentsHTML}</div>
         <div class="c-in-box">
           <input type="text" id="${uniqueInpId}" placeholder="${t('ph_comment')}">
-          <button onclick="addComment('${id}', '${uniqueInpId}', '${uniqueListId}', '${uniqueCommentCntId}')">${t('btn_send')}</button>
+          <button onclick="addComment('${id}', '${data.authorUid}', '${uniqueInpId}', '${uniqueListId}', '${uniqueCommentCntId}')">${t('btn_send')}</button>
         </div>
       </div>
     </div>`;
@@ -1248,13 +1311,12 @@ window.applyCrop = () => {
     const url = URL.createObjectURL(blob);
     $('c-pimg').src = url; 
     $('c-preview').style.display = 'block';
-    $('c-img-opts').style.display = 'flex';
     closeModal('crop-modal');
     $('img-in').value='';
   });
 };
 
-window.rmImg = () => { selFile=null; $('c-preview').style.display='none'; $('c-img-opts').style.display='none'; };
+window.rmImg = () => { selFile=null; $('c-preview').style.display='none'; };
 
 window.postIt = async () => {
   const txt = $('c-text').value.trim();
@@ -1264,25 +1326,22 @@ window.postIt = async () => {
 
   try {
     let imageURL='';
-    const imgStyleSelected = $('c-img-style').value;
     
-    if (selFile) {
-      imageURL = await uploadIBB(selFile);
-    }
+    if (selFile) imageURL = await uploadIBB(selFile);
     
-    await addDoc(collection(db,'posts'),{
-      text: txt, imageURL, imgStyle: imgStyleSelected,
+    const docRef = await addDoc(collection(db,'posts'),{
+      text: txt, imageURL, imgStyle: 'cover',
       authorUid: me.uid, authorName: meData.displayName, authorUsername: meData.username, authorPhoto: meData.photoURL||'', authorVerified: meData.isVerified || false,
       likes:[], comments:[], createdAt: serverTimestamp()
     });
     
+    await notifyMentions(txt, docRef.id);
+
     $('c-text').value=''; $('c-text').style.height='auto';
     rmImg();
     toast(t('msg_posted'),'ok');
     loadHome();
-  } catch(e){ 
-    toast(e.message, 'err');
-  }
+  } catch(e){ toast(e.message, 'err'); }
 
   btn.disabled=false; btn.textContent=t('btn_post');
 };
@@ -1296,28 +1355,44 @@ window.toggleLike = async (id, btnId, cntId) => {
   if (btn){ btn.className='act '+(had?'':'liked'); } if (cnt) cnt.textContent = nc;
 };
 
-window.addComment = async (id, inpId, listId, cntId) => {
+window.addComment = async (id, authorUid, inpId, listId, cntId) => {
   const inp = $(inpId); const txt = inp.value.trim(); if (!txt) return;
   inp.disabled = true;
   try {
     const ref = doc(db, 'posts', id);
-    const newComment = { uid: me.uid, name: meData.displayName, handle: meData.username, photoURL: meData.photoURL||'', text: txt, ts: Date.now(), isVerified: meData.isVerified || false };
+    const ts = Date.now();
+    const newComment = { uid: me.uid, name: meData.displayName, handle: meData.username, photoURL: meData.photoURL||'', text: txt, ts: ts, isVerified: meData.isVerified || false };
     await updateDoc(ref, { comments: arrayUnion(newComment) });
+    
+    // Notifications
+    if(authorUid !== me.uid) {
+        await addDoc(collection(db, 'notifications'), {
+            uid: authorUid, fromUid: me.uid, fromUsername: meData.username, type: 'comment', postId: id, createdAt: serverTimestamp()
+        });
+    }
+    await notifyMentions(txt, id);
+
     inp.value = '';
     const clist = $(listId);
     
     const newCItem = document.createElement('div');
-    const uniqueNewCAvId = 'cav-new-' + newComment.ts + '-' + Math.floor(Math.random() * 10000);
-    newCItem.innerHTML = `<div class="c-item" style="display:flex; gap:10px; align-items:flex-start;">
-      <div class="av ${uniqueNewCAvId}" style="width:32px; height:32px; font-size:12px; cursor:pointer;" onclick="loadProfile('${newComment.uid}')"></div>
-      <div style="flex:1; min-width:0;">
-        <div style="display:flex; gap:6px; align-items:center; flex-wrap:wrap;">
-          <strong style="cursor:pointer" onclick="loadProfile('${newComment.uid}')">${esc(newComment.name)} ${newComment.isVerified ? getBadgeSVG() : ''}</strong>
-          <span style="color:var(--text3); cursor:pointer; font-size:13px;" onclick="loadProfile('${newComment.uid}')">@${esc(newComment.handle)}</span>
+    newCItem.className = 'c-item';
+    newCItem.setAttribute('data-ts', ts);
+    const uniqueNewCAvId = 'cav-new-' + ts + '-' + Math.floor(Math.random() * 10000);
+    newCItem.innerHTML = `
+      <div style="display:flex; gap:10px; align-items:flex-start;">
+        <div class="av ${uniqueNewCAvId}" style="width:32px; height:32px; font-size:12px; cursor:pointer;" onclick="loadProfile('${newComment.uid}')"></div>
+        <div style="flex:1; min-width:0;">
+          <div style="display:flex; gap:6px; align-items:center; flex-wrap:wrap;">
+            <strong class="mention" onclick="loadProfile('${newComment.uid}')">@${esc(newComment.handle)}</strong>${newComment.isVerified ? getBadgeSVG() : ''}
+            <div class="c-actions">
+              <button class="c-act-btn" onclick="editComment('${id}', ${ts}, this)">Edit</button>
+              <button class="c-act-btn del" onclick="delComment('${id}', ${ts}, this)">Delete</button>
+            </div>
+          </div>
+          <div class="c-text-content" style="color:var(--text2); margin-top:2px; word-break: break-word;">${formatTextWithMentions(newComment.text)}</div>
         </div>
-        <div style="color:var(--text2); margin-top:2px; word-break: break-word;">${esc(newComment.text)}</div>
-      </div>
-    </div>`;
+      </div>`;
     clist.appendChild(newCItem);
     requestAnimationFrame(() => { setAv(clist.querySelector(`.${uniqueNewCAvId}`), meData); });
 
@@ -1325,6 +1400,57 @@ window.addComment = async (id, inpId, listId, cntId) => {
     const cc = $(cntId); if(cc) cc.textContent = parseInt(cc.textContent||0) + 1;
   } catch(e) { toast('Error: ' + e.message, 'err'); }
   inp.disabled = false;
+};
+
+window.editComment = async (postId, ts, btnEl) => {
+    const cItem = btnEl.closest('.c-item');
+    const textDiv = cItem.querySelector('.c-text-content');
+    const oldText = textDiv.innerText;
+    
+    const newText = prompt('Edit comment:', oldText);
+    if(!newText || newText === oldText) return;
+
+    try {
+        const ref = doc(db, 'posts', postId);
+        const snap = await getDoc(ref);
+        if(!snap.exists()) return;
+        
+        const data = snap.data();
+        const newComments = data.comments.map(c => {
+            if(c.ts === ts) return { ...c, text: newText };
+            return c;
+        });
+        
+        await updateDoc(ref, { comments: newComments });
+        textDiv.innerHTML = formatTextWithMentions(newText);
+        toast('Comment updated', 'ok');
+    } catch(e) { toast('Error modifying comment', 'err'); }
+};
+
+window.delComment = async (postId, ts, btnEl) => {
+    if(!confirm('Are you sure you want to delete this comment?')) return;
+    
+    try {
+        const ref = doc(db, 'posts', postId);
+        const snap = await getDoc(ref);
+        if(!snap.exists()) return;
+        
+        const data = snap.data();
+        const newComments = data.comments.filter(c => c.ts !== ts);
+        
+        await updateDoc(ref, { comments: newComments });
+        
+        const cItem = btnEl.closest('.c-item');
+        cItem.remove();
+        toast('Comment deleted', 'ok');
+        
+        // Update Counter in UI
+        const postElement = document.getElementById('csec-'+postId)?.parentElement;
+        if(postElement) {
+            const countSpans = postElement.querySelectorAll('.act span');
+            if(countSpans.length > 1) countSpans[1].innerText = newComments.length;
+        }
+    } catch(e) { toast('Error deleting comment', 'err'); }
 };
 
 window.delPost = async (id, btnNode) => {
@@ -1355,15 +1481,10 @@ window.loadProfile = async uid => {
   $('pp-fc').textContent = d.followers ? d.followers.length : 0; $('pp-gc').textContent = d.following ? d.following.length : 0;
   setAv($('pp-av'), d);
 
-  // Setup Cover Image and RGB class on Profile Load
   const banner = document.querySelector('.banner');
-  if(d.coverURL) {
-     banner.style.backgroundImage = `url(${d.coverURL})`;
-  } else {
-     banner.style.backgroundImage = `linear-gradient(135deg, #6366f1 0%, #a855f7 50%, #ec4899 100%)`;
-  }
-  if(d.coverRgb) { banner.classList.add('rgb-removed'); } 
-  else { banner.classList.remove('rgb-removed'); }
+  if(d.coverURL) { banner.style.backgroundImage = `url(${d.coverURL})`; } 
+  else { banner.style.backgroundImage = `linear-gradient(135deg, #6366f1 0%, #a855f7 50%, #ec4899 100%)`; }
+  if(d.coverRgb) banner.classList.add('rgb-removed'); else banner.classList.remove('rgb-removed');
 
   const acts = $('pp-acts');
   if (uid === me.uid){ acts.innerHTML = `<button class="btn-outline" onclick="openEditModal()">${t('btn_edit')}</button>`; } 
@@ -1385,9 +1506,7 @@ window.loadProfile = async uid => {
       docs.sort((a,b) => (b.data.createdAt?.toMillis() || 0) - (a.data.createdAt?.toMillis() || 0));
       docs.forEach(d => $('pp-posts').appendChild(buildPost(d.id, d.data)));
     }
-  } catch(e) {
-    $('pp-spin').style.display='none';
-  }
+  } catch(e) { $('pp-spin').style.display='none'; }
 };
 
 window.toggleFollow = async uid => {
@@ -1461,11 +1580,8 @@ async function runSearch(val){
 
 window.openEditModal = () => {
   $('ep-name').value = meData.displayName||''; $('ep-bio').value  = meData.bio||'';
-  
-  // Set existing PFP preview
   $('ep-prev').innerHTML = meData.photoURL ? `<img src="${meData.photoURL}" style="width:72px;height:72px;border-radius:50%;object-fit:cover;box-shadow:0 4px 10px rgba(0,0,0,0.1)">` : '';
   
-  // Set existing Cover preview & RGB State
   isCoverRgbRemoved = meData.coverRgb || false;
   $('ep-cover-prev').innerHTML = meData.coverURL ? `<img id="ep-c-img" class="${isCoverRgbRemoved ? 'rgb-removed' : ''}" src="${meData.coverURL}" style="width:100%;height:100px;border-radius:12px;object-fit:cover;margin-top:10px;box-shadow:0 4px 10px rgba(0,0,0,0.1)">` : '';
   
@@ -1512,9 +1628,7 @@ window.saveProfile = async () => {
   if (!name){ toast(t('err_fill'),'err'); return; }
   const btn=$('ep-btn'); btn.disabled=true; btn.textContent=t('btn_saving');
   try {
-    let photoURL = meData.photoURL||'';
-    let coverURL = meData.coverURL||'';
-
+    let photoURL = meData.photoURL||''; let coverURL = meData.coverURL||'';
     if (pfpFile) photoURL = await uploadIBB(pfpFile);
     if (coverFile) coverURL = await uploadIBB(coverFile);
 
@@ -1531,90 +1645,52 @@ window.saveProfile = async () => {
   btn.disabled=false; btn.textContent=t('btn_save');
 };
 
-// Password Change Handler
 window.updateUserPassword = async () => {
   const np = $('set-new-pass').value;
   if(np.length < 6) { toast(t('err_pass_len'), 'err'); return; }
-  try {
-    await updatePassword(me, np);
-    $('set-new-pass').value = '';
-    toast(t('msg_pass_upd'), 'ok');
-  } catch(e) {
-    toast('Error: ' + e.message, 'err');
-  }
+  try { await updatePassword(me, np); $('set-new-pass').value = ''; toast(t('msg_pass_upd'), 'ok'); } 
+  catch(e) { toast('Error: ' + e.message, 'err'); }
 };
 
-// =========================================
-// VERIFICATION LOGIC (1 Month Free)
-// =========================================
 window.applyVerification = async () => {
   const btn = $('btn-verify');
-  btn.disabled = true;
-  btn.textContent = 'Processing...';
+  btn.disabled = true; btn.textContent = 'Processing...';
 
   try {
-    const expiryDate = Date.now() + (30 * 24 * 60 * 60 * 1000); // 30 Days in MS
-    await updateDoc(doc(db, 'users', me.uid), {
-      isVerified: true,
-      verifiedExpiry: expiryDate
-    });
+    const expiryDate = Date.now() + (30 * 24 * 60 * 60 * 1000);
+    await updateDoc(doc(db, 'users', me.uid), { isVerified: true, verifiedExpiry: expiryDate });
 
-    meData.isVerified = true;
-    meData.verifiedExpiry = expiryDate;
-
+    meData.isVerified = true; meData.verifiedExpiry = expiryDate;
     toast('Verification Successful! Valid for 1 Month.', 'ok');
-    renderVerifyUI(); 
-    bootApp(); // Refresh names everywhere
+    renderVerifyUI(); bootApp(); 
   } catch(e) {
     toast('Error: ' + e.message, 'err');
-    btn.disabled = false;
-    btn.textContent = 'Get 1 Month Free Verification';
+    btn.disabled = false; btn.textContent = 'Get 1 Month Free Verification';
   }
 };
 
 window.renderVerifyUI = () => {
-  const vBtn = $('btn-verify');
-  const vStat = $('verify-status');
+  const vBtn = $('btn-verify'); const vStat = $('verify-status');
   if(!vBtn || !vStat) return;
 
   if(meData.isVerified && meData.verifiedExpiry && meData.verifiedExpiry > Date.now()) {
     const daysLeft = Math.ceil((meData.verifiedExpiry - Date.now()) / (1000*60*60*24));
     vStat.innerHTML = `<span style="color:var(--green)">✓ Account Verified (${daysLeft} Days Remaining)</span>`;
-    vBtn.textContent = 'Renew Verification (Paid)';
-    vBtn.disabled = false;
+    vBtn.textContent = 'Renew Verification (Paid)'; vBtn.disabled = false;
     vBtn.onclick = () => { toast('Payment Gateway Integration Coming Soon!', 'ok'); };
-  } 
-  else if(meData.verifiedExpiry && meData.verifiedExpiry <= Date.now()) {
+  } else if(meData.verifiedExpiry && meData.verifiedExpiry <= Date.now()) {
     vStat.innerHTML = `<span style="color:var(--danger)">✕ Verification Expired</span>`;
-    vBtn.textContent = 'Renew Verification (Paid)';
-    vBtn.disabled = false;
+    vBtn.textContent = 'Renew Verification (Paid)'; vBtn.disabled = false;
     vBtn.onclick = () => { toast('Payment Gateway Integration Coming Soon!', 'ok'); };
-  } 
-  else {
+  } else {
     vStat.innerHTML = `<span style="color:var(--text2)">Not Verified Yet</span>`;
-    vBtn.textContent = 'Get 1 Month Free Verification';
-    vBtn.disabled = false;
+    vBtn.textContent = 'Get 1 Month Free Verification'; vBtn.disabled = false;
     vBtn.onclick = applyVerification;
   }
 };
 
-// Utility function to close Modals
-window.closeModal = (id) => {
-  const modal = document.getElementById(id);
-  if(modal) {
-    modal.classList.remove('on');
-  }
-};
-
-// Utility function to open Lightbox (Full Image View)
-window.openLB = (src) => {
-  const lbImg = document.getElementById('lb-img');
-  const lb = document.getElementById('lb');
-  if(lbImg && lb) {
-    lbImg.src = src;
-    lb.classList.add('on');
-  }
-};
+window.closeModal = (id) => { const modal = document.getElementById(id); if(modal) modal.classList.remove('on'); };
+window.openLB = (src) => { const lbImg = document.getElementById('lb-img'); const lb = document.getElementById('lb'); if(lbImg && lb) { lbImg.src = src; lb.classList.add('on'); } };
 
 </script>
 </body>
