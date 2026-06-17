@@ -43,6 +43,9 @@
   --danger:   #f43f5e;
   --green:    #22c55e;
   --blue:     #3b82f6;
+  --gold:     #ffd700;
+  --silver:   #c0c0c0;
+  --bronze:   #cd7f32;
   --text-inv: #000000;
   --r:        14px;
   --bn: 'Hind Siliguri', 'Noto Sans Bengali', sans-serif;
@@ -90,10 +93,10 @@ svg.ico-fill { fill: currentColor; stroke: currentColor; }
 .tab-btn.on { background: var(--accent); color: var(--text-inv); box-shadow: 0 4px 10px rgba(0,0,0,0.05); }
 .field { margin-bottom: 18px; position: relative; z-index: 2; }
 .field label { display: block; font-size: 13px; color: var(--text2); margin-bottom: 6px; font-weight: 600; }
-.field input, .field select { width: 100%; background: var(--s2); border: 1.5px solid var(--border2); border-radius: 12px; padding: 14px 16px; color: var(--text); font-size: 15px; font-family: inherit; outline: none; transition: all .2s; }
-.field input:focus, .field select:focus { border-color: var(--accent); box-shadow: 0 0 0 3px rgba(255,255,255,0.05); }
-[data-theme="light"] .field input:focus { box-shadow: 0 0 0 3px rgba(0,0,0,0.05); }
-.field input::placeholder { color: var(--text3); }
+.field input, .field select, .field textarea { width: 100%; background: var(--s2); border: 1.5px solid var(--border2); border-radius: 12px; padding: 14px 16px; color: var(--text); font-size: 15px; font-family: inherit; outline: none; transition: all .2s; max-width: 100%; }
+.field input:focus, .field select:focus, .field textarea:focus { border-color: var(--accent); box-shadow: 0 0 0 3px rgba(255,255,255,0.05); }
+[data-theme="light"] .field input:focus, [data-theme="light"] .field textarea:focus { box-shadow: 0 0 0 3px rgba(0,0,0,0.05); }
+.field input::placeholder, .field textarea::placeholder { color: var(--text3); }
 .err-box { background: #f43f5e18; border: 1px solid #f43f5e44; border-radius: 10px; padding: 12px 16px; font-size: 13px; color: var(--danger); margin-bottom: 16px; display: none; font-weight: 500; }
 .btn-main { width: 100%; padding: 14px; background: var(--accent); border: none; border-radius: 12px; color: var(--text-inv); font-size: 16px; font-weight: 700; cursor: pointer; font-family: inherit; transition: all .2s; margin-top: 8px; position: relative; z-index: 2; }
 .btn-main:hover { background: var(--accent-h); transform: translateY(-1px); }
@@ -123,7 +126,7 @@ svg.ico-fill { fill: currentColor; stroke: currentColor; }
 .overlay-bg.on { display: block; }
 
 .feed { display: flex; flex-direction: column; gap: 20px; padding-bottom: 40px; width: 100%; min-width: 0; }
-.feed-top { padding: 0 8px 8px; font-size: 24px; font-weight: 800; color: var(--text); display: flex; align-items: center; gap: 10px; }
+.feed-top { padding: 0 8px 8px; font-size: 24px; font-weight: 800; color: var(--text); display: flex; align-items: center; justify-content: space-between; gap: 10px; }
 
 .compose { background: var(--s1); border: 1px solid var(--border2); border-radius: var(--card-rad); padding: 24px; display: flex; gap: 16px; box-shadow: 0 4px 15px rgba(0,0,0,0.03); width: 100%; max-width: 100%; }
 .compose-body { flex: 1; min-width: 0; }
@@ -266,21 +269,9 @@ svg.ico-fill { fill: currentColor; stroke: currentColor; }
 .msg-own-acts { opacity: 0; transition: opacity .15s; }
 #chat-box > div:hover .msg-own-acts { opacity: 1; }
 
-/* ---- Reactions ---- */
-.react-wrap { position: relative; display:inline-flex; }
-.react-pop { position: absolute; bottom: 110%; left: 0; background: var(--s1); border: 1px solid var(--border2); border-radius: 24px; padding: 6px; display: flex; gap: 4px; box-shadow: 0 8px 24px rgba(0,0,0,0.25); z-index: 20; }
-.react-pop button { background: none; border: none; cursor: pointer; padding: 6px; border-radius: 50%; color: var(--text2); display:flex; transition: .15s; }
-.react-pop button:hover { background: var(--s2); color: var(--text); transform: scale(1.15); }
-.react-pop svg { width: 18px; height: 18px; }
-.react-summary { display:flex; align-items:center; gap:4px; font-size:12px; color:var(--text3); margin-top:4px; }
-.react-summary .ric { width:14px; height:14px; }
-.react-chip { display:inline-flex; align-items:center; gap:3px; background:var(--s2); border-radius:10px; padding:2px 7px; }
-
-/* ---- Badge / unread counter ---- */
 .nb-badge { background: var(--danger); color: #fff; font-size: 11px; font-weight: 700; border-radius: 10px; min-width: 18px; height: 18px; display: inline-flex; align-items: center; justify-content: center; padding: 0 5px; margin-left: auto; }
 .nav-btn { position: relative; }
 
-/* ---- Trending widget ---- */
 .trend-box { background: var(--s1); border: 1px solid var(--border2); border-radius: 16px; padding: 16px; margin-bottom: 16px; }
 .trend-box h4 { font-size: 14px; font-weight: 800; margin-bottom: 10px; color: var(--text2); text-transform: uppercase; letter-spacing: .5px; }
 .trend-row { display: flex; align-items: center; justify-content: space-between; padding: 8px 0; cursor: pointer; border-bottom: 1px solid var(--border2); }
@@ -288,30 +279,25 @@ svg.ico-fill { fill: currentColor; stroke: currentColor; }
 .trend-row:hover .hashtag { text-decoration: underline; }
 .trend-count { font-size: 12px; color: var(--text3); }
 
-/* ---- Presence dot ---- */
 .pres-dot { width: 10px; height: 10px; border-radius: 50%; background: var(--text3); border: 2px solid var(--s1); position: absolute; bottom: -2px; right: -2px; }
 .pres-dot.online { background: var(--green); }
 .av-wrap { position: relative; display: inline-block; }
 .last-seen-txt { font-size: 12px; color: var(--text3); }
 
-/* ---- Typing indicator ---- */
 .typing-row { display: flex; align-items: center; gap: 4px; padding: 4px 14px; align-self: flex-start; }
 .typing-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--text3); animation: typingBounce 1.2s infinite; }
 .typing-dot:nth-child(2) { animation-delay: .15s; }
 .typing-dot:nth-child(3) { animation-delay: .3s; }
 @keyframes typingBounce { 0%,60%,100% { transform: translateY(0); opacity:.4; } 30% { transform: translateY(-4px); opacity:1; } }
 
-/* ---- Reply preview ---- */
 .reply-bar { display: flex; align-items: center; gap: 8px; background: var(--s2); border-left: 3px solid var(--accent); border-radius: 8px; padding: 8px 10px; margin: 0 16px 8px; font-size: 12px; color: var(--text2); }
 .reply-bar .rb-txt { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .reply-bar button { background: none; border: none; color: var(--text3); cursor: pointer; flex-shrink: 0; display:flex; }
 .msg-quote { font-size: 12px; opacity: .75; border-left: 2px solid currentColor; padding-left: 8px; margin-bottom: 6px; }
 
-/* ---- Read receipt ---- */
 .seen-tick { display: inline-flex; gap: 0; margin-left: 4px; vertical-align: middle; }
 .seen-tick svg { width: 14px; height: 14px; }
 
-/* ---- Report / block menu ---- */
 .more-menu-wrap { position: relative; display: inline-flex; }
 .more-menu { position: absolute; top: 110%; right: 0; background: var(--s1); border: 1px solid var(--border2); border-radius: 14px; padding: 6px; min-width: 160px; box-shadow: 0 8px 24px rgba(0,0,0,0.25); z-index: 20; display: flex; flex-direction: column; }
 .more-menu button { display: flex; align-items: center; gap: 10px; background: none; border: none; color: var(--text); font-size: 13px; font-weight: 600; padding: 10px 12px; border-radius: 10px; cursor: pointer; text-align: left; font-family: inherit; }
@@ -319,14 +305,39 @@ svg.ico-fill { fill: currentColor; stroke: currentColor; }
 .more-menu button.danger { color: var(--danger); }
 .more-menu svg { width: 16px; height: 16px; flex-shrink: 0; }
 
-/* ---- View count ---- */
 .view-count { display: flex; align-items: center; gap: 4px; font-size: 12px; color: var(--text3); }
 .view-count svg { width: 14px; height: 14px; }
 
-/* ---- Repost ---- */
 .repost-tag { display: flex; align-items: center; gap: 6px; font-size: 12px; color: var(--text3); margin-bottom: 8px; font-weight: 600; }
 .repost-tag svg { width: 14px; height: 14px; }
 .act.reposted { color: var(--green); background: #22c55e12; }
+
+/* Competitions & Events CSS */
+.ce-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 16px; width: 100%; }
+.ce-card { background: var(--s1); border: 1px solid var(--border2); border-radius: var(--card-rad); overflow: hidden; cursor: pointer; transition: .2s; box-shadow: 0 4px 15px rgba(0,0,0,0.03); display: flex; flex-direction: column; }
+.ce-card:hover { transform: translateY(-3px); box-shadow: 0 8px 25px rgba(0,0,0,0.08); border-color: var(--text3); }
+.ce-banner { height: 140px; width: 100%; object-fit: cover; background: var(--s2); }
+.ce-info { padding: 16px; display: flex; flex-direction: column; flex: 1; }
+.ce-title { font-size: 18px; font-weight: 800; color: var(--text); margin-bottom: 6px; }
+.ce-desc { font-size: 13px; color: var(--text2); margin-bottom: 12px; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+.ce-meta { font-size: 12px; color: var(--text3); display: flex; justify-content: space-between; align-items: center; margin-top: auto; }
+.ce-badge { background: var(--s2); padding: 4px 8px; border-radius: 8px; font-weight: 600; }
+.ce-badge.expired { background: #f43f5e22; color: var(--danger); }
+
+.sub-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 16px; width: 100%; }
+.sub-card { background: var(--s1); border: 1px solid var(--border2); border-radius: 16px; overflow: hidden; position: relative; box-shadow: 0 4px 10px rgba(0,0,0,0.05); }
+.sub-img { width: 100%; height: 200px; object-fit: cover; background: var(--s2); cursor: zoom-in; }
+.sub-info { padding: 12px; }
+.sub-title { font-size: 15px; font-weight: 700; color: var(--text); margin-bottom: 4px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.sub-user { font-size: 12px; color: var(--text3); margin-bottom: 10px; display: flex; align-items: center; gap: 6px; cursor: pointer; }
+.sub-user:hover { text-decoration: underline; }
+.vote-btn { width: 100%; padding: 8px; background: var(--s2); border: 1px solid var(--border2); border-radius: 12px; color: var(--text); font-size: 13px; font-weight: 700; cursor: pointer; transition: .2s; display: flex; align-items: center; justify-content: center; gap: 6px; }
+.vote-btn:hover { background: var(--border2); }
+.vote-btn.voted { background: var(--accent); color: var(--text-inv); border-color: var(--accent); }
+.rank-badge { position: absolute; top: 10px; left: 10px; width: 30px; height: 30px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 14px; color: #fff; box-shadow: 0 4px 10px rgba(0,0,0,0.3); z-index: 10; }
+.rank-1 { background: var(--gold); }
+.rank-2 { background: var(--silver); }
+.rank-3 { background: var(--bronze); }
 
 @media(max-width:960px) {
   .layout { grid-template-columns: 1fr; gap: 16px; }
@@ -344,8 +355,9 @@ svg.ico-fill { fill: currentColor; stroke: currentColor; }
   .p-acts { gap: 6px; }
   .act { padding: 6px 12px; font-size: 12px; }
   .compose { padding: 16px; border-radius: 16px; }
-  .react-pop { left: auto; right: 0; }
   .more-menu { right: 0; left: auto; }
+  .sub-grid { grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); }
+  .sub-img { height: 140px; }
 }
 
 @media(max-width: 768px) {
@@ -371,13 +383,13 @@ svg.ico-fill { fill: currentColor; stroke: currentColor; }
     <div id="auth-err" class="err-box"></div>
     <div id="f-in">
       <div class="field"><label data-i18n="lbl_user">Username</label><input id="li-user" type="text" data-i18n-ph="ph_user" placeholder="Your username" autocomplete="username"></div>
-      <div class="field"><label data-i18n="lbl_pass">Password</label><input id="li-pass" type="password" data-i18n-ph="ph_pass" placeholder="••••••••" autocomplete="current-password"></div>
+      <div class="field"><label data-i18n="lbl_pass">Password</label><input id="li-pass" type="password" data-i18n-ph="ph_pass" placeholder="â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢" autocomplete="current-password"></div>
       <button class="btn-main" id="li-btn" onclick="doLogin()" data-i18n="btn_in">Login</button>
     </div>
     <div id="f-up" style="display:none">
       <div class="field"><label data-i18n="lbl_name">Full Name</label><input id="ru-name" type="text" data-i18n-ph="ph_name" placeholder="Your name" autocomplete="name"></div>
       <div class="field"><label><span data-i18n="lbl_user">Username</span></label><input id="ru-user" type="text" data-i18n-ph="ph_user_up" placeholder="cooluser123" autocomplete="username"></div>
-      <div class="field"><label><span data-i18n="lbl_pass">Password</span></label><input id="ru-pass" type="password" data-i18n-ph="ph_pass" placeholder="••••••••" autocomplete="new-password"></div>
+      <div class="field"><label><span data-i18n="lbl_pass">Password</span></label><input id="ru-pass" type="password" data-i18n-ph="ph_pass" placeholder="â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢" autocomplete="new-password"></div>
       <button class="btn-main" id="ru-btn" onclick="doRegister()" data-i18n="btn_up">Create Account</button>
     </div>
   </div>
@@ -398,6 +410,16 @@ svg.ico-fill { fill: currentColor; stroke: currentColor; }
       <span class="ni"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg></span>
       <span data-i18n="nav_explore">Explore</span>
     </button>
+    
+    <button class="nav-btn" id="nb-competitions" onclick="goPage('competitions')">
+      <span class="ni"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="7"></circle><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"></polyline></svg></span>
+      <span data-i18n="nav_competitions">Art Competitions</span>
+    </button>
+    <button class="nav-btn" id="nb-events" onclick="goPage('events')">
+      <span class="ni"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg></span>
+      <span data-i18n="nav_events">Events</span>
+    </button>
+
     <button class="nav-btn" id="nb-messages" onclick="goPage('messages')">
       <span class="ni"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg></span>
       <span data-i18n="nav_messages">Messages</span>
@@ -494,6 +516,79 @@ svg.ico-fill { fill: currentColor; stroke: currentColor; }
       </div>
       <div id="h-posts"></div>
     </div>
+
+    <div id="pg-competitions" class="page">
+      <div class="feed-top">
+        <span data-i18n="page_competitions">Art Competitions</span>
+        <button class="btn-main" style="width:auto; margin:0; padding:8px 16px; font-size:14px;" onclick="openCreateCompModal()">+ Create</button>
+      </div>
+      <div class="spinner-wrap" id="comp-spin"><div class="spinner"></div></div>
+      <div class="empty" id="comp-empty"><div class="ei"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="7"></circle><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"></polyline></svg></div><p>No active competitions right now.</p></div>
+      <div id="comp-list" class="ce-grid"></div>
+    </div>
+
+    <div id="pg-single-comp" class="page">
+      <div class="feed-top">
+        <button onclick="goPage('competitions')" style="background:var(--s2);border:none;color:var(--text);cursor:pointer;font-size:20px; border-radius:50%; width:36px;height:36px; display:flex;align-items:center;justify-content:center; margin-right:12px;"><svg class="ico" viewBox="0 0 24 24"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg></button>
+        <span id="sc-title">Competition</span>
+      </div>
+      <img id="sc-banner" src="" style="width:100%; height:200px; object-fit:cover; border-radius:16px; margin-bottom:16px; display:none; border:1px solid var(--border2);">
+      <div style="background:var(--s1); padding:20px; border-radius:16px; border:1px solid var(--border2); margin-bottom:20px;">
+        <h3 id="sc-name" style="font-size:20px; margin-bottom:8px;"></h3>
+        <p id="sc-desc" style="color:var(--text2); margin-bottom:12px; white-space:pre-wrap;"></p>
+        <div style="font-weight:700; margin-bottom:4px;">Rules:</div>
+        <p id="sc-rules" style="color:var(--text2); margin-bottom:16px; white-space:pre-wrap;"></p>
+        <div style="display:flex; justify-content:space-between; align-items:center;">
+          <span id="sc-status" class="ce-badge"></span>
+          <button id="sc-submit-btn" class="btn-main" style="width:auto; margin:0; padding:8px 20px; display:none;" onclick="openSubmitCompModal()">Submit Artwork</button>
+        </div>
+        <div id="sc-creator-actions" style="display:none; gap:8px; margin-top:14px; flex-wrap:wrap;">
+          <button class="btn-outline" onclick="openEditCompModal()" style="display:flex;align-items:center;gap:6px;"><svg class="ico" style="width:16px;height:16px;" viewBox="0 0 24 24"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path></svg>Edit Competition</button>
+          <button class="btn-outline" onclick="doDeleteComp()" style="display:flex;align-items:center;gap:6px;color:var(--danger);border-color:var(--danger);"><svg class="ico" style="width:16px;height:16px;" viewBox="0 0 24 24"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg>Delete</button>
+        </div>
+      </div>
+      <h3 style="margin-bottom:16px; font-size:18px;">Submissions</h3>
+      <div class="spinner-wrap" id="sc-spin"><div class="spinner"></div></div>
+      <div class="empty" id="sc-empty"><p>No submissions yet.</p></div>
+      <div id="sc-subs" class="sub-grid"></div>
+    </div>
+
+    <div id="pg-events" class="page">
+      <div class="feed-top">
+        <span data-i18n="page_events">Events</span>
+        <button class="btn-main" style="width:auto; margin:0; padding:8px 16px; font-size:14px;" onclick="openCreateEventModal()">+ Create Event</button>
+      </div>
+      <div class="spinner-wrap" id="ev-spin"><div class="spinner"></div></div>
+      <div class="empty" id="ev-empty"><div class="ei"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg></div><p>No active events right now.</p></div>
+      <div id="ev-list" class="ce-grid"></div>
+    </div>
+
+    <div id="pg-single-event" class="page">
+      <div class="feed-top">
+        <button onclick="goPage('events')" style="background:var(--s2);border:none;color:var(--text);cursor:pointer;font-size:20px; border-radius:50%; width:36px;height:36px; display:flex;align-items:center;justify-content:center; margin-right:12px;"><svg class="ico" viewBox="0 0 24 24"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg></button>
+        <span id="se-title">Event</span>
+      </div>
+      <img id="se-banner" src="" style="width:100%; height:200px; object-fit:cover; border-radius:16px; margin-bottom:16px; display:none; border:1px solid var(--border2);">
+      <div style="background:var(--s1); padding:20px; border-radius:16px; border:1px solid var(--border2); margin-bottom:20px;">
+        <h3 id="se-name" style="font-size:20px; margin-bottom:8px;"></h3>
+        <p id="se-desc" style="color:var(--text2); margin-bottom:12px; white-space:pre-wrap;"></p>
+        <div style="font-weight:700; margin-bottom:4px;">Rules:</div>
+        <p id="se-rules" style="color:var(--text2); margin-bottom:16px; white-space:pre-wrap;"></p>
+        <div style="display:flex; justify-content:space-between; align-items:center;">
+          <span id="se-status" class="ce-badge"></span>
+          <button id="se-submit-btn" class="btn-main" style="width:auto; margin:0; padding:8px 20px; display:none;" onclick="openSubmitEventModal()">Post to Event</button>
+        </div>
+        <div id="se-creator-actions" style="display:none; gap:8px; margin-top:14px; flex-wrap:wrap;">
+          <button class="btn-outline" onclick="openEditEventModal()" style="display:flex;align-items:center;gap:6px;"><svg class="ico" style="width:16px;height:16px;" viewBox="0 0 24 24"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path></svg>Edit Event</button>
+          <button class="btn-outline" onclick="doDeleteEvent()" style="display:flex;align-items:center;gap:6px;color:var(--danger);border-color:var(--danger);"><svg class="ico" style="width:16px;height:16px;" viewBox="0 0 24 24"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg>Delete Event</button>
+        </div>
+      </div>
+      <h3 style="margin-bottom:16px; font-size:18px;">Event Posts</h3>
+      <div class="spinner-wrap" id="se-spin"><div class="spinner"></div></div>
+      <div class="empty" id="se-empty"><p>No posts in this event yet.</p></div>
+      <div id="se-posts" style="display:flex; flex-direction:column; gap:20px;"></div>
+    </div>
+
 
     <div id="pg-messages" class="page">
       <div class="feed-top" data-i18n="nav_messages">Messages</div>
@@ -660,6 +755,95 @@ svg.ico-fill { fill: currentColor; stroke: currentColor; }
   </div>
 </div>
 
+<div class="overlay" id="create-comp-modal">
+  <div class="modal">
+    <div class="modal-head"><h3>Create Art Competition</h3><button class="cls-btn" onclick="closeModal('create-comp-modal')"><svg class="ico" viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg></button></div>
+    <div class="field"><label>Competition Name</label><input id="cc-name" type="text" placeholder="e.g. Summer Art Contest"></div>
+    <div class="field"><label>Description</label><textarea id="cc-desc" rows="2" placeholder="What is this about?"></textarea></div>
+    <div class="field"><label>Rules</label><textarea id="cc-rules" rows="2" placeholder="Enter rules..."></textarea></div>
+    <div class="field"><label>Duration</label><select id="cc-dur"><option value="7">7 Days</option><option value="10">10 Days</option><option value="15">15 Days</option></select></div>
+    <div class="field">
+      <label>Banner Image</label>
+      <label class="btn-outline" style="cursor:pointer; width:100%; justify-content:center;">Select Banner<input type="file" id="cc-banner" accept="image/*" style="display:none" onchange="prevUpload(event, 'cc-banner-prev')"></label>
+      <div id="cc-banner-prev" style="margin-top:10px;"></div>
+    </div>
+    <button class="btn-main" id="cc-btn" onclick="doCreateComp()">Create Competition</button>
+  </div>
+</div>
+
+<div class="overlay" id="create-event-modal">
+  <div class="modal">
+    <div class="modal-head"><h3>Create Event</h3><button class="cls-btn" onclick="closeModal('create-event-modal')"><svg class="ico" viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg></button></div>
+    <div class="field"><label>Event Name</label><input id="ce-name" type="text" placeholder="e.g. Weekly Fanart Event"></div>
+    <div class="field"><label>Description</label><textarea id="ce-desc" rows="2" placeholder="Event details..."></textarea></div>
+    <div class="field"><label>Rules</label><textarea id="ce-rules" rows="2" placeholder="Event rules..."></textarea></div>
+    <div class="field"><label>Duration</label><select id="ce-dur"><option value="7">7 Days</option><option value="10">10 Days</option><option value="15">15 Days</option></select></div>
+    <div class="field">
+      <label>Cover Image</label>
+      <label class="btn-outline" style="cursor:pointer; width:100%; justify-content:center;">Select Cover<input type="file" id="ce-cover" accept="image/*" style="display:none" onchange="prevUpload(event, 'ce-cover-prev')"></label>
+      <div id="ce-cover-prev" style="margin-top:10px;"></div>
+    </div>
+    <button class="btn-main" id="ce-btn" onclick="doCreateEvent()">Create Event</button>
+  </div>
+</div>
+
+<div class="overlay" id="edit-comp-modal">
+  <div class="modal">
+    <div class="modal-head"><h3>Edit Competition</h3><button class="cls-btn" onclick="closeModal('edit-comp-modal')"><svg class="ico" viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg></button></div>
+    <div class="field"><label>Competition Name</label><input id="ecc-name" type="text" placeholder="e.g. Summer Art Contest"></div>
+    <div class="field"><label>Description</label><textarea id="ecc-desc" rows="2" placeholder="What is this about?"></textarea></div>
+    <div class="field"><label>Rules</label><textarea id="ecc-rules" rows="2" placeholder="Enter rules..."></textarea></div>
+    <div class="field">
+      <label>Banner Image <span style="color:var(--text3);font-weight:400;">(optional â€” leave blank to keep current)</span></label>
+      <label class="btn-outline" style="cursor:pointer; width:100%; justify-content:center;">Change Banner<input type="file" id="ecc-banner" accept="image/*" style="display:none" onchange="prevUpload(event, 'ecc-banner-prev')"></label>
+      <div id="ecc-banner-prev" style="margin-top:10px;"></div>
+    </div>
+    <button class="btn-main" id="ecc-btn" onclick="doEditComp()">Save Changes</button>
+  </div>
+</div>
+
+<div class="overlay" id="submit-comp-modal">
+  <div class="modal">
+    <div class="modal-head"><h3>Submit Artwork</h3><button class="cls-btn" onclick="closeModal('submit-comp-modal')"><svg class="ico" viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg></button></div>
+    <div class="field"><label>Artwork Title</label><input id="sc-title-in" type="text" placeholder="Your masterpiece name"></div>
+    <div class="field"><label>Description (Optional)</label><textarea id="sc-desc-in" rows="2" placeholder="About your art..."></textarea></div>
+    <div class="field">
+      <label>Artwork Image</label>
+      <label class="btn-outline" style="cursor:pointer; width:100%; justify-content:center;">Select Image<input type="file" id="sc-img" accept="image/*" style="display:none" onchange="prevUpload(event, 'sc-img-prev')"></label>
+      <div id="sc-img-prev" style="margin-top:10px;"></div>
+    </div>
+    <button class="btn-main" id="sc-btn" onclick="doSubmitComp()">Submit</button>
+  </div>
+</div>
+
+<div class="overlay" id="edit-event-modal">
+  <div class="modal">
+    <div class="modal-head"><h3>Edit Event</h3><button class="cls-btn" onclick="closeModal('edit-event-modal')"><svg class="ico" viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg></button></div>
+    <div class="field"><label>Event Name</label><input id="eev-name" type="text" placeholder="e.g. Weekly Fanart Event"></div>
+    <div class="field"><label>Description</label><textarea id="eev-desc" rows="2" placeholder="Event details..."></textarea></div>
+    <div class="field"><label>Rules</label><textarea id="eev-rules" rows="2" placeholder="Event rules..."></textarea></div>
+    <div class="field">
+      <label>Cover Image <span style="color:var(--text3);font-weight:400;">(optional â€” leave blank to keep current)</span></label>
+      <label class="btn-outline" style="cursor:pointer; width:100%; justify-content:center;">Change Cover<input type="file" id="eev-cover" accept="image/*" style="display:none" onchange="prevUpload(event, 'eev-cover-prev')"></label>
+      <div id="eev-cover-prev" style="margin-top:10px;"></div>
+    </div>
+    <button class="btn-main" id="eev-btn" onclick="doEditEvent()">Save Changes</button>
+  </div>
+</div>
+
+<div class="overlay" id="submit-event-modal">
+  <div class="modal">
+    <div class="modal-head"><h3>Post to Event</h3><button class="cls-btn" onclick="closeModal('submit-event-modal')"><svg class="ico" viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg></button></div>
+    <div class="field"><label>Text / Description</label><textarea id="se-text-in" rows="3" placeholder="Write something..."></textarea></div>
+    <div class="field">
+      <label>Attach Image (Optional)</label>
+      <label class="btn-outline" style="cursor:pointer; width:100%; justify-content:center;">Select Image<input type="file" id="se-img" accept="image/*" style="display:none" onchange="prevUpload(event, 'se-img-prev')"></label>
+      <div id="se-img-prev" style="margin-top:10px;"></div>
+    </div>
+    <button class="btn-main" id="se-submit-action-btn" onclick="doSubmitEvent()">Post</button>
+  </div>
+</div>
+
 <div id="lb" onclick="document.getElementById('lb').classList.remove('on')"><img id="lb-img" src="" alt=""></div>
 <div class="toast-box" id="toasts"></div>
 
@@ -675,9 +859,10 @@ const IBB  = "611a45563b3cc91726dd136441dc319c";
 
 const i18n = {
   en: {
-    tab_in: "Login", tab_up: "Register", lbl_user: "Username", lbl_pass: "Password", lbl_name: "Full Name", btn_in: "Login", btn_up: "Create Account", ph_user: "Your username", ph_pass: "••••••••", ph_name: "Your name", ph_user_up: "cooluser123",
+    tab_in: "Login", tab_up: "Register", lbl_user: "Username", lbl_pass: "Password", lbl_name: "Full Name", btn_in: "Login", btn_up: "Create Account", ph_user: "Your username", ph_pass: "â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢", ph_name: "Your name", ph_user_up: "cooluser123",
     err_fill: "Please fill all fields.", err_user: "Username 3-20 chars.", err_pass: "Password must be at least 6 characters.", err_taken: "Username taken.", err_login: "Invalid credentials.",
     btn_loading: "Loading...", btn_creating: "Creating...", msg_created: "Account created!", nav_home: "Home", nav_explore: "Explore", nav_follow: "Following", nav_saved: "Saved", nav_notifications: "Notifications", nav_profile: "Profile", nav_settings: "Settings", nav_logout: "Logout",
+    nav_competitions: "Art Competitions", nav_events: "Events", page_competitions: "Art Competitions", page_events: "Events",
     ph_compose: "What's on your mind? Mention @ and use #hashtags...", btn_post: "Post", empty_home: "No posts yet.", ph_search: "Search username...", ph_search_home: "Find post or #hashtag...", empty_search: "Find someone", empty_follow: "Not following anyone.",
     stat_posts: "Posts", stat_followers: "Followers", stat_following: "Following", title_sug: "Suggested Users", btn_edit: "Edit Profile", btn_follow: "Follow", btn_unfollow: "Unfollow", title_edit: "Edit Profile",
     lbl_pfp: "Profile Picture", btn_change_pic: "Change Picture", lbl_bio: "Bio", ph_bio: "About yourself...", btn_save: "Save", err_no_post: "Write something or attach image/poll", btn_posting: "Posting...", msg_posted: "Posted!",
@@ -689,15 +874,17 @@ const i18n = {
     nav_messages: "Messages", btn_msg: "Message", ph_msg_in: "Type a message...", empty_msg: "No active conversations yet."
   },
   bn: {
-    tab_in: "লগইন", tab_up: "নিবন্ধন", lbl_user: "ইউজারনেম", lbl_pass: "পাসওয়ার্ড", lbl_name: "পূর্ণ নাম", btn_in: "লগইন করুন", btn_up: "অ্যাকাউন্ট তৈরি করুন", ph_user: "আপনার ইউজারনেম", ph_pass: "••••••••", ph_name: "আপনার নাম", ph_user_up: "cooluser123",
-    err_fill: "সব তথ্য দিন।", err_user: "৩-২০ অক্ষর।", err_pass: "অন্তত ৬ অক্ষর।", err_taken: "ইউজারনেম ব্যবহৃত।", err_login: "ভুল তথ্য।", btn_loading: "লগইন হচ্ছে...", btn_creating: "তৈরি হচ্ছে...", msg_created: "তৈরি হয়েছে!",
-    nav_home: "হোম", nav_explore: "খুঁজুন", nav_follow: "ফলোয়িং", nav_saved: "সেভড", nav_notifications: "নোটিফিকেশন", nav_profile: "প্রোফাইল", nav_settings: "সেটিংস", nav_logout: "লগআউট", ph_compose: "@ মেনশন এবং #হ্যাশট্যাগ ব্যবহার করুন...", btn_post: "পোস্ট করুন", empty_home: "পোস্ট নেই।", ph_search: "খুঁজুন...", ph_search_home: "পোস্ট বা #হ্যাশট্যাগ...", empty_search: "কাউকে খুঁজুন", empty_follow: "কাউকে ফলো করেননি।",
-    stat_posts: "পোস্ট", stat_followers: "ফলোয়ার", stat_following: "ফলোয়িং", title_sug: "পরামর্শকৃত ইউজার", btn_edit: "সম্পাদনা", btn_follow: "ফলো করুন", btn_unfollow: "আনফলো", title_edit: "প্রোফাইল সম্পাদনা", lbl_pfp: "ছবি", btn_change_pic: "ছবি পরিবর্তন", lbl_bio: "বায়ো", ph_bio: "নিজের সম্পর্কে...", btn_save: "সেভ", err_no_post: "কিছু লিখুন বা দিন", btn_posting: "পোস্ট হচ্ছে...", msg_posted: "পোস্ট হয়েছে!",
-    btn_del: "মুছুন", msg_del_conf: "পোস্ট মুছবেন?", msg_del: "মুছে গেছে", err_no_user: "পাওয়া যায়নি", msg_unfollow: "আনফলো করা হয়েছে", msg_follow: "ফলো করা হয়েছে!", msg_all_followed: "সবাইকে ফলো করেছেন!", msg_no_res: "কেউ নেই", btn_saving: "সংরক্ষণ...", msg_saved: "আপডেট হয়েছে!", err_size: "৫MB এর বেশি", err_upload: "ব্যর্থ হয়েছে", time_just: "এইমাত্র", time_min: "মি আগে", time_hr: "ঘ আগে", time_day: "দি আগে",
-    lang_title: "ভাষা", theme_title: "থিম", theme_dark: "ডার্ক", theme_light: "লাইট", no_bio: "বায়ো নেই।", empty_profile: "পোস্ট নেই।", page_home: "হোম", page_explore: "খুঁজুন", page_following: "ফলোয়িং ফিড", page_saved: "সেভড পোস্ট", page_settings: "সেটিংস", ph_comment: "কমেন্ট...", btn_send: "পাঠান",
-    pass_title: "পাসওয়ার্ড পরিবর্তন", ph_new_pass: "নতুন পাসওয়ার্ড", btn_upd_pass: "আপডেট করুন", msg_pass_upd: "আপডেট হয়েছে!", cover_title: "কভার ছবি", btn_change_cover: "কভার পরিবর্তন", btn_rgb_remove: "RGB রিমুভ", err_pass_len: "অন্তত ৬ অক্ষর",
-    msg_saved_post: "অফলাইনে সেভ হয়েছে!", msg_unsaved_post: "সেভ থেকে রিমুভ!", btn_share: "শেয়ার", msg_pinned: "পিন করা হয়েছে!", txt_pinned: "পিন করা পোস্ট", empty_saved: "কোনো সেভ করা পোস্ট নেই।",
-    nav_messages: "মেসেজ", btn_msg: "মেসেজ দিন", ph_msg_in: "মেসেজ লিখুন...", empty_msg: "কোনো চ্যাট নেই।"
+    tab_in: "à¦²à¦—à¦‡à¦¨", tab_up: "à¦¨à¦¿à¦¬à¦¨à§à¦§à¦¨", lbl_user: "à¦‡à¦‰à¦œà¦¾à¦°à¦¨à§‡à¦®", lbl_pass: "à¦ªà¦¾à¦¸à¦“à¦¯à¦¼à¦¾à¦°à§à¦¡", lbl_name: "à¦ªà§‚à¦°à§à¦£ à¦¨à¦¾à¦®", btn_in: "à¦²à¦—à¦‡à¦¨ à¦•à¦°à§à¦¨", btn_up: "à¦…à§à¦¯à¦¾à¦•à¦¾à¦‰à¦¨à§à¦Ÿ à¦¤à§ˆà¦°à¦¿ à¦•à¦°à§à¦¨", ph_user: "à¦†à¦ªà¦¨à¦¾à¦° à¦‡à¦‰à¦œà¦¾à¦°à¦¨à§‡à¦®", ph_pass: "â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢", ph_name: "à¦†à¦ªà¦¨à¦¾à¦° à¦¨à¦¾à¦®", ph_user_up: "cooluser123",
+    err_fill: "à¦¸à¦¬ à¦¤à¦¥à§à¦¯ à¦¦à¦¿à¦¨à¥¤", err_user: "à§©-à§¨à§¦ à¦…à¦•à§à¦·à¦°à¥¤", err_pass: "à¦…à¦¨à§à¦¤à¦¤ à§¬ à¦…à¦•à§à¦·à¦°à¥¤", err_taken: "à¦‡à¦‰à¦œà¦¾à¦°à¦¨à§‡à¦® à¦¬à§à¦¯à¦¬à¦¹à§ƒà¦¤à¥¤", err_login: "à¦­à§à¦² à¦¤à¦¥à§à¦¯à¥¤", btn_loading: "à¦²à¦—à¦‡à¦¨ à¦¹à¦šà§à¦›à§‡...", btn_creating: "à¦¤à§ˆà¦°à¦¿ à¦¹à¦šà§à¦›à§‡...", msg_created: "à¦¤à§ˆà¦°à¦¿ à¦¹à¦¯à¦¼à§‡à¦›à§‡!",
+    nav_home: "à¦¹à§‹à¦®", nav_explore: "à¦–à§à¦à¦œà§à¦¨", nav_follow: "à¦«à¦²à§‹à¦¯à¦¼à¦¿à¦‚", nav_saved: "à¦¸à§‡à¦­à¦¡", nav_notifications: "à¦¨à§‹à¦Ÿà¦¿à¦«à¦¿à¦•à§‡à¦¶à¦¨", nav_profile: "à¦ªà§à¦°à§‹à¦«à¦¾à¦‡à¦²", nav_settings: "à¦¸à§‡à¦Ÿà¦¿à¦‚à¦¸", nav_logout: "à¦²à¦—à¦†à¦‰à¦Ÿ", 
+    nav_competitions: "à¦†à¦°à§à¦Ÿ à¦ªà§à¦°à¦¤à¦¿à¦¯à§‹à¦—à¦¿à¦¤à¦¾", nav_events: "à¦‡à¦­à§‡à¦¨à§à¦Ÿà¦¸", page_competitions: "à¦†à¦°à§à¦Ÿ à¦ªà§à¦°à¦¤à¦¿à¦¯à§‹à¦—à¦¿à¦¤à¦¾", page_events: "à¦‡à¦­à§‡à¦¨à§à¦Ÿà¦¸",
+    ph_compose: "@ à¦®à§‡à¦¨à¦¶à¦¨ à¦à¦¬à¦‚ #à¦¹à§à¦¯à¦¾à¦¶à¦Ÿà§à¦¯à¦¾à¦— à¦¬à§à¦¯à¦¬à¦¹à¦¾à¦° à¦•à¦°à§à¦¨...", btn_post: "à¦ªà§‹à¦¸à§à¦Ÿ à¦•à¦°à§à¦¨", empty_home: "à¦ªà§‹à¦¸à§à¦Ÿ à¦¨à§‡à¦‡à¥¤", ph_search: "à¦–à§à¦à¦œà§à¦¨...", ph_search_home: "à¦ªà§‹à¦¸à§à¦Ÿ à¦¬à¦¾ #à¦¹à§à¦¯à¦¾à¦¶à¦Ÿà§à¦¯à¦¾à¦—...", empty_search: "à¦•à¦¾à¦‰à¦•à§‡ à¦–à§à¦à¦œà§à¦¨", empty_follow: "à¦•à¦¾à¦‰à¦•à§‡ à¦«à¦²à§‹ à¦•à¦°à§‡à¦¨à¦¨à¦¿à¥¤",
+    stat_posts: "à¦ªà§‹à¦¸à§à¦Ÿ", stat_followers: "à¦«à¦²à§‹à¦¯à¦¼à¦¾à¦°", stat_following: "à¦«à¦²à§‹à¦¯à¦¼à¦¿à¦‚", title_sug: "à¦ªà¦°à¦¾à¦®à¦°à§à¦¶à¦•à§ƒà¦¤ à¦‡à¦‰à¦œà¦¾à¦°", btn_edit: "à¦¸à¦®à§à¦ªà¦¾à¦¦à¦¨à¦¾", btn_follow: "à¦«à¦²à§‹ à¦•à¦°à§à¦¨", btn_unfollow: "à¦†à¦¨à¦«à¦²à§‹", title_edit: "à¦ªà§à¦°à§‹à¦«à¦¾à¦‡à¦² à¦¸à¦®à§à¦ªà¦¾à¦¦à¦¨à¦¾", lbl_pfp: "à¦›à¦¬à¦¿", btn_change_pic: "à¦›à¦¬à¦¿ à¦ªà¦°à¦¿à¦¬à¦°à§à¦¤à¦¨", lbl_bio: "à¦¬à¦¾à¦¯à¦¼à§‹", ph_bio: "à¦¨à¦¿à¦œà§‡à¦° à¦¸à¦®à§à¦ªà¦°à§à¦•à§‡...", btn_save: "à¦¸à§‡à¦­", err_no_post: "à¦•à¦¿à¦›à§ à¦²à¦¿à¦–à§à¦¨ à¦¬à¦¾ à¦¦à¦¿à¦¨", btn_posting: "à¦ªà§‹à¦¸à§à¦Ÿ à¦¹à¦šà§à¦›à§‡...", msg_posted: "à¦ªà§‹à¦¸à§à¦Ÿ à¦¹à¦¯à¦¼à§‡à¦›à§‡!",
+    btn_del: "à¦®à§à¦›à§à¦¨", msg_del_conf: "à¦ªà§‹à¦¸à§à¦Ÿ à¦®à§à¦›à¦¬à§‡à¦¨?", msg_del: "à¦®à§à¦›à§‡ à¦—à§‡à¦›à§‡", err_no_user: "à¦ªà¦¾à¦“à¦¯à¦¼à¦¾ à¦¯à¦¾à¦¯à¦¼à¦¨à¦¿", msg_unfollow: "à¦†à¦¨à¦«à¦²à§‹ à¦•à¦°à¦¾ à¦¹à¦¯à¦¼à§‡à¦›à§‡", msg_follow: "à¦«à¦²à§‹ à¦•à¦°à¦¾ à¦¹à¦¯à¦¼à§‡à¦›à§‡!", msg_all_followed: "à¦¸à¦¬à¦¾à¦‡à¦•à§‡ à¦«à¦²à§‹ à¦•à¦°à§‡à¦›à§‡à¦¨!", msg_no_res: "à¦•à§‡à¦‰ à¦¨à§‡à¦‡", btn_saving: "à¦¸à¦‚à¦°à¦•à§à¦·à¦£...", msg_saved: "à¦†à¦ªà¦¡à§‡à¦Ÿ à¦¹à¦¯à¦¼à§‡à¦›à§‡!", err_size: "à§«MB à¦à¦° à¦¬à§‡à¦¶à¦¿", err_upload: "à¦¬à§à¦¯à¦°à§à¦¥ à¦¹à¦¯à¦¼à§‡à¦›à§‡", time_just: "à¦à¦‡à¦®à¦¾à¦¤à§à¦°", time_min: "à¦®à¦¿ à¦†à¦—à§‡", time_hr: "à¦˜ à¦†à¦—à§‡", time_day: "à¦¦à¦¿ à¦†à¦—à§‡",
+    lang_title: "à¦­à¦¾à¦·à¦¾", theme_title: "à¦¥à¦¿à¦®", theme_dark: "à¦¡à¦¾à¦°à§à¦•", theme_light: "à¦²à¦¾à¦‡à¦Ÿ", no_bio: "à¦¬à¦¾à¦¯à¦¼à§‹ à¦¨à§‡à¦‡à¥¤", empty_profile: "à¦ªà§‹à¦¸à§à¦Ÿ à¦¨à§‡à¦‡à¥¤", page_home: "à¦¹à§‹à¦®", page_explore: "à¦–à§à¦à¦œà§à¦¨", page_following: "à¦«à¦²à§‹à¦¯à¦¼à¦¿à¦‚ à¦«à¦¿à¦¡", page_saved: "à¦¸à§‡à¦­à¦¡ à¦ªà§‹à¦¸à§à¦Ÿ", page_settings: "à¦¸à§‡à¦Ÿà¦¿à¦‚à¦¸", ph_comment: "à¦•à¦®à§‡à¦¨à§à¦Ÿ...", btn_send: "à¦ªà¦¾à¦ à¦¾à¦¨",
+    pass_title: "à¦ªà¦¾à¦¸à¦“à¦¯à¦¼à¦¾à¦°à§à¦¡ à¦ªà¦°à¦¿à¦¬à¦°à§à¦¤à¦¨", ph_new_pass: "à¦¨à¦¤à§à¦¨ à¦ªà¦¾à¦¸à¦“à¦¯à¦¼à¦¾à¦°à§à¦¡", btn_upd_pass: "à¦†à¦ªà¦¡à§‡à¦Ÿ à¦•à¦°à§à¦¨", msg_pass_upd: "à¦†à¦ªà¦¡à§‡à¦Ÿ à¦¹à¦¯à¦¼à§‡à¦›à§‡!", cover_title: "à¦•à¦­à¦¾à¦° à¦›à¦¬à¦¿", btn_change_cover: "à¦•à¦­à¦¾à¦° à¦ªà¦°à¦¿à¦¬à¦°à§à¦¤à¦¨", btn_rgb_remove: "RGB à¦°à¦¿à¦®à§à¦­", err_pass_len: "à¦…à¦¨à§à¦¤à¦¤ à§¬ à¦…à¦•à§à¦·à¦°",
+    msg_saved_post: "à¦…à¦«à¦²à¦¾à¦‡à¦¨à§‡ à¦¸à§‡à¦­ à¦¹à¦¯à¦¼à§‡à¦›à§‡!", msg_unsaved_post: "à¦¸à§‡à¦­ à¦¥à§‡à¦•à§‡ à¦°à¦¿à¦®à§à¦­!", btn_share: "à¦¶à§‡à¦¯à¦¼à¦¾à¦°", msg_pinned: "à¦ªà¦¿à¦¨ à¦•à¦°à¦¾ à¦¹à§Ÿà§‡à¦›à§‡!", txt_pinned: "à¦ªà¦¿à¦¨ à¦•à¦°à¦¾ à¦ªà§‹à¦¸à§à¦Ÿ", empty_saved: "à¦•à§‹à¦¨à§‹ à¦¸à§‡à¦­ à¦•à¦°à¦¾ à¦ªà§‹à¦¸à§à¦Ÿ à¦¨à§‡à¦‡à¥¤",
+    nav_messages: "à¦®à§‡à¦¸à§‡à¦œ", btn_msg: "à¦®à§‡à¦¸à§‡à¦œ à¦¦à¦¿à¦¨", ph_msg_in: "à¦®à§‡à¦¸à§‡à¦œ à¦²à¦¿à¦–à§à¦¨...", empty_msg: "à¦•à§‹à¦¨à§‹ à¦šà§à¦¯à¦¾à¦Ÿ à¦¨à§‡à¦‡à¥¤"
   }
 };
 
@@ -721,10 +908,11 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 let me = null, meData = null;
-let selFile = null, pfpFile = null, coverFile = null;
+let selFile = null, pfpFile = null, coverFile = null, genFile = null;
 let isCoverRgbRemoved = false, cropper = null;
 let prevPg  = 'home', viewUid = null, searchTimer = null;
 let currentChatUid = null, chatUnsub = null;
+let activeCompId = null, activeEventId = null, activeCompData = null, activeEventData = null;
 window.postCache = {}; 
 
 window.toast = (msg, type='') => {
@@ -768,7 +956,6 @@ window.filterByHashtag = (tag, ev) => {
     filterHomePosts();
 };
 
-// ===== TRENDING HASHTAGS (computed client-side from already-loaded posts, zero extra reads) =====
 window.renderTrending = () => {
   if (Object.keys(window.postCache || {}).length === 0) { loadHome().then(() => renderTrendingFromCache()); return; }
   renderTrendingFromCache();
@@ -813,7 +1000,6 @@ async function uploadIBB(file){
   } catch(err) { throw new Error('Image upload failed: ' + err.message); }
 }
 
-// ENCRYPTION LOGIC FOR CHAT
 window.encMsg = (str, key) => {
     if(!str) return '';
     let enc = encodeURIComponent(str);
@@ -832,9 +1018,8 @@ window.decMsg = (str, key) => {
             xor += String.fromCharCode(dec.charCodeAt(i) ^ key.charCodeAt(i % key.length));
         }
         return decodeURIComponent(xor);
-    } catch(e) { return str; } // Fallback to raw text if error
+    } catch(e) { return str; }
 };
-
 
 window.toggleMobMenu = () => { document.querySelector('.sidebar').classList.toggle('on'); document.querySelector('.overlay-bg').classList.toggle('on'); };
 window.closeMobMenu = () => { document.querySelector('.sidebar').classList.remove('on'); document.querySelector('.overlay-bg').classList.remove('on'); };
@@ -874,12 +1059,30 @@ function bootApp(){
   setAv($('sb-av'), meData); setAv($('mh-av'), meData);
   $('sb-name').innerHTML = esc(meData.displayName) + (meData.isVerified ? getBadgeSVG() : ''); $('sb-handle').textContent = '@' + meData.username;
   setAv($('c-av'), meData);
+  cleanupExpiredData();
   loadHome(); loadSuggestions();
   startPresence();
   watchUnreadCounts();
 }
 
-// ===== PRESENCE (online/offline + lastActive heartbeat) =====
+async function cleanupExpiredData() {
+    const now = Date.now();
+    // Clean competitions
+    const compSnap = await getDocs(query(collection(db, 'competitions'), where("endDate", "<", now - 86400000))); // 1 day grace
+    compSnap.forEach(async (d) => {
+        const subSnap = await getDocs(collection(db, 'competitions', d.id, 'submissions'));
+        subSnap.forEach(sub => deleteDoc(sub.ref));
+        deleteDoc(d.ref);
+    });
+    // Clean events
+    const evSnap = await getDocs(query(collection(db, 'events'), where("endDate", "<", now - 86400000)));
+    evSnap.forEach(async (d) => {
+        const pSnap = await getDocs(collection(db, 'events', d.id, 'posts'));
+        pSnap.forEach(p => deleteDoc(p.ref));
+        deleteDoc(d.ref);
+    });
+}
+
 let presenceHeartbeat = null;
 function startPresence() {
   if (!me) return;
@@ -891,7 +1094,6 @@ function startPresence() {
   window.addEventListener('beforeunload', () => { updateDoc(doc(db,'users',me.uid), { lastActive: Date.now() - 200000 }).catch(()=>{}); });
 }
 
-// ===== UNREAD COUNTERS (messages + notifications badges) =====
 let unreadUnsub = null;
 function watchUnreadCounts() {
   if (!me) return;
@@ -933,6 +1135,8 @@ window.goPage = pg => {
   if (pg==='follow') loadFollowFeed(); if (pg==='notifications') { loadNotifications(); clearUnreadNotifs(); } if (pg==='settings') renderVerifyUI(); if (pg==='saved') loadSavedFeed();
   if (pg==='messages') { loadChatList(); clearUnreadMessages(); }
   if (pg==='explore') renderTrending();
+  if (pg==='competitions') loadCompetitions();
+  if (pg==='events') loadEvents();
 };
 
 window.myProfile = () => { prevPg = document.querySelector('.page.on')?.id?.replace('pg-','') || 'home'; loadProfile(me.uid); closeMobMenu(); };
@@ -990,7 +1194,6 @@ async function loadNotifications() {
   } catch(e) { $('n-spin').style.display = 'none'; }
 }
 
-// SECURE CHAT FUNCTIONS
 async function loadChatList() {
   $('msg-spin').style.display = 'flex'; $('msg-list').innerHTML = ''; $('msg-empty').style.display = 'none';
   const chats = meData.recentChats || [];
@@ -1039,14 +1242,12 @@ window.openChat = (uid, name) => {
     const docs = snap.docs;
     docs.forEach((d, idx) => {
       const msg = d.data();
-      // 24 Hour Delete Logic: 86400000 ms
       if (now - msg.timestamp > 86400000) { deleteDoc(d.ref); return; }
 
       const isMe = msg.senderId === me.uid;
       if (!isMe && !(msg.seenBy||[]).includes(me.uid)) { updateDoc(d.ref, { seenBy: arrayUnion(me.uid) }).catch(()=>{}); }
       if (isMe) { lastMineId = d.id; lastMineSeen = (msg.seenBy||[]).includes(currentChatUid); }
 
-      // Decrypt Data Client-Side
       let decText = msg.text ? decMsg(msg.text, roomId) : '';
       let decImg = msg.imageURL ? decMsg(msg.imageURL, roomId) : '';
       let decReplyText = msg.replyText ? decMsg(msg.replyText, roomId) : '';
@@ -1131,7 +1332,7 @@ function watchPresence(uid) {
     if (!snap.exists()) return;
     const d = snap.data();
     const lastActive = d.lastActive || 0;
-    const isOnline = (Date.now() - lastActive) < 90000; // online if active in last 90s
+    const isOnline = (Date.now() - lastActive) < 90000;
     $('chat-presence-txt').textContent = isOnline ? 'Online' : (lastActive ? 'Last seen ' + timeAgo(lastActive) : '');
   });
 }
@@ -1182,7 +1383,6 @@ window.sendChatMessage = async () => {
   const roomId = [me.uid, currentChatUid].sort().join('_');
 
   try {
-    // Encrypt before sending
     const encText = encMsg(txt, roomId);
     const msgData = { text: encText, imageURL: '', senderId: me.uid, timestamp: Date.now(), seenBy: [me.uid] };
     if (replyToMsg) { msgData.replyText = encMsg(replyToMsg, roomId); }
@@ -1204,7 +1404,6 @@ window.sendChatImage = async (e) => {
   $('chat-img-in').value = '';
   const roomId = [me.uid, currentChatUid].sort().join('_');
   
-  // Fake loading bubble
   const tempDiv = document.createElement('div');
   tempDiv.className = 'msg-bubble me'; 
   tempDiv.innerHTML = '<div class="spinner" style="width:16px;height:16px;border-width:2px;border-top-color:#fff;"></div> Uploading...';
@@ -1212,7 +1411,7 @@ window.sendChatImage = async (e) => {
 
   try {
     const imgUrl = await uploadIBB(f);
-    const encImg = encMsg(imgUrl, roomId); // Encrypt image URL
+    const encImg = encMsg(imgUrl, roomId);
 
     await addDoc(collection(db, 'chats', roomId, 'messages'), { 
       text: '', 
@@ -1232,7 +1431,69 @@ window.sendChatImage = async (e) => {
 
 document.getElementById('chat-input').addEventListener('keypress', function (e) { if (e.key === 'Enter') sendChatMessage(); });
 
-// POST FUNCTIONS
+// FOLLOW UPDATE
+window.toggleFollow = async uid => {
+  const isF = (meData.following||[]).includes(uid);
+  if (isF){ 
+      await updateDoc(doc(db,'users',me.uid), { following: arrayRemove(uid) }); 
+      await updateDoc(doc(db,'users',uid),{ followers: arrayRemove(me.uid) }); 
+      meData.following = (meData.following||[]).filter(u=>u!==uid); 
+      toast(t('msg_unfollow')); 
+  } else { 
+      await updateDoc(doc(db,'users',me.uid), { following: arrayUnion(uid) }); 
+      await updateDoc(doc(db,'users',uid),{ followers: arrayUnion(me.uid) }); 
+      meData.following = [...(meData.following||[]), uid]; 
+      toast(t('msg_follow'),'ok'); 
+  }
+  
+  // Update all instances on screen
+  document.querySelectorAll(`.btn-follow[onclick*="'${uid}'"]`).forEach(btn => {
+      const nf = !isF; 
+      btn.textContent = nf ? 'Following' : 'Follow'; 
+      btn.className = 'btn-follow ' + (nf ? 'on' : '');
+  });
+  
+  if(viewUid === uid) { 
+      const snap = await getDoc(doc(db,'users',uid)); 
+      if(snap.exists()) { $('pp-fc').textContent = snap.data().followers ? snap.data().followers.length : 0; } 
+  }
+  loadSuggestions();
+};
+
+// LIKE SYSTEM UPDATE
+window.toggleLike = async (id, btnNode) => {
+    const isLiked = btnNode.classList.contains('liked');
+    const cntSpan = btnNode.querySelector('span');
+    let cnt = parseInt(cntSpan.innerText) || 0;
+    
+    if (isLiked) {
+        btnNode.classList.remove('liked');
+        cntSpan.innerText = cnt > 0 ? cnt - 1 : 0;
+        await updateDoc(doc(db, 'posts', id), { likes: arrayRemove(me.uid) });
+    } else {
+        btnNode.classList.add('liked');
+        cntSpan.innerText = cnt + 1;
+        await updateDoc(doc(db, 'posts', id), { likes: arrayUnion(me.uid) });
+    }
+};
+
+window.toggleEventLike = async (eventId, postId, btnNode) => {
+    const isLiked = btnNode.classList.contains('liked');
+    const cntSpan = btnNode.querySelector('span');
+    let cnt = parseInt(cntSpan.innerText) || 0;
+    
+    if (isLiked) {
+        btnNode.classList.remove('liked');
+        cntSpan.innerText = cnt > 0 ? cnt - 1 : 0;
+        await updateDoc(doc(db, 'events', eventId, 'posts', postId), { likes: arrayRemove(me.uid) });
+    } else {
+        btnNode.classList.add('liked');
+        cntSpan.innerText = cnt + 1;
+        await updateDoc(doc(db, 'events', eventId, 'posts', postId), { likes: arrayUnion(me.uid) });
+    }
+};
+
+
 function buildPost(id, data, isPinned = false){
   window.postCache[id] = data; 
   const div = document.createElement('div'); div.className = 'post';
@@ -1240,19 +1501,14 @@ function buildPost(id, data, isPinned = false){
   const cnt = (data.likes||[]).length;
   const comments = data.comments || []; const cCnt = comments.length;
   const isMe = data.authorUid === me.uid;
+  const isFollowing = (meData.following||[]).includes(data.authorUid);
   const authorPhotoToUse = (isMe && meData.photoURL) ? meData.photoURL : (data.authorPhoto || '');
   const authorNameToUse = isMe ? meData.displayName : data.authorName;
-  const reactions = data.reactions || {};
-  const myReaction = reactions[me.uid] || null;
-  const reactCounts = {}; Object.values(reactions).forEach(r => { reactCounts[r] = (reactCounts[r]||0)+1; });
-  const totalReacts = Object.keys(reactions).length || cnt;
   const isReposted = (data.repostedBy||[]).includes(me.uid);
   const viewCount = data.viewCount || 0;
 
   const uAvId = 'av-' + id + '-' + Math.floor(Math.random()*1000); const uSecId = 'csec-' + id + '-' + Math.floor(Math.random()*1000);
   const uListId = 'clist-' + id + '-' + Math.floor(Math.random()*1000); const uInpId = 'cin-' + id + '-' + Math.floor(Math.random()*1000);
-  const uLikeBtnId = 'lb-' + id + '-' + Math.floor(Math.random()*1000); const uLikeCntId = 'lc-' + id + '-' + Math.floor(Math.random()*1000);
-  const uReactPopId = 'rp-' + id + '-' + Math.floor(Math.random()*1000); const uReactSumId = 'rs-' + id + '-' + Math.floor(Math.random()*1000);
   const uMoreMenuId = 'mm-' + id + '-' + Math.floor(Math.random()*1000);
 
   let commentsHTML = '';
@@ -1292,15 +1548,14 @@ function buildPost(id, data, isPinned = false){
       pollHTML += `<div style="font-size:12px; color:var(--text3);">${totalVotes} votes</div></div>`;
   }
 
-  const reactSummaryHTML = totalReacts > 0 ? `<div class="react-summary" id="${uReactSumId}">${reactionSummaryIcons(reactCounts)}<span>${totalReacts}</span></div>` : `<div class="react-summary" id="${uReactSumId}" style="display:none;"></div>`;
-
   div.innerHTML = `
     <div class="av" id="${uAvId}" style="width:50px;height:50px;font-size:18px;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,0.1)" onclick="loadProfile('${data.authorUid}')"></div>
     <div class="post-r">
       ${data.isRepost ? `<div class="repost-tag"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="17 1 21 5 17 9"></polyline><path d="M3 11V9a4 4 0 0 1 4-4h14"></path><polyline points="7 23 3 19 7 15"></polyline><path d="M21 13v2a4 4 0 0 1-4 4H3"></path></svg><span onclick="loadProfile('${data.reposterUid}')" style="cursor:pointer;">${esc(data.reposterName)} reposted</span></div>` : ''}
       <div class="post-head">
         <span class="p-name" onclick="loadProfile('${data.authorUid}')">${esc(authorNameToUse)}${data.authorVerified ? getBadgeSVG() : ''}</span>
-        <span class="p-handle">@${esc(data.authorUsername)}</span>
+        ${!isMe ? `<button class="btn-follow ${isFollowing?'on':''}" style="margin-left:8px; padding:2px 8px; font-size:11px;" onclick="toggleFollow('${data.authorUid}')">${isFollowing?'Following':'Follow'}</button>` : ''}
+        <span class="p-handle" style="margin-left:8px;">@${esc(data.authorUsername)}</span>
         <span class="p-time">${timeAgo(data.createdAt)}</span>
         <div class="more-menu-wrap" style="margin-left:auto;">
           <button class="cls-btn" style="width:28px;height:28px;" onclick="toggleMoreMenu('${uMoreMenuId}')"><svg class="ico" style="width:14px;height:14px;" viewBox="0 0 24 24"><circle cx="12" cy="12" r="1"></circle><circle cx="19" cy="12" r="1"></circle><circle cx="5" cy="12" r="1"></circle></svg></button>
@@ -1314,19 +1569,9 @@ function buildPost(id, data, isPinned = false){
       ${data.text ? `<div class="p-text" id="ptxt-${id}">${formatTextWithMentions(data.text)}${data.edited ? '<span style="font-size:11px;color:var(--text3);margin-left:6px;">(edited)</span>' : ''}</div>` : ''}
       ${pollHTML}
       ${data.imageURL ? `<img class="p-img" src="${data.imageURL}" alt="" style="object-fit:${data.imgStyle || 'cover'};" onclick="openLB('${data.imageURL}')">` : ''}
-      ${reactSummaryHTML}
 
       <div class="p-acts">
-        <div class="react-wrap">
-          <button class="act ${myReaction?'liked':''}" id="${uLikeBtnId}" onclick="quickReact('${id}', '${uLikeBtnId}', '${uLikeCntId}', '${uReactSumId}')" oncontextmenu="event.preventDefault(); openReactPop('${uReactPopId}')" ontouchstart="startReactHold('${uReactPopId}')" ontouchend="endReactHold()">${myReaction ? reactionIconSVG(myReaction) : reactionIconSVG('like')}<span id="${uLikeCntId}">${cnt}</span></button>
-          <div class="react-pop" id="${uReactPopId}" style="display:none;">
-            <button title="Like" onclick="sendReaction('${id}','like','${uLikeBtnId}','${uLikeCntId}','${uReactSumId}','${uReactPopId}')">${reactionIconSVG('like')}</button>
-            <button title="Love" onclick="sendReaction('${id}','heart','${uLikeBtnId}','${uLikeCntId}','${uReactSumId}','${uReactPopId}')">${reactionIconSVG('heart')}</button>
-            <button title="Haha" onclick="sendReaction('${id}','laugh','${uLikeBtnId}','${uLikeCntId}','${uReactSumId}','${uReactPopId}')">${reactionIconSVG('laugh')}</button>
-            <button title="Wow" onclick="sendReaction('${id}','wow','${uLikeBtnId}','${uLikeCntId}','${uReactSumId}','${uReactPopId}')">${reactionIconSVG('wow')}</button>
-            <button title="Sad" onclick="sendReaction('${id}','sad','${uLikeBtnId}','${uLikeCntId}','${uReactSumId}','${uReactPopId}')">${reactionIconSVG('sad')}</button>
-          </div>
-        </div>
+        <button class="act ${liked?'liked':''}" onclick="toggleLike('${id}', this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg><span>${cnt}</span></button>
         <button class="act" onclick="document.getElementById('${uSecId}').style.display = document.getElementById('${uSecId}').style.display === 'block' ? 'none' : 'block';"><svg viewBox="0 0 24 24"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path></svg><span>${cCnt}</span></button>
         <button class="act ${isReposted?'reposted':''}" onclick="toggleRepost('${id}', this)" title="Repost"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="17 1 21 5 17 9"></polyline><path d="M3 11V9a4 4 0 0 1 4-4h14"></path><polyline points="7 23 3 19 7 15"></polyline><path d="M21 13v2a4 4 0 0 1-4 4H3"></path></svg></button>
         <button class="act" onclick="sharePost('${id}', event)" title="Share"><svg viewBox="0 0 24 24"><circle cx="18" cy="5" r="3"></circle><circle cx="6" cy="12" r="3"></circle><circle cx="18" cy="19" r="3"></circle><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line></svg></button>
@@ -1372,6 +1617,14 @@ window.toggleSavePost = (id, btnNode) => {
     localStorage.setItem('anirdb_saved_posts', JSON.stringify(saved));
 };
 
+window.prevUpload = (e, prevId) => {
+    genFile = e.target.files[0]; if (!genFile) return;
+    if(genFile.size > 5*1024*1024){ toast(t('err_size'), 'err'); e.target.value=''; return; }
+    const r=new FileReader(); r.onload=ev=>{ 
+        $(prevId).innerHTML=`<img src="${ev.target.result}" style="width:100%;max-height:200px;border-radius:12px;object-fit:cover;">`; 
+    }; r.readAsDataURL(genFile);
+};
+
 window.prevImg = e => {
   const f = e.target.files[0]; if (!f) return;
   if(f.size > 5*1024*1024){ toast(t('err_size'), 'err'); $('img-in').value=''; return; }
@@ -1407,73 +1660,14 @@ window.postIt = async () => {
   btn.disabled=false; btn.textContent=t('btn_post');
 };
 
-// ===== REACTIONS SYSTEM (replaces simple like with SVG-based multi-reaction) =====
-const REACTION_TYPES = ['like','heart','laugh','wow','sad'];
-
-function reactionIconSVG(type) {
-  const icons = {
-    like:  '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 9V5a3 3 0 0 0-3-3l-4 9v11h11.28a2 2 0 0 0 2-1.7l1.38-9a2 2 0 0 0-2-2.3z"></path><path d="M7 22H4a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2h3"></path></svg>',
-    heart: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>',
-    laugh: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><path d="M8 14s1.5 2 4 2 4-2 4-2"></path><line x1="9" y1="9" x2="9.01" y2="9"></line><line x1="15" y1="9" x2="15.01" y2="9"></line></svg>',
-    wow:   '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><circle cx="12" cy="15" r="1.5"></circle><line x1="9" y1="9" x2="9.01" y2="9"></line><line x1="15" y1="9" x2="15.01" y2="9"></line></svg>',
-    sad:   '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><path d="M8 16s1.5-2 4-2 4 2 4 2"></path><line x1="9" y1="9" x2="9.01" y2="9"></line><line x1="15" y1="9" x2="15.01" y2="9"></line></svg>'
-  };
-  return icons[type] || icons.like;
-}
-
-function reactionSummaryIcons(reactCounts) {
-  return Object.keys(reactCounts).sort((a,b)=>reactCounts[b]-reactCounts[a]).slice(0,3)
-    .map(type => `<span class="react-chip"><span class="ric">${reactionIconSVG(type)}</span></span>`).join('');
-}
-
 window.toggleMoreMenu = (id) => {
   document.querySelectorAll('.more-menu').forEach(m => { if(m.id !== id) m.style.display = 'none'; });
   const m = $(id); if(m) m.style.display = m.style.display === 'none' ? 'flex' : 'none';
 };
 document.addEventListener('click', (e) => {
   if (!e.target.closest('.more-menu-wrap')) document.querySelectorAll('.more-menu').forEach(m => m.style.display = 'none');
-  if (!e.target.closest('.react-wrap')) document.querySelectorAll('.react-pop').forEach(p => p.style.display = 'none');
 });
 
-let reactHoldTimer = null;
-window.startReactHold = (popId) => { reactHoldTimer = setTimeout(() => openReactPop(popId), 400); };
-window.endReactHold = () => { if(reactHoldTimer) clearTimeout(reactHoldTimer); };
-window.openReactPop = (popId) => {
-  document.querySelectorAll('.react-pop').forEach(p => { if(p.id !== popId) p.style.display = 'none'; });
-  const p = $(popId); if(p) p.style.display = p.style.display === 'none' ? 'flex' : 'none';
-};
-
-window.quickReact = async (id, btnId, cntId, sumId) => {
-  const ref = doc(db,'posts',id); const snap = await getDoc(ref); if (!snap.exists()) return;
-  const data = snap.data(); const reactions = data.reactions || {};
-  const had = !!reactions[me.uid];
-  await sendReactionCore(id, had ? null : 'like', btnId, cntId, sumId);
-};
-
-window.sendReaction = async (id, type, btnId, cntId, sumId, popId) => {
-  const p = $(popId); if(p) p.style.display = 'none';
-  await sendReactionCore(id, type, btnId, cntId, sumId);
-};
-
-async function sendReactionCore(id, type, btnId, cntId, sumId) {
-  const ref = doc(db,'posts',id); const snap = await getDoc(ref); if (!snap.exists()) return;
-  const data = snap.data(); const reactions = { ...(data.reactions || {}) };
-  const prevType = reactions[me.uid];
-  if (type === null) { delete reactions[me.uid]; } else { reactions[me.uid] = type; }
-  const likesArr = Object.keys(reactions); // keep `likes` array in sync for backward compat / count queries
-  await updateDoc(ref, { reactions, likes: likesArr });
-
-  const btn = $(btnId), cnt = $(cntId), sum = $(sumId);
-  const total = likesArr.length;
-  if (btn) { btn.className = 'act ' + (type ? 'liked' : ''); btn.innerHTML = reactionIconSVG(type || 'like') + `<span id="${cntId}">${total}</span>`; }
-  if (sum) {
-    const reactCounts = {}; Object.values(reactions).forEach(r => { reactCounts[r] = (reactCounts[r]||0)+1; });
-    if (total > 0) { sum.style.display='flex'; sum.innerHTML = reactionSummaryIcons(reactCounts) + `<span>${total}</span>`; }
-    else { sum.style.display='none'; sum.innerHTML=''; }
-  }
-}
-
-// ===== REPOST =====
 window.toggleRepost = async (id, btnNode) => {
   try {
     const origRef = doc(db, 'posts', id); const origSnap = await getDoc(origRef); if(!origSnap.exists()) return;
@@ -1494,7 +1688,7 @@ window.toggleRepost = async (id, btnNode) => {
         text: origData.text || '', imageURL: origData.imageURL || '', imgStyle: origData.imgStyle || 'cover',
         authorUid: origData.authorUid, authorName: origData.authorName, authorUsername: origData.authorUsername,
         authorPhoto: origData.authorPhoto || '', authorVerified: origData.authorVerified || false,
-        likes: [], reactions: {}, comments: [], createdAt: serverTimestamp()
+        likes: [], comments: [], createdAt: serverTimestamp()
       };
       if (origData.poll) repostDoc.poll = origData.poll;
       await addDoc(collection(db,'posts'), repostDoc);
@@ -1504,14 +1698,13 @@ window.toggleRepost = async (id, btnNode) => {
   } catch(e) { toast('Could not repost', 'err'); }
 };
 
-// ===== VIEW COUNT (one view per account per post, batched to save writes) =====
 window._viewQueue = window._viewQueue || new Set();
 window._viewTimer = null;
 function queueViewCount(id, authorUid) {
-  if (!id || authorUid === me.uid) return; // don't count the author's own views
+  if (!id || authorUid === me.uid) return; 
   if (window._viewedThisSession?.has(id)) return;
   const cachedData = window.postCache[id];
-  if (cachedData && (cachedData.viewedBy||[]).includes(me.uid)) return; // already viewed before, never count again
+  if (cachedData && (cachedData.viewedBy||[]).includes(me.uid)) return;
   window._viewedThisSession = window._viewedThisSession || new Set();
   window._viewedThisSession.add(id);
   window._viewQueue.add(id);
@@ -1526,14 +1719,13 @@ async function flushViewQueue() {
       const snap = await getDoc(ref);
       if (!snap.exists()) continue;
       const viewedBy = snap.data().viewedBy || [];
-      if (viewedBy.includes(me.uid)) continue; // someone else's check beat us to it; skip
+      if (viewedBy.includes(me.uid)) continue;
       await updateDoc(ref, { viewCount: increment(1), viewedBy: arrayUnion(me.uid) });
       if (window.postCache[id]) { window.postCache[id].viewedBy = [...viewedBy, me.uid]; window.postCache[id].viewCount = (window.postCache[id].viewCount||0) + 1; }
     } catch(e) {}
   }
 }
 
-// ===== MUTE USER =====
 window.toggleMuteUser = async (uid, btnEl) => {
   const muted = meData.mutedUsers || [];
   const isMuted = muted.includes(uid);
@@ -1544,7 +1736,6 @@ window.toggleMuteUser = async (uid, btnEl) => {
   document.querySelectorAll('.more-menu').forEach(m => m.style.display = 'none');
 };
 
-// ===== BLOCK USER (chat) =====
 window.toggleBlockUser = async () => {
   if (!currentChatUid) return;
   const blocked = meData.blockedUsers || [];
@@ -1562,7 +1753,6 @@ window.toggleChatMoreMenu = () => {
   m.style.display = m.style.display === 'flex' ? 'none' : 'flex';
 };
 
-// ===== REPORT =====
 window.reportEntity = async (type, targetId) => {
   document.querySelectorAll('.more-menu').forEach(m => m.style.display = 'none');
   if (!confirm(`Report this ${type}? Our team will review it.`)) return;
@@ -1715,15 +1905,6 @@ window.showFollowList = async (type) => {
     }
 };
 
-window.toggleFollow = async uid => {
-  const isF = (meData.following||[]).includes(uid);
-  if (isF){ await updateDoc(doc(db,'users',me.uid), { following: arrayRemove(uid) }); await updateDoc(doc(db,'users',uid),{ followers: arrayRemove(me.uid) }); meData.following = (meData.following||[]).filter(u=>u!==uid); toast(t('msg_unfollow')); } 
-  else { await updateDoc(doc(db,'users',me.uid), { following: arrayUnion(uid) }); await updateDoc(doc(db,'users',uid),{ followers: arrayUnion(me.uid) }); meData.following = [...(meData.following||[]), uid]; toast(t('msg_follow'),'ok'); }
-  const btn = $('fp-'+uid); if (btn){ const nf=!isF; btn.textContent=nf?t('btn_unfollow'):t('btn_follow'); btn.className='btn-follow '+(nf?'on':''); }
-  if(viewUid === uid) { const snap = await getDoc(doc(db,'users',uid)); if(snap.exists()) { $('pp-fc').textContent = snap.data().followers ? snap.data().followers.length : 0; } }
-  loadSuggestions();
-};
-
 async function loadSuggestions(){
   const box = $('rp-sug'); box.innerHTML=''; let shown = 0;
   (await getDocs(query(collection(db,'users'), limit(15)))).forEach(d => {
@@ -1834,6 +2015,335 @@ window.updateUserPassword = async () => {
     } catch(e) { toast(e.message, 'err'); }
 };
 
+// --- COMPETITIONS ---
+window.openCreateCompModal = () => {
+    $('cc-name').value = ''; $('cc-desc').value = ''; $('cc-rules').value = '';
+    $('cc-dur').value = '7'; $('cc-banner-prev').innerHTML = ''; genFile = null;
+    $('create-comp-modal').classList.add('on');
+};
+
+window.doCreateComp = async () => {
+    const name = $('cc-name').value.trim(), desc = $('cc-desc').value.trim(), rules = $('cc-rules').value.trim(), dur = parseInt($('cc-dur').value);
+    if(!name || !desc || !genFile) { toast('Please fill all fields and select a banner', 'err'); return; }
+    const btn = $('cc-btn'); btn.disabled = true; btn.textContent = 'Creating...';
+    try {
+        const bannerUrl = await uploadIBB(genFile);
+        const endDate = Date.now() + (dur * 24 * 60 * 60 * 1000);
+        await addDoc(collection(db, 'competitions'), { name, desc, rules, banner: bannerUrl, creatorUid: me.uid, createdAt: serverTimestamp(), endDate });
+        closeModal('create-comp-modal'); toast('Competition created!', 'ok'); loadCompetitions();
+    } catch(e) { toast(e.message, 'err'); }
+    btn.disabled = false; btn.textContent = 'Create Competition';
+};
+
+window.loadCompetitions = async () => {
+    $('comp-spin').style.display = 'flex'; $('comp-list').innerHTML = ''; $('comp-empty').style.display = 'none';
+    try {
+        const snap = await getDocs(query(collection(db, 'competitions'), orderBy('createdAt', 'desc')));
+        $('comp-spin').style.display = 'none';
+        if(snap.empty) { $('comp-empty').style.display = 'block'; return; }
+        snap.forEach(d => {
+            const data = d.data();
+            const isExpired = Date.now() > data.endDate;
+            const div = document.createElement('div'); div.className = 'ce-card';
+            div.onclick = () => viewCompetition(d.id, data);
+            div.innerHTML = `
+                <img class="ce-banner" src="${data.banner}">
+                <div class="ce-info">
+                    <div class="ce-title">${esc(data.name)}</div>
+                    <div class="ce-desc">${esc(data.desc)}</div>
+                    <div class="ce-meta"><span>By a user</span><span class="ce-badge ${isExpired ? 'expired' : ''}">${isExpired ? 'Ended' : timeAgo(data.endDate) + ' left'}</span></div>
+                </div>
+            `;
+            $('comp-list').appendChild(div);
+        });
+    } catch(e) { $('comp-spin').style.display = 'none'; }
+};
+
+window.viewCompetition = async (id, data) => {
+    activeCompId = id;
+    if (!data.creatorUid) {
+        try { const snap = await getDoc(doc(db, 'competitions', id)); if (snap.exists()) data = snap.data(); } catch(e) {}
+    }
+    activeCompData = data;
+    document.querySelectorAll('.page').forEach(p=>p.classList.remove('on')); $('pg-single-comp').classList.add('on');
+    $('sc-title').textContent = data.name; $('sc-name').textContent = data.name;
+    $('sc-desc').textContent = data.desc; $('sc-rules').textContent = data.rules;
+    $('sc-banner').src = data.banner; $('sc-banner').style.display = 'block';
+    
+    const isExpired = Date.now() > data.endDate;
+    $('sc-status').className = 'ce-badge ' + (isExpired ? 'expired' : '');
+    $('sc-status').textContent = isExpired ? 'Competition Ended' : 'Ends in ' + Math.ceil((data.endDate - Date.now())/86400000) + ' Days';
+    $('sc-submit-btn').style.display = isExpired ? 'none' : 'block';
+
+    const ca = $('sc-creator-actions');
+    if (data.creatorUid === me.uid) { ca.style.display = 'flex'; } else { ca.style.display = 'none'; }
+
+    loadSubmissions(id, isExpired);
+};
+
+window.openSubmitCompModal = () => {
+    $('sc-title-in').value = ''; $('sc-desc-in').value = ''; $('sc-img-prev').innerHTML = ''; genFile = null;
+    $('submit-comp-modal').classList.add('on');
+};
+
+window.doSubmitComp = async () => {
+    const title = $('sc-title-in').value.trim(), desc = $('sc-desc-in').value.trim();
+    if(!title || !genFile) { toast('Please provide title and image', 'err'); return; }
+    const btn = $('sc-btn'); btn.disabled = true; btn.textContent = 'Submitting...';
+    try {
+        const imgUrl = await uploadIBB(genFile);
+        await addDoc(collection(db, 'competitions', activeCompId, 'submissions'), { uid: me.uid, username: meData.username, imageURL: imgUrl, title, desc, votes: [], createdAt: Date.now() });
+        closeModal('submit-comp-modal'); toast('Artwork submitted!', 'ok'); viewCompetition(activeCompId, window.postCache[activeCompId] || { endDate: 9999999999999 }); 
+    } catch(e) { toast(e.message, 'err'); }
+    btn.disabled = false; btn.textContent = 'Submit';
+};
+
+async function loadSubmissions(compId, isExpired) {
+    $('sc-spin').style.display = 'flex'; $('sc-subs').innerHTML = ''; $('sc-empty').style.display = 'none';
+    try {
+        const snap = await getDocs(collection(db, 'competitions', compId, 'submissions'));
+        $('sc-spin').style.display = 'none';
+        if(snap.empty) { $('sc-empty').style.display = 'block'; return; }
+        
+        let subs = []; snap.forEach(d => subs.push({id: d.id, ...d.data()}));
+        subs.sort((a, b) => b.votes.length - a.votes.length);
+
+        subs.forEach((sub, index) => {
+            const hasVoted = (sub.votes||[]).includes(me.uid);
+            let rankBadge = '';
+            if (isExpired && index < 3 && sub.votes.length > 0) { rankBadge = `<div class="rank-badge rank-${index+1}">${index+1}</div>`; }
+
+            const div = document.createElement('div'); div.className = 'sub-card';
+            div.innerHTML = `
+                ${rankBadge}
+                <img class="sub-img" src="${sub.imageURL}" onclick="openLB('${sub.imageURL}')">
+                <div class="sub-info">
+                    <div class="sub-title" title="${esc(sub.title)}">${esc(sub.title)}</div>
+                    <div class="sub-user" onclick="goToUser('${sub.username}')">@${esc(sub.username)}</div>
+                    ${!isExpired ? `<button class="vote-btn ${hasVoted?'voted':''}" onclick="voteSubmission('${compId}', '${sub.id}', this)"><svg viewBox="0 0 24 24" style="width:16px;height:16px;"><path d="M14 9V5a3 3 0 0 0-3-3l-4 9v11h11.28a2 2 0 0 0 2-1.7l1.38-9a2 2 0 0 0-2-2.3z"></path><path d="M7 22H4a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2h3"></path></svg><span>${sub.votes.length} Votes</span></button>` 
+                    : `<div style="font-size:13px; font-weight:700; color:var(--text); text-align:center;">${sub.votes.length} Final Votes</div>`}
+                </div>
+            `;
+            $('sc-subs').appendChild(div);
+        });
+    } catch(e) { $('sc-spin').style.display = 'none'; }
+}
+
+window.voteSubmission = async (compId, subId, btnNode) => {
+    const isVoted = btnNode.classList.contains('voted');
+    const cntSpan = btnNode.querySelector('span');
+    let cnt = parseInt(cntSpan.innerText.split(' ')[0]);
+    if (isVoted) {
+        btnNode.classList.remove('voted'); cntSpan.innerText = (cnt - 1) + ' Votes';
+        await updateDoc(doc(db, 'competitions', compId, 'submissions', subId), { votes: arrayRemove(me.uid) });
+    } else {
+        btnNode.classList.add('voted'); cntSpan.innerText = (cnt + 1) + ' Votes';
+        await updateDoc(doc(db, 'competitions', compId, 'submissions', subId), { votes: arrayUnion(me.uid) });
+    }
+};
+
+// --- EVENTS ---
+window.openCreateEventModal = () => {
+    $('ce-name').value = ''; $('ce-desc').value = ''; $('ce-rules').value = '';
+    $('ce-dur').value = '7'; $('ce-cover-prev').innerHTML = ''; genFile = null;
+    $('create-event-modal').classList.add('on');
+};
+
+window.doCreateEvent = async () => {
+    const name = $('ce-name').value.trim(), desc = $('ce-desc').value.trim(), rules = $('ce-rules').value.trim(), dur = parseInt($('ce-dur').value);
+    if(!name || !desc || !genFile) { toast('Please fill all fields and select a cover', 'err'); return; }
+    const btn = $('ce-btn'); btn.disabled = true; btn.textContent = 'Creating...';
+    try {
+        const coverUrl = await uploadIBB(genFile);
+        const endDate = Date.now() + (dur * 24 * 60 * 60 * 1000);
+        await addDoc(collection(db, 'events'), { name, desc, rules, cover: coverUrl, creatorUid: me.uid, createdAt: serverTimestamp(), endDate });
+        closeModal('create-event-modal'); toast('Event created!', 'ok'); loadEvents();
+    } catch(e) { toast(e.message, 'err'); }
+    btn.disabled = false; btn.textContent = 'Create Event';
+};
+
+window.loadEvents = async () => {
+    $('ev-spin').style.display = 'flex'; $('ev-list').innerHTML = ''; $('ev-empty').style.display = 'none';
+    try {
+        const snap = await getDocs(query(collection(db, 'events'), orderBy('createdAt', 'desc')));
+        $('ev-spin').style.display = 'none';
+        if(snap.empty) { $('ev-empty').style.display = 'block'; return; }
+        snap.forEach(d => {
+            const data = d.data();
+            const isExpired = Date.now() > data.endDate;
+            const div = document.createElement('div'); div.className = 'ce-card';
+            div.onclick = () => viewEvent(d.id, data);
+            div.innerHTML = `
+                <img class="ce-banner" src="${data.cover}">
+                <div class="ce-info">
+                    <div class="ce-title">${esc(data.name)}</div>
+                    <div class="ce-desc">${esc(data.desc)}</div>
+                    <div class="ce-meta"><span>Event</span><span class="ce-badge ${isExpired ? 'expired' : ''}">${isExpired ? 'Ended' : timeAgo(data.endDate) + ' left'}</span></div>
+                </div>
+            `;
+            $('ev-list').appendChild(div);
+        });
+    } catch(e) { $('ev-spin').style.display = 'none'; }
+};
+
+window.viewEvent = async (id, data) => {
+    activeEventId = id;
+    if (!data.creatorUid) {
+        try { const snap = await getDoc(doc(db, 'events', id)); if (snap.exists()) data = snap.data(); } catch(e) {}
+    }
+    activeEventData = data;
+    document.querySelectorAll('.page').forEach(p=>p.classList.remove('on')); $('pg-single-event').classList.add('on');
+    $('se-title').textContent = data.name; $('se-name').textContent = data.name;
+    $('se-desc').textContent = data.desc; $('se-rules').textContent = data.rules;
+    $('se-banner').src = data.cover; $('se-banner').style.display = 'block';
+    
+    const isExpired = Date.now() > data.endDate;
+    $('se-status').className = 'ce-badge ' + (isExpired ? 'expired' : '');
+    $('se-status').textContent = isExpired ? 'Event Ended' : 'Ends in ' + Math.ceil((data.endDate - Date.now())/86400000) + ' Days';
+    $('se-submit-btn').style.display = isExpired ? 'none' : 'block';
+
+    const ea = $('se-creator-actions');
+    if (data.creatorUid === me.uid) { ea.style.display = 'flex'; } else { ea.style.display = 'none'; }
+
+    loadEventPosts(id, isExpired);
+};
+
+window.openSubmitEventModal = () => {
+    $('se-text-in').value = ''; $('se-img-prev').innerHTML = ''; genFile = null;
+    $('submit-event-modal').classList.add('on');
+};
+
+window.doSubmitEvent = async () => {
+    const text = $('se-text-in').value.trim();
+    if(!text && !genFile) { toast('Post must contain text or image', 'err'); return; }
+    const btn = $('se-submit-action-btn'); btn.disabled = true; btn.textContent = 'Posting...';
+    try {
+        let imgUrl = ''; if(genFile) imgUrl = await uploadIBB(genFile);
+        await addDoc(collection(db, 'events', activeEventId, 'posts'), { 
+            authorUid: me.uid, authorName: meData.displayName, authorUsername: meData.username, authorPhoto: meData.photoURL||'',
+            text, imageURL: imgUrl, likes: [], createdAt: Date.now() 
+        });
+        closeModal('submit-event-modal'); toast('Posted to event!', 'ok'); 
+        viewEvent(activeEventId, { name: $('se-title').textContent, desc:$('se-desc').textContent, rules:$('se-rules').textContent, cover:$('se-banner').src, endDate: 9999999999999 });
+    } catch(e) { toast(e.message, 'err'); }
+    btn.disabled = false; btn.textContent = 'Post';
+};
+
+// --- COMPETITION EDIT / DELETE ---
+window.openEditCompModal = () => {
+    if (!activeCompData) return;
+    $('ecc-name').value = activeCompData.name || '';
+    $('ecc-desc').value = activeCompData.desc || '';
+    $('ecc-rules').value = activeCompData.rules || '';
+    $('ecc-banner-prev').innerHTML = activeCompData.banner ? `<img src="${activeCompData.banner}" style="max-height:120px; border-radius:10px; margin-top:4px; border:1px solid var(--border2);">` : '';
+    genFile = null;
+    $('edit-comp-modal').classList.add('on');
+};
+
+window.doEditComp = async () => {
+    const name = $('ecc-name').value.trim(), desc = $('ecc-desc').value.trim(), rules = $('ecc-rules').value.trim();
+    if (!name || !desc) { toast('Name and description are required', 'err'); return; }
+    const btn = $('ecc-btn'); btn.disabled = true; btn.textContent = 'Saving...';
+    try {
+        const updates = { name, desc, rules };
+        if (genFile) { updates.banner = await uploadIBB(genFile); }
+        await updateDoc(doc(db, 'competitions', activeCompId), updates);
+        Object.assign(activeCompData, updates);
+        closeModal('edit-comp-modal');
+        toast('Competition updated!', 'ok');
+        viewCompetition(activeCompId, activeCompData);
+    } catch(e) { toast(e.message, 'err'); }
+    btn.disabled = false; btn.textContent = 'Save Changes';
+};
+
+window.doDeleteComp = async () => {
+    if (!confirm('Delete this competition and all its submissions? This cannot be undone.')) return;
+    try {
+        const subSnap = await getDocs(collection(db, 'competitions', activeCompId, 'submissions'));
+        for (const d of subSnap.docs) await deleteDoc(d.ref);
+        await deleteDoc(doc(db, 'competitions', activeCompId));
+        toast('Competition deleted', 'ok');
+        goPage('competitions');
+    } catch(e) { toast(e.message, 'err'); }
+};
+
+// --- EVENT EDIT / DELETE ---
+window.openEditEventModal = () => {
+    if (!activeEventData) return;
+    $('eev-name').value = activeEventData.name || '';
+    $('eev-desc').value = activeEventData.desc || '';
+    $('eev-rules').value = activeEventData.rules || '';
+    $('eev-cover-prev').innerHTML = activeEventData.cover ? `<img src="${activeEventData.cover}" style="max-height:120px; border-radius:10px; margin-top:4px; border:1px solid var(--border2);">` : '';
+    genFile = null;
+    $('edit-event-modal').classList.add('on');
+};
+
+window.doEditEvent = async () => {
+    const name = $('eev-name').value.trim(), desc = $('eev-desc').value.trim(), rules = $('eev-rules').value.trim();
+    if (!name || !desc) { toast('Name and description are required', 'err'); return; }
+    const btn = $('eev-btn'); btn.disabled = true; btn.textContent = 'Saving...';
+    try {
+        const updates = { name, desc, rules };
+        if (genFile) { updates.cover = await uploadIBB(genFile); }
+        await updateDoc(doc(db, 'events', activeEventId), updates);
+        Object.assign(activeEventData, updates);
+        closeModal('edit-event-modal');
+        toast('Event updated!', 'ok');
+        viewEvent(activeEventId, activeEventData);
+    } catch(e) { toast(e.message, 'err'); }
+    btn.disabled = false; btn.textContent = 'Save Changes';
+};
+
+window.doDeleteEvent = async () => {
+    if (!confirm('Delete this event and all its posts? This cannot be undone.')) return;
+    try {
+        const pSnap = await getDocs(collection(db, 'events', activeEventId, 'posts'));
+        for (const d of pSnap.docs) await deleteDoc(d.ref);
+        await deleteDoc(doc(db, 'events', activeEventId));
+        toast('Event deleted', 'ok');
+        goPage('events');
+    } catch(e) { toast(e.message, 'err'); }
+};
+
+async function loadEventPosts(eventId, isExpired) {
+    $('se-spin').style.display = 'flex'; $('se-posts').innerHTML = ''; $('se-empty').style.display = 'none';
+    try {
+        const snap = await getDocs(collection(db, 'events', eventId, 'posts'));
+        $('se-spin').style.display = 'none';
+        if(snap.empty) { $('se-empty').style.display = 'block'; return; }
+        
+        let posts = []; snap.forEach(d => posts.push({id: d.id, ...d.data()}));
+        posts.sort((a, b) => b.likes.length - a.likes.length); // Auto Rank
+
+        posts.forEach(post => {
+            const liked = (post.likes||[]).includes(me.uid);
+            const cnt = (post.likes||[]).length;
+            const isFollowing = (meData.following||[]).includes(post.authorUid);
+            const authorPhotoToUse = (post.authorUid === me.uid && meData.photoURL) ? meData.photoURL : (post.authorPhoto || '');
+            const authorNameToUse = (post.authorUid === me.uid) ? meData.displayName : post.authorName;
+
+            const div = document.createElement('div'); div.className = 'post';
+            div.innerHTML = `
+                <div class="av" id="ev-av-${post.id}" style="width:50px;height:50px;font-size:18px;cursor:pointer;" onclick="loadProfile('${post.authorUid}')"></div>
+                <div class="post-r">
+                  <div class="post-head">
+                    <span class="p-name" onclick="loadProfile('${post.authorUid}')">${esc(authorNameToUse)}</span>
+                    ${post.authorUid !== me.uid ? `<button class="btn-follow ${isFollowing?'on':''}" style="margin-left:8px; padding:2px 8px; font-size:11px;" onclick="toggleFollow('${post.authorUid}')">${isFollowing?'Following':'Follow'}</button>` : ''}
+                    <span class="p-handle" style="margin-left:8px;">@${esc(post.authorUsername)}</span>
+                    <span class="p-time">${timeAgo(post.createdAt)}</span>
+                  </div>
+                  ${post.text ? `<div class="p-text">${formatTextWithMentions(post.text)}</div>` : ''}
+                  ${post.imageURL ? `<img class="p-img" src="${post.imageURL}" onclick="openLB('${post.imageURL}')">` : ''}
+                  <div class="p-acts">
+                    <button class="act ${liked?'liked':''}" onclick="${isExpired ? '' : `toggleEventLike('${eventId}', '${post.id}', this)`}" ${isExpired?'disabled':''} style="${isExpired?'cursor:default;':''}"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg><span>${cnt}</span></button>
+                  </div>
+                </div>
+            `;
+            $('se-posts').appendChild(div);
+            requestAnimationFrame(() => { setAv($(`ev-av-${post.id}`), {displayName:authorNameToUse, username:post.authorUsername, photoURL:authorPhotoToUse}); });
+        });
+    } catch(e) { $('se-spin').style.display = 'none'; }
+}
 </script>
 </body>
 </html>
