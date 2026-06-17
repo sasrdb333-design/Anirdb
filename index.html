@@ -13,7 +13,6 @@
   let currentTheme = localStorage.getItem('appTheme') || 'dark';
   document.documentElement.setAttribute('data-theme', currentTheme);
 
-  // PWA Manifest Generation
   const manifestData = {
     "name": "AniRDB Social",
     "short_name": "AniRDB",
@@ -70,44 +69,19 @@
   --text-inv: #ffffff;
 }
 
-/* Global Border Box Reset - MOST IMPORTANT FIX */
-* {
-  box-sizing: border-box !important;
-  margin: 0;
-  padding: 0;
-}
-
-html, body { 
-  width: 100% !important; 
-  max-width: 100vw !important; 
-  overflow-x: hidden !important; 
-  touch-action: manipulation; 
-  position: relative; 
-}
-
-body { 
-  background: var(--bg); 
-  color: var(--text); 
-  font-family: var(--en); 
-  min-height: 100vh; 
-  font-size: 15px; 
-  line-height: 1.65; 
-  -webkit-font-smoothing: antialiased; 
-}
+* { box-sizing: border-box !important; margin: 0; padding: 0; }
+html, body { width: 100% !important; max-width: 100vw !important; overflow-x: hidden !important; touch-action: manipulation; position: relative; }
+body { background: var(--bg); color: var(--text); font-family: var(--en); min-height: 100vh; font-size: 15px; line-height: 1.65; -webkit-font-smoothing: antialiased; }
 body[lang="bn"] { font-family: var(--bn); }
-
 ::-webkit-scrollbar { width: 5px; }
 ::-webkit-scrollbar-track { background: transparent; }
 ::-webkit-scrollbar-thumb { background: var(--s3); border-radius: 4px; }
-
 svg.ico { width: 1.25em; height: 1.25em; stroke: currentColor; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; vertical-align: middle; }
 svg.ico-fill { fill: currentColor; stroke: currentColor; }
 
 #auth-screen { min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 20px; background: linear-gradient(135deg, var(--bg) 0%, var(--s2) 50%, var(--s1) 100%); display: none; }
 .auth-card { background: var(--s1); border: 1px solid var(--border2); border-radius: 32px; padding: 48px 40px; width: 100%; max-width: 440px; box-shadow: 0 24px 60px rgba(0,0,0,0.15); position: relative; overflow: hidden; }
-@media(max-width: 480px) {
-  .auth-card { padding: 32px 20px; border-radius: 24px; }
-}
+@media(max-width: 480px) { .auth-card { padding: 32px 20px; border-radius: 24px; } }
 .auth-card::before { content: ""; position: absolute; top: -50px; left: -50px; width: 100px; height: 100px; background: var(--accent); opacity: 0.1; filter: blur(40px); border-radius: 50%; }
 .auth-brand { text-align: center; margin-bottom: 36px; position: relative; z-index: 2; }
 .auth-brand .logo { font-size: 36px; font-weight: 800; color: var(--text); font-family: var(--en); letter-spacing: -1.5px; display: block; }
@@ -167,7 +141,6 @@ svg.ico-fill { fill: currentColor; stroke: currentColor; }
 .img-preview-wrap img { max-height: 240px; max-width: 100%; border-radius: 12px; object-fit: cover; display: block; border: 1px solid var(--border2); }
 .rm-img { position: absolute; top: -8px; right: -8px; background: var(--danger); border: none; border-radius: 50%; width: 26px; height: 26px; color: #fff; font-size: 11px; cursor: pointer; display: flex; align-items: center; justify-content: center; box-shadow: 0 2px 8px rgba(244,63,94,0.4); }
 
-/* Post Wrapper & Text Wrap Fixes */
 .post { background: var(--s1); border: 1px solid var(--border2); border-radius: var(--card-rad); padding: 24px; display: flex; gap: 16px; transition: .2s ease; box-shadow: 0 4px 15px rgba(0,0,0,0.03); width: 100%; max-width: 100%; overflow: hidden; position: relative; box-sizing: border-box; }
 .post:hover { transform: translateY(-2px); box-shadow: 0 12px 30px rgba(0,0,0,0.08); }
 .post-r { flex: 1; min-width: 0; max-width: 100%; display: flex; flex-direction: column; }
@@ -176,8 +149,6 @@ svg.ico-fill { fill: currentColor; stroke: currentColor; }
 .p-name:hover { text-decoration: underline; }
 .p-handle { font-size: 13px; color: var(--text3); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; max-width: 120px; }
 .p-time { font-size: 12px; color: var(--text3); margin-left: auto; background: var(--s2); padding: 4px 10px; border-radius: 12px; white-space: nowrap; }
-
-/* Force break long text/characters to avoid horizontal layout breaking */
 .p-text { font-size: 15px; color: var(--text); white-space: pre-wrap; word-wrap: break-word; overflow-wrap: break-word; word-break: break-word; margin-bottom: 12px; line-height: 1.6; max-width: 100%; }
 .p-img { width: 100%; max-height: 400px; border-radius: 16px; margin-bottom: 12px; cursor: zoom-in; display: block; border: 1px solid var(--border2); background: var(--s2); object-fit: cover; }
 .p-acts { display: flex; gap: 12px; margin-top: 10px; flex-wrap: wrap; width: 100%; }
@@ -194,7 +165,6 @@ svg.ico-fill { fill: currentColor; stroke: currentColor; }
 .hashtag { color: var(--blue); cursor: pointer; font-weight: 600; word-wrap: break-word; overflow-wrap: break-word; }
 .hashtag:hover { text-decoration: underline; }
 
-/* Comments Responsiveness */
 .comments-sec { display: none; margin-top: 16px; border-top: 1px solid var(--border2); padding-top: 16px; width: 100%; max-width: 100%; overflow-x: hidden; box-sizing: border-box; }
 .clist { margin-bottom: 12px; max-height: 220px; overflow-y: auto; font-size: 14px; color: var(--text); width: 100%; }
 .c-item { margin-bottom: 10px; padding: 10px 14px; border-radius: 12px; background: var(--s2); border: 1px solid var(--border2); word-wrap: break-word; overflow-wrap: break-word; word-break: break-word; position: relative; width: 100%; box-sizing: border-box; display: flex; flex-direction: column; }
@@ -236,7 +206,6 @@ svg.ico-fill { fill: currentColor; stroke: currentColor; }
 .btn-follow:hover { background: var(--text); color: var(--bg); }
 .btn-follow.on { background: var(--s2); border-color: var(--border); color: var(--text3); }
 
-/* Profile Page Wrap Fixes */
 .profile-card { background: var(--s1); border: 1px solid var(--border2); border-radius: 16px; overflow: hidden; margin-bottom: 20px; text-align: center; width: 100%; max-width: 100%; }
 .banner { height: 160px; background: linear-gradient(135deg, #6366f1 0%, #a855f7 50%, #ec4899 100%); background-size: cover; background-position: center; position: relative; width: 100%; }
 .rgb-removed { filter: contrast(1.2) saturate(0) brightness(1.1); }
@@ -261,19 +230,16 @@ svg.ico-fill { fill: currentColor; stroke: currentColor; }
 
 .overlay { position: fixed; inset: 0; background: #000b; backdrop-filter: blur(4px); display: none; align-items: center; justify-content: center; z-index: 100; padding: 16px; width: 100vw; height: 100vh; }
 .overlay.on { display: flex; }
-.modal { background: var(--s1); border: 1px solid var(--border2); border-radius: 24px; padding: 32px; width: 100%; max-width: 500px; max-height: 90vh; overflow-y: auto; box-shadow: 0 20px 60px rgba(0,0,0,0.3); box-sizing: border-box; }
-@media(max-width: 480px) {
-  .modal { padding: 20px 16px; border-radius: 20px; }
-}
+.modal { background: var(--s1); border: 1px solid var(--border2); border-radius: 24px; padding: 32px; width: 100%; max-width: 500px; max-height: 90vh; overflow-y: auto; overflow-x: hidden; box-shadow: 0 20px 60px rgba(0,0,0,0.3); box-sizing: border-box; }
+.modal * { box-sizing: border-box; min-width: 0; }
+@media(max-width: 480px) { .modal { padding: 20px 16px; border-radius: 20px; width: calc(100% - 0px); } }
 .modal-head { display: flex; align-items: center; justify-content: space-between; margin-bottom: 24px; }
 .modal-head h3 { font-size: 20px; font-weight: 800; }
 .cls-btn { background: var(--s2); border: none; color: var(--text2); cursor: pointer; display: flex; align-items: center; justify-content: center; padding: 6px; border-radius: 50%; transition: .2s; }
 .cls-btn:hover { background: var(--border2); color: var(--text); }
 
 .toast-box { position: fixed; bottom: 24px; right: 24px; z-index: 200; display: flex; flex-direction: column; gap: 10px; max-width: calc(100vw - 48px); }
-@media(max-width: 480px) {
-  .toast-box { bottom: 16px; right: 16px; left: 16px; }
-}
+@media(max-width: 480px) { .toast-box { bottom: 16px; right: 16px; left: 16px; } }
 .toast { background: var(--s1); border: 1px solid var(--border2); border-radius: 16px; padding: 14px 20px; font-size: 14px; font-weight: 600; box-shadow: 0 10px 40px rgba(0,0,0,0.2); animation: tin .3s cubic-bezier(0.175, 0.885, 0.32, 1.275); max-width: 100%; color: var(--text); display: flex; align-items: center; gap: 10px; box-sizing: border-box; }
 .toast.ok { border-left: 4px solid var(--green); }
 .toast.err { border-left: 4px solid var(--danger); }
@@ -291,7 +257,77 @@ svg.ico-fill { fill: currentColor; stroke: currentColor; }
 .poll-res-bar { position: absolute; top: 0; left: 0; bottom: 0; background: var(--accent); opacity: 0.15; transition: width 0.4s ease; }
 .poll-res-text { padding: 10px 14px; display: flex; justify-content: space-between; position: relative; z-index: 1; font-size: 14px; gap: 10px; }
 
-/* Media Queries for Viewport Bounds */
+/* Chat CSS */
+.msg-bubble { max-width: 100%; padding: 10px 14px; border-radius: 16px; font-size: 14px; word-wrap: break-word; display: flex; flex-direction: column; min-width: 0; }
+.msg-bubble.me { background: var(--blue); color: #fff; border-bottom-right-radius: 4px; }
+.msg-bubble.other { background: var(--s2); color: var(--text); border: 1px solid var(--border2); border-bottom-left-radius: 4px; }
+.msg-bubble img { border-radius: 8px; max-width: 100%; object-fit: cover; }
+#chat-box > div[style*="flex"] { max-width: 80%; }
+.msg-own-acts { opacity: 0; transition: opacity .15s; }
+#chat-box > div:hover .msg-own-acts { opacity: 1; }
+
+/* ---- Reactions ---- */
+.react-wrap { position: relative; display:inline-flex; }
+.react-pop { position: absolute; bottom: 110%; left: 0; background: var(--s1); border: 1px solid var(--border2); border-radius: 24px; padding: 6px; display: flex; gap: 4px; box-shadow: 0 8px 24px rgba(0,0,0,0.25); z-index: 20; }
+.react-pop button { background: none; border: none; cursor: pointer; padding: 6px; border-radius: 50%; color: var(--text2); display:flex; transition: .15s; }
+.react-pop button:hover { background: var(--s2); color: var(--text); transform: scale(1.15); }
+.react-pop svg { width: 18px; height: 18px; }
+.react-summary { display:flex; align-items:center; gap:4px; font-size:12px; color:var(--text3); margin-top:4px; }
+.react-summary .ric { width:14px; height:14px; }
+.react-chip { display:inline-flex; align-items:center; gap:3px; background:var(--s2); border-radius:10px; padding:2px 7px; }
+
+/* ---- Badge / unread counter ---- */
+.nb-badge { background: var(--danger); color: #fff; font-size: 11px; font-weight: 700; border-radius: 10px; min-width: 18px; height: 18px; display: inline-flex; align-items: center; justify-content: center; padding: 0 5px; margin-left: auto; }
+.nav-btn { position: relative; }
+
+/* ---- Trending widget ---- */
+.trend-box { background: var(--s1); border: 1px solid var(--border2); border-radius: 16px; padding: 16px; margin-bottom: 16px; }
+.trend-box h4 { font-size: 14px; font-weight: 800; margin-bottom: 10px; color: var(--text2); text-transform: uppercase; letter-spacing: .5px; }
+.trend-row { display: flex; align-items: center; justify-content: space-between; padding: 8px 0; cursor: pointer; border-bottom: 1px solid var(--border2); }
+.trend-row:last-child { border-bottom: none; }
+.trend-row:hover .hashtag { text-decoration: underline; }
+.trend-count { font-size: 12px; color: var(--text3); }
+
+/* ---- Presence dot ---- */
+.pres-dot { width: 10px; height: 10px; border-radius: 50%; background: var(--text3); border: 2px solid var(--s1); position: absolute; bottom: -2px; right: -2px; }
+.pres-dot.online { background: var(--green); }
+.av-wrap { position: relative; display: inline-block; }
+.last-seen-txt { font-size: 12px; color: var(--text3); }
+
+/* ---- Typing indicator ---- */
+.typing-row { display: flex; align-items: center; gap: 4px; padding: 4px 14px; align-self: flex-start; }
+.typing-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--text3); animation: typingBounce 1.2s infinite; }
+.typing-dot:nth-child(2) { animation-delay: .15s; }
+.typing-dot:nth-child(3) { animation-delay: .3s; }
+@keyframes typingBounce { 0%,60%,100% { transform: translateY(0); opacity:.4; } 30% { transform: translateY(-4px); opacity:1; } }
+
+/* ---- Reply preview ---- */
+.reply-bar { display: flex; align-items: center; gap: 8px; background: var(--s2); border-left: 3px solid var(--accent); border-radius: 8px; padding: 8px 10px; margin: 0 16px 8px; font-size: 12px; color: var(--text2); }
+.reply-bar .rb-txt { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.reply-bar button { background: none; border: none; color: var(--text3); cursor: pointer; flex-shrink: 0; display:flex; }
+.msg-quote { font-size: 12px; opacity: .75; border-left: 2px solid currentColor; padding-left: 8px; margin-bottom: 6px; }
+
+/* ---- Read receipt ---- */
+.seen-tick { display: inline-flex; gap: 0; margin-left: 4px; vertical-align: middle; }
+.seen-tick svg { width: 14px; height: 14px; }
+
+/* ---- Report / block menu ---- */
+.more-menu-wrap { position: relative; display: inline-flex; }
+.more-menu { position: absolute; top: 110%; right: 0; background: var(--s1); border: 1px solid var(--border2); border-radius: 14px; padding: 6px; min-width: 160px; box-shadow: 0 8px 24px rgba(0,0,0,0.25); z-index: 20; display: flex; flex-direction: column; }
+.more-menu button { display: flex; align-items: center; gap: 10px; background: none; border: none; color: var(--text); font-size: 13px; font-weight: 600; padding: 10px 12px; border-radius: 10px; cursor: pointer; text-align: left; font-family: inherit; }
+.more-menu button:hover { background: var(--s2); }
+.more-menu button.danger { color: var(--danger); }
+.more-menu svg { width: 16px; height: 16px; flex-shrink: 0; }
+
+/* ---- View count ---- */
+.view-count { display: flex; align-items: center; gap: 4px; font-size: 12px; color: var(--text3); }
+.view-count svg { width: 14px; height: 14px; }
+
+/* ---- Repost ---- */
+.repost-tag { display: flex; align-items: center; gap: 6px; font-size: 12px; color: var(--text3); margin-bottom: 8px; font-weight: 600; }
+.repost-tag svg { width: 14px; height: 14px; }
+.act.reposted { color: var(--green); background: #22c55e12; }
+
 @media(max-width:960px) {
   .layout { grid-template-columns: 1fr; gap: 16px; }
   .sidebar { position: fixed; left: 0; top: 0; bottom: 0; width: 280px; z-index: 100; background: var(--s1); transform: translateX(-100%); transition: transform .3s; border: none; border-radius: 0; border-right: 1px solid var(--border2); margin-top: 0; height: 100vh; }
@@ -308,6 +344,18 @@ svg.ico-fill { fill: currentColor; stroke: currentColor; }
   .p-acts { gap: 6px; }
   .act { padding: 6px 12px; font-size: 12px; }
   .compose { padding: 16px; border-radius: 16px; }
+  .react-pop { left: auto; right: 0; }
+  .more-menu { right: 0; left: auto; }
+}
+
+@media(max-width: 768px) {
+  #chat-modal { padding: 0; align-items: stretch; }
+  #chat-modal-box { width: 100% !important; max-width: 100% !important; height: 100vh !important; max-height: 100vh !important; border-radius: 0 !important; }
+}
+@supports (height: 100dvh) {
+  @media(max-width: 768px) {
+    #chat-modal-box { height: 100dvh !important; max-height: 100dvh !important; }
+  }
 }
 </style>
 </head>
@@ -350,6 +398,11 @@ svg.ico-fill { fill: currentColor; stroke: currentColor; }
       <span class="ni"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg></span>
       <span data-i18n="nav_explore">Explore</span>
     </button>
+    <button class="nav-btn" id="nb-messages" onclick="goPage('messages')">
+      <span class="ni"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg></span>
+      <span data-i18n="nav_messages">Messages</span>
+      <span class="nb-badge" id="badge-messages" style="display:none;">0</span>
+    </button>
     <button class="nav-btn" id="nb-follow" onclick="goPage('follow')">
       <span class="ni"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg></span>
       <span data-i18n="nav_follow">Following</span>
@@ -361,6 +414,7 @@ svg.ico-fill { fill: currentColor; stroke: currentColor; }
     <button class="nav-btn" id="nb-notifications" onclick="goPage('notifications')">
       <span class="ni"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path><path d="M13.73 21a2 2 0 0 1-3.46 0"></path></svg></span>
       <span data-i18n="nav_notifications">Notifications</span>
+      <span class="nb-badge" id="badge-notifications" style="display:none;">0</span>
     </button>
     <button class="nav-btn" id="nb-profile" onclick="myProfile()">
       <span class="ni"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg></span>
@@ -441,9 +495,20 @@ svg.ico-fill { fill: currentColor; stroke: currentColor; }
       <div id="h-posts"></div>
     </div>
 
+    <div id="pg-messages" class="page">
+      <div class="feed-top" data-i18n="nav_messages">Messages</div>
+      <div class="spinner-wrap" id="msg-spin"><div class="spinner"></div></div>
+      <div class="empty" id="msg-empty"><div class="ei"><svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg></div><p data-i18n="empty_msg">No active conversations yet.</p></div>
+      <div id="msg-list" style="display:flex; flex-direction:column; gap:10px;"></div>
+    </div>
+
     <div id="pg-explore" class="page">
       <div class="search-wrap"><span class="s-icon"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg></span><input id="s-in" data-i18n-ph="ph_search" placeholder="Search username..." oninput="doSearch()"></div>
       <div class="feed-top" data-i18n="page_explore">Explore</div>
+      <div class="trend-box" id="trend-box" style="display:none;">
+        <h4>Trending Hashtags</h4>
+        <div id="trend-list"></div>
+      </div>
       <div class="spinner-wrap" id="s-spin"><div class="spinner"></div></div>
       <div class="empty on" id="s-empty" style="display:block"><div class="ei"><svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg></div><p data-i18n="empty_search">Find someone</p></div>
       <div id="s-res" style="background:var(--s1); border-radius:var(--card-rad); border:1px solid var(--border2); padding:10px;"></div>
@@ -558,13 +623,50 @@ svg.ico-fill { fill: currentColor; stroke: currentColor; }
   </div>
 </div>
 
+<div class="overlay" id="chat-modal" style="padding:10px;">
+  <div class="modal" id="chat-modal-box" style="display:flex; flex-direction:column; height: 80vh; max-height: 600px; padding:0; width:100%; max-width:500px; overflow:hidden;">
+    <div class="modal-head" style="padding: 14px 16px; border-bottom: 1px solid var(--border2); margin:0; flex-shrink: 0; min-width:0;">
+      <div style="min-width:0; overflow:hidden;">
+        <h3 id="chat-title" style="display:flex; align-items:center; gap:10px; min-width:0; overflow:hidden; flex-wrap:wrap;">Chat</h3>
+        <div class="last-seen-txt" id="chat-presence-txt"></div>
+      </div>
+      <div style="display:flex; align-items:center; gap:6px; flex-shrink:0;">
+        <div class="more-menu-wrap">
+          <button class="cls-btn" onclick="toggleChatMoreMenu()" title="More options"><svg class="ico" viewBox="0 0 24 24"><circle cx="12" cy="12" r="1"></circle><circle cx="19" cy="12" r="1"></circle><circle cx="5" cy="12" r="1"></circle></svg></button>
+          <div class="more-menu" id="chat-more-menu" style="display:none;">
+            <button onclick="toggleBlockUser()" id="chat-block-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="4.93" y1="4.93" x2="19.07" y2="19.07"></line></svg><span id="chat-block-label">Block User</span></button>
+            <button class="danger" onclick="reportEntity('user', currentChatUid)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"></path><line x1="4" y1="22" x2="4" y2="15"></line></svg><span>Report User</span></button>
+          </div>
+        </div>
+        <button class="cls-btn" onclick="closeChat()" style="flex-shrink:0;"><svg class="ico" viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg></button>
+      </div>
+    </div>
+    <div id="chat-box" style="flex:1; overflow-y:auto; overflow-x:hidden; padding:16px; display:flex; flex-direction:column; gap:8px; min-width:0;"></div>
+    <div class="typing-row" id="typing-row" style="display:none;"><span class="typing-dot"></span><span class="typing-dot"></span><span class="typing-dot"></span></div>
+    <div class="reply-bar" id="reply-bar" style="display:none;">
+      <span class="rb-txt" id="reply-bar-txt"></span>
+      <button onclick="cancelReply()" title="Cancel reply"><svg class="ico" style="width:14px;height:14px;" viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg></button>
+    </div>
+    <div style="padding: 12px; border-top: 1px solid var(--border2); display:flex; gap:8px; align-items:center; flex-shrink: 0; min-width:0; width:100%; box-sizing:border-box;">
+
+      <label style="cursor:pointer; color:var(--text2); display:flex; align-items:center; justify-content:center; padding:8px; border-radius:50%; background:var(--s2); transition:.2s; flex-shrink:0; width:36px; height:36px;" onmouseover="this.style.color='var(--text)'" onmouseout="this.style.color='var(--text2)'" title="Attach Image">
+         <svg class="ico" viewBox="0 0 24 24" style="width:18px;height:18px;"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><circle cx="8.5" cy="8.5" r="1.5"></circle><polyline points="21 15 16 10 5 21"></polyline></svg>
+         <input type="file" id="chat-img-in" accept="image/*" style="display:none" onchange="sendChatImage(event)">
+      </label>
+
+      <input type="text" id="chat-input" data-i18n-ph="ph_msg_in" placeholder="Type a message..." oninput="handleTypingInput()" style="flex:1 1 auto; min-width:0; width:100%; padding:10px 14px; border-radius:20px; border:1px solid var(--border2); background:var(--s2); color:var(--text); outline:none; font-family:inherit; font-size:14px;">
+      <button onclick="sendChatMessage()" style="background:var(--accent); color:var(--text-inv); border:none; padding:10px 16px; border-radius:20px; font-weight:700; cursor:pointer; font-family:inherit; transition:.2s; flex-shrink:0; white-space:nowrap; font-size:14px;">Send</button>
+    </div>
+  </div>
+</div>
+
 <div id="lb" onclick="document.getElementById('lb').classList.remove('on')"><img id="lb-img" src="" alt=""></div>
 <div class="toast-box" id="toasts"></div>
 
 <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
 import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, onAuthStateChanged, updatePassword } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
-import { getFirestore, collection, doc, setDoc, getDoc, getDocs, addDoc, query, where, orderBy, limit, serverTimestamp, updateDoc, arrayUnion, arrayRemove, deleteDoc } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+import { getFirestore, collection, doc, setDoc, getDoc, getDocs, addDoc, query, where, orderBy, limit, serverTimestamp, updateDoc, arrayUnion, arrayRemove, deleteDoc, onSnapshot, increment } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
 const app  = initializeApp({ apiKey:"AIzaSyBziaIUOlRRgQgK5mDSgi3X1_cM6kA1SdA", authDomain:"anirdb.firebaseapp.com", projectId:"anirdb", storageBucket:"anirdb.firebasestorage.app", messagingSenderId:"996851941826", appId:"1:996851941826:web:569219f006b68ff129965b" });
 const auth = getAuth(app);
@@ -583,7 +685,8 @@ const i18n = {
     btn_saving: "Saving...", msg_saved: "Profile updated!", err_size: "Max size 5MB", err_upload: "Upload failed", time_just: "Just now", time_min: "m ago", time_hr: "h ago", time_day: "d ago",
     lang_title: "Language", theme_title: "Theme", theme_dark: "Dark", theme_light: "Light", no_bio: "No bio.", empty_profile: "No posts.", page_home: "Home", page_explore: "Explore", page_following: "Following Feed", page_saved: "Saved Posts", page_settings: "Settings", ph_comment: "Comment...", btn_send: "Send",
     pass_title: "Change Password", ph_new_pass: "New Password", btn_upd_pass: "Update Password", msg_pass_upd: "Password updated!", cover_title: "Cover Photo", btn_change_cover: "Change Cover", btn_rgb_remove: "RGB Remove", err_pass_len: "Min 6 chars",
-    msg_saved_post: "Post saved offline!", msg_unsaved_post: "Removed from saved!", btn_share: "Share", msg_pinned: "Post Pinned!", txt_pinned: "Pinned Post", empty_saved: "No saved posts found."
+    msg_saved_post: "Post saved offline!", msg_unsaved_post: "Removed from saved!", btn_share: "Share", msg_pinned: "Post Pinned!", txt_pinned: "Pinned Post", empty_saved: "No saved posts found.",
+    nav_messages: "Messages", btn_msg: "Message", ph_msg_in: "Type a message...", empty_msg: "No active conversations yet."
   },
   bn: {
     tab_in: "লগইন", tab_up: "নিবন্ধন", lbl_user: "ইউজারনেম", lbl_pass: "পাসওয়ার্ড", lbl_name: "পূর্ণ নাম", btn_in: "লগইন করুন", btn_up: "অ্যাকাউন্ট তৈরি করুন", ph_user: "আপনার ইউজারনেম", ph_pass: "••••••••", ph_name: "আপনার নাম", ph_user_up: "cooluser123",
@@ -593,7 +696,8 @@ const i18n = {
     btn_del: "মুছুন", msg_del_conf: "পোস্ট মুছবেন?", msg_del: "মুছে গেছে", err_no_user: "পাওয়া যায়নি", msg_unfollow: "আনফলো করা হয়েছে", msg_follow: "ফলো করা হয়েছে!", msg_all_followed: "সবাইকে ফলো করেছেন!", msg_no_res: "কেউ নেই", btn_saving: "সংরক্ষণ...", msg_saved: "আপডেট হয়েছে!", err_size: "৫MB এর বেশি", err_upload: "ব্যর্থ হয়েছে", time_just: "এইমাত্র", time_min: "মি আগে", time_hr: "ঘ আগে", time_day: "দি আগে",
     lang_title: "ভাষা", theme_title: "থিম", theme_dark: "ডার্ক", theme_light: "লাইট", no_bio: "বায়ো নেই।", empty_profile: "পোস্ট নেই।", page_home: "হোম", page_explore: "খুঁজুন", page_following: "ফলোয়িং ফিড", page_saved: "সেভড পোস্ট", page_settings: "সেটিংস", ph_comment: "কমেন্ট...", btn_send: "পাঠান",
     pass_title: "পাসওয়ার্ড পরিবর্তন", ph_new_pass: "নতুন পাসওয়ার্ড", btn_upd_pass: "আপডেট করুন", msg_pass_upd: "আপডেট হয়েছে!", cover_title: "কভার ছবি", btn_change_cover: "কভার পরিবর্তন", btn_rgb_remove: "RGB রিমুভ", err_pass_len: "অন্তত ৬ অক্ষর",
-    msg_saved_post: "অফলাইনে সেভ হয়েছে!", msg_unsaved_post: "সেভ থেকে রিমুভ!", btn_share: "শেয়ার", msg_pinned: "পিন করা হয়েছে!", txt_pinned: "পিন করা পোস্ট", empty_saved: "কোনো সেভ করা পোস্ট নেই।"
+    msg_saved_post: "অফলাইনে সেভ হয়েছে!", msg_unsaved_post: "সেভ থেকে রিমুভ!", btn_share: "শেয়ার", msg_pinned: "পিন করা হয়েছে!", txt_pinned: "পিন করা পোস্ট", empty_saved: "কোনো সেভ করা পোস্ট নেই।",
+    nav_messages: "মেসেজ", btn_msg: "মেসেজ দিন", ph_msg_in: "মেসেজ লিখুন...", empty_msg: "কোনো চ্যাট নেই।"
   }
 };
 
@@ -606,6 +710,7 @@ window.setTheme = theme => { if (theme === currentTheme) return; localStorage.se
 
 const $ = id => document.getElementById(id);
 window.closeModal = id => { const m = $(id); if(m) m.classList.remove('on'); };
+window.openLB = url => { $('lb-img').src = url; $('lb').classList.add('on'); };
 
 document.addEventListener("DOMContentLoaded", () => {
   document.documentElement.lang = currentLang;
@@ -619,6 +724,7 @@ let me = null, meData = null;
 let selFile = null, pfpFile = null, coverFile = null;
 let isCoverRgbRemoved = false, cropper = null;
 let prevPg  = 'home', viewUid = null, searchTimer = null;
+let currentChatUid = null, chatUnsub = null;
 window.postCache = {}; 
 
 window.toast = (msg, type='') => {
@@ -662,12 +768,34 @@ window.filterByHashtag = (tag, ev) => {
     filterHomePosts();
 };
 
+// ===== TRENDING HASHTAGS (computed client-side from already-loaded posts, zero extra reads) =====
+window.renderTrending = () => {
+  if (Object.keys(window.postCache || {}).length === 0) { loadHome().then(() => renderTrendingFromCache()); return; }
+  renderTrendingFromCache();
+};
+
+function renderTrendingFromCache() {
+  const counts = {};
+  Object.values(window.postCache || {}).forEach(data => {
+    const text = data.text || '';
+    const tags = text.match(/#([a-zA-Z0-9_]+)/g) || [];
+    tags.forEach(tg => { const clean = tg.slice(1).toLowerCase(); counts[clean] = (counts[clean]||0) + 1; });
+  });
+  const sorted = Object.entries(counts).sort((a,b) => b[1]-a[1]).slice(0, 8);
+  const box = $('trend-box'), list = $('trend-list');
+  if (!sorted.length) { box.style.display = 'none'; return; }
+  box.style.display = 'block';
+  list.innerHTML = sorted.map(([tag, count]) =>
+    `<div class="trend-row" onclick="filterByHashtag('${tag}', event)"><span class="hashtag">#${esc(tag)}</span><span class="trend-count">${count} post${count>1?'s':''}</span></div>`
+  ).join('');
+}
+
 async function notifyMentions(text, postId) {
     const usernames = extractMentions(text);
     for(let un of usernames) {
         if(un.toLowerCase() === meData.username.toLowerCase()) continue;
         const usnap = await getDocs(query(collection(db, 'users'), where('username', '==', un.toLowerCase())));
-        if(!usnap.empty) { await addDoc(collection(db, 'notifications'), { uid: usnap.docs[0].id, fromUid: me.uid, fromUsername: meData.username, type: 'mention', postId: postId, createdAt: serverTimestamp() }); }
+        if(!usnap.empty) { const targetUid = usnap.docs[0].id; await addDoc(collection(db, 'notifications'), { uid: targetUid, fromUid: me.uid, fromUsername: meData.username, type: 'mention', postId: postId, createdAt: serverTimestamp() }); await updateDoc(doc(db,'users',targetUid), { unreadNotifs: increment(1) }).catch(()=>{}); }
     }
 }
 
@@ -685,6 +813,29 @@ async function uploadIBB(file){
   } catch(err) { throw new Error('Image upload failed: ' + err.message); }
 }
 
+// ENCRYPTION LOGIC FOR CHAT
+window.encMsg = (str, key) => {
+    if(!str) return '';
+    let enc = encodeURIComponent(str);
+    let xor = '';
+    for(let i=0; i<enc.length; i++) {
+        xor += String.fromCharCode(enc.charCodeAt(i) ^ key.charCodeAt(i % key.length));
+    }
+    return btoa(xor);
+};
+window.decMsg = (str, key) => {
+    if(!str) return '';
+    try {
+        let dec = atob(str);
+        let xor = '';
+        for(let i=0; i<dec.length; i++) {
+            xor += String.fromCharCode(dec.charCodeAt(i) ^ key.charCodeAt(i % key.length));
+        }
+        return decodeURIComponent(xor);
+    } catch(e) { return str; } // Fallback to raw text if error
+};
+
+
 window.toggleMobMenu = () => { document.querySelector('.sidebar').classList.toggle('on'); document.querySelector('.overlay-bg').classList.toggle('on'); };
 window.closeMobMenu = () => { document.querySelector('.sidebar').classList.remove('on'); document.querySelector('.overlay-bg').classList.remove('on'); };
 window.switchTab = tab => { $('tab-in').classList.toggle('on', tab==='in'); $('tab-up').classList.toggle('on', tab==='up'); $('f-in').style.display = tab==='in' ? '' : 'none'; $('f-up').style.display = tab==='up' ? '' : 'none'; $('auth-err').style.display = 'none'; };
@@ -698,7 +849,7 @@ window.doRegister = async () => {
     const dup = await getDocs(query(collection(db,'users'), where('username','==',user)));
     if (!dup.empty){ showErr(t('err_taken')); return; }
     const cred = await createUserWithEmailAndPassword(auth, fakeEmail(user), pass);
-    await setDoc(doc(db,'users', cred.user.uid),{ uid: cred.user.uid, username: user, displayName: name, bio:'', photoURL:'', coverURL:'', coverRgb:false, followers:[], following:[], createdAt: serverTimestamp(), isVerified: false, verifiedExpiry: 0, pinnedPostId: '' });
+    await setDoc(doc(db,'users', cred.user.uid),{ uid: cred.user.uid, username: user, displayName: name, bio:'', photoURL:'', coverURL:'', coverRgb:false, followers:[], following:[], recentChats:[], unreadFrom:{}, unreadNotifs:0, lastActive: Date.now(), createdAt: serverTimestamp(), isVerified: false, verifiedExpiry: 0, pinnedPostId: '' });
     toast(t('msg_created'),'ok');
   } catch(e){ showErr(e.message); } finally { $('ru-btn').disabled = false; $('ru-btn').textContent = t('btn_up'); }
 };
@@ -710,7 +861,7 @@ window.doLogin = async () => {
   try { await signInWithEmailAndPassword(auth, fakeEmail(user), pass); } catch(e){ showErr(t('err_login')); } finally { $('li-btn').disabled = false; $('li-btn').textContent = t('btn_in'); }
 };
 
-window.doLogout = () => signOut(auth);
+window.doLogout = () => { if (presenceHeartbeat) clearInterval(presenceHeartbeat); if (unreadUnsub) unreadUnsub(); signOut(auth); };
 
 onAuthStateChanged(auth, async user => {
   if (user) { me = user; try { const snap = await getDoc(doc(db,'users', user.uid)); if (snap.exists()){ meData = snap.data(); bootApp(); } } catch(e) {} } 
@@ -724,13 +875,64 @@ function bootApp(){
   $('sb-name').innerHTML = esc(meData.displayName) + (meData.isVerified ? getBadgeSVG() : ''); $('sb-handle').textContent = '@' + meData.username;
   setAv($('c-av'), meData);
   loadHome(); loadSuggestions();
+  startPresence();
+  watchUnreadCounts();
 }
+
+// ===== PRESENCE (online/offline + lastActive heartbeat) =====
+let presenceHeartbeat = null;
+function startPresence() {
+  if (!me) return;
+  const bump = () => { updateDoc(doc(db,'users',me.uid), { lastActive: Date.now() }).catch(()=>{}); };
+  bump();
+  if (presenceHeartbeat) clearInterval(presenceHeartbeat);
+  presenceHeartbeat = setInterval(bump, 60000);
+  document.addEventListener('visibilitychange', () => { if (document.visibilityState === 'visible') bump(); });
+  window.addEventListener('beforeunload', () => { updateDoc(doc(db,'users',me.uid), { lastActive: Date.now() - 200000 }).catch(()=>{}); });
+}
+
+// ===== UNREAD COUNTERS (messages + notifications badges) =====
+let unreadUnsub = null;
+function watchUnreadCounts() {
+  if (!me) return;
+  if (unreadUnsub) unreadUnsub();
+  unreadUnsub = onSnapshot(doc(db,'users',me.uid), (snap) => {
+    if (!snap.exists()) return;
+    const d = snap.data();
+    const unreadFrom = d.unreadFrom || {};
+    const msgTotal = Object.values(unreadFrom).reduce((a,b)=>a+(b||0),0);
+    const onMessagesPage = document.getElementById('pg-messages')?.classList.contains('on');
+    const mb = $('badge-messages');
+    if (mb) { if (msgTotal > 0 && !onMessagesPage) { mb.style.display = 'inline-flex'; mb.textContent = msgTotal > 9 ? '9+' : msgTotal; } else { mb.style.display = 'none'; } }
+
+    const notifUnread = d.unreadNotifs || 0;
+    const onNotifPage = document.getElementById('pg-notifications')?.classList.contains('on');
+    const nb = $('badge-notifications');
+    if (nb) { if (notifUnread > 0 && !onNotifPage) { nb.style.display = 'inline-flex'; nb.textContent = notifUnread > 9 ? '9+' : notifUnread; } else { nb.style.display = 'none'; } }
+  });
+}
+
+window.clearUnreadMessages = async () => {
+  if (!me || !meData) return;
+  meData.unreadFrom = {};
+  try { await updateDoc(doc(db,'users',me.uid), { unreadFrom: {} }); } catch(e) {}
+  const mb = $('badge-messages'); if (mb) mb.style.display = 'none';
+};
+
+window.clearUnreadNotifs = async () => {
+  if (!me || !meData) return;
+  meData.unreadNotifs = 0;
+  try { await updateDoc(doc(db,'users',me.uid), { unreadNotifs: 0 }); } catch(e) {}
+  const nb = $('badge-notifications'); if (nb) nb.style.display = 'none';
+};
 
 window.goPage = pg => {
   document.querySelectorAll('.page').forEach(p=>p.classList.remove('on')); $('pg-'+pg)?.classList.add('on');
   document.querySelectorAll('.nav-btn[id^="nb-"]').forEach(b=>b.classList.remove('on')); $('nb-'+pg)?.classList.add('on');
   closeMobMenu();
-  if (pg==='follow') loadFollowFeed(); if (pg==='notifications') loadNotifications(); if (pg==='settings') renderVerifyUI(); if (pg==='saved') loadSavedFeed();
+  if (pg==='follow') loadFollowFeed(); if (pg==='notifications') { loadNotifications(); clearUnreadNotifs(); } if (pg==='settings') renderVerifyUI(); if (pg==='saved') loadSavedFeed();
+  if (pg==='messages') { loadChatList(); clearUnreadMessages(); }
+  if (pg==='explore') renderTrending();
 };
 
 window.myProfile = () => { prevPg = document.querySelector('.page.on')?.id?.replace('pg-','') || 'home'; loadProfile(me.uid); closeMobMenu(); };
@@ -788,6 +990,249 @@ async function loadNotifications() {
   } catch(e) { $('n-spin').style.display = 'none'; }
 }
 
+// SECURE CHAT FUNCTIONS
+async function loadChatList() {
+  $('msg-spin').style.display = 'flex'; $('msg-list').innerHTML = ''; $('msg-empty').style.display = 'none';
+  const chats = meData.recentChats || [];
+  $('msg-spin').style.display = 'none';
+  if(!chats.length) { $('msg-empty').style.display = 'block'; return; }
+  
+  for(let uid of chats) {
+    try {
+      const uSnap = await getDoc(doc(db, 'users', uid));
+      if(uSnap.exists()) {
+        const d = uSnap.data();
+        const item = document.createElement('div'); item.className='si';
+        item.style.border = '1px solid var(--border2)';
+        item.innerHTML=`<div class="av" id="msg-av-${d.uid}" style="width:46px;height:46px;font-size:16px;cursor:pointer"></div>
+        <div class="si-info" style="cursor:pointer">
+          <div class="si-name">${esc(d.displayName)} ${d.isVerified ? getBadgeSVG() : ''}</div>
+          <div class="si-handle">@${esc(d.username)}</div>
+        </div>
+        <button class="btn-outline" style="border:none; background:var(--s3);">${t('btn_msg')}</button>`;
+        item.onclick = () => openChat(d.uid, d.displayName);
+        $('msg-list').appendChild(item);
+        requestAnimationFrame(()=>setAv($('msg-av-'+d.uid), d));
+      }
+    } catch(e) {}
+  }
+}
+
+let presenceUnsub = null, typingUnsub = null, typingTimeout = null, replyToMsg = null;
+
+window.openChat = (uid, name) => {
+  currentChatUid = uid; replyToMsg = null;
+  $('chat-title').innerHTML = `${esc(name)} <span style="font-size:11px;color:var(--text3);margin-left:8px;font-weight:400;">(Secure & Auto-deletes 24h)</span>`;
+  $('chat-modal').classList.add('on');
+  $('chat-box').innerHTML = '';
+  $('reply-bar').style.display = 'none';
+  $('typing-row').style.display = 'none';
+
+  const roomId = [me.uid, uid].sort().join('_');
+  const q = query(collection(db, 'chats', roomId, 'messages'), orderBy('timestamp', 'asc'));
+
+  if(chatUnsub) chatUnsub();
+  chatUnsub = onSnapshot(q, (snap) => {
+    $('chat-box').innerHTML = '';
+    const now = Date.now();
+    let lastMineId = null, lastMineSeen = false;
+    const docs = snap.docs;
+    docs.forEach((d, idx) => {
+      const msg = d.data();
+      // 24 Hour Delete Logic: 86400000 ms
+      if (now - msg.timestamp > 86400000) { deleteDoc(d.ref); return; }
+
+      const isMe = msg.senderId === me.uid;
+      if (!isMe && !(msg.seenBy||[]).includes(me.uid)) { updateDoc(d.ref, { seenBy: arrayUnion(me.uid) }).catch(()=>{}); }
+      if (isMe) { lastMineId = d.id; lastMineSeen = (msg.seenBy||[]).includes(currentChatUid); }
+
+      // Decrypt Data Client-Side
+      let decText = msg.text ? decMsg(msg.text, roomId) : '';
+      let decImg = msg.imageURL ? decMsg(msg.imageURL, roomId) : '';
+      let decReplyText = msg.replyText ? decMsg(msg.replyText, roomId) : '';
+
+      const wrap = document.createElement('div');
+      wrap.style.cssText = 'display:flex; align-items:center; gap:6px; max-width:100%; ' + (isMe ? 'align-self:flex-end; flex-direction:row;' : 'align-self:flex-start; flex-direction:row-wrap;');
+
+      const div = document.createElement('div');
+      div.className = 'msg-bubble ' + (isMe ? 'me' : 'other');
+      div.style.marginBottom = '0';
+
+      let innerHtml = '';
+      if (decReplyText) innerHtml += `<div class="msg-quote">${esc(decReplyText.slice(0,80))}</div>`;
+      if(decImg) innerHtml += `<img src="${decImg}" style="max-width:100%; border-radius:8px; margin-bottom:${decText?'8px':'0'}; cursor:zoom-in;" onclick="openLB('${decImg}')">`;
+      if(decText) innerHtml += `<div class="msg-text-content">${formatTextWithMentions(decText)}${msg.edited ? '<span style="font-size:10px;opacity:.65;margin-left:6px;">(edited)</span>' : ''}</div>`;
+
+      div.innerHTML = innerHtml;
+      div.style.cursor = 'pointer';
+      div.title = 'Click to reply';
+      div.onclick = (ev) => { if (ev.target.closest('.msg-own-acts')) return; startReply(decText || (decImg ? 'Photo' : ''), roomId); };
+
+      if (isMe) {
+        const acts = document.createElement('div');
+        acts.className = 'msg-own-acts';
+        acts.style.cssText = 'display:flex; gap:4px; flex-shrink:0;';
+        if (decText && !decImg) {
+          const editBtn = document.createElement('button');
+          editBtn.title = 'Edit message';
+          editBtn.style.cssText = 'background:none; border:none; color:var(--text3); cursor:pointer; padding:4px; display:flex;';
+          editBtn.innerHTML = '<svg class="ico" style="width:14px;height:14px;" viewBox="0 0 24 24"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path></svg>';
+          editBtn.onclick = (ev) => { ev.stopPropagation(); editChatMessage(d.ref, decText, roomId, div); };
+          acts.appendChild(editBtn);
+        }
+        const delBtn = document.createElement('button');
+        delBtn.title = 'Delete message';
+        delBtn.style.cssText = 'background:none; border:none; color:var(--text3); cursor:pointer; padding:4px; display:flex;';
+        delBtn.innerHTML = '<svg class="ico" style="width:14px;height:14px;" viewBox="0 0 24 24"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg>';
+        delBtn.onclick = (ev) => { ev.stopPropagation(); deleteChatMessage(d.ref); };
+        acts.appendChild(delBtn);
+        wrap.appendChild(acts);
+      }
+
+      wrap.appendChild(div);
+      $('chat-box').appendChild(wrap);
+
+      if (isMe && idx === docs.length - 1) {
+        const seen = (msg.seenBy||[]).includes(currentChatUid);
+        const tickDiv = document.createElement('div');
+        tickDiv.style.cssText = 'align-self:flex-end; font-size:11px; color:' + (seen ? 'var(--blue)' : 'var(--text3)') + '; padding:0 4px; display:flex; align-items:center; gap:3px;';
+        tickDiv.innerHTML = (seen
+          ? '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="width:14px;height:14px;"><polyline points="2 12 7 17 13 9"></polyline><polyline points="9 17 15 9 22 1"></polyline></svg><span>Seen</span>'
+          : '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="width:14px;height:14px;"><polyline points="20 6 9 17 4 12"></polyline></svg><span>Sent</span>');
+        $('chat-box').appendChild(tickDiv);
+      }
+    });
+    $('chat-box').scrollTop = $('chat-box').scrollHeight;
+  });
+
+  watchPresence(uid);
+  watchTyping(roomId);
+};
+
+window.editChatMessage = async (msgRef, oldText, roomId, divEl) => {
+  const newText = prompt('Edit message:', oldText);
+  if (newText === null || !newText.trim() || newText === oldText) return;
+  try {
+    const encText = encMsg(newText.trim(), roomId);
+    await updateDoc(msgRef, { text: encText, edited: true });
+    toast('Message updated', 'ok');
+  } catch(e) { toast('Could not edit message', 'err'); }
+};
+
+window.deleteChatMessage = async (msgRef) => {
+  if (!confirm('Delete this message?')) return;
+  try { await deleteDoc(msgRef); toast('Message deleted', 'ok'); }
+  catch(e) { toast('Could not delete message', 'err'); }
+};
+
+function watchPresence(uid) {
+  if (presenceUnsub) presenceUnsub();
+  presenceUnsub = onSnapshot(doc(db,'users',uid), (snap) => {
+    if (!snap.exists()) return;
+    const d = snap.data();
+    const lastActive = d.lastActive || 0;
+    const isOnline = (Date.now() - lastActive) < 90000; // online if active in last 90s
+    $('chat-presence-txt').textContent = isOnline ? 'Online' : (lastActive ? 'Last seen ' + timeAgo(lastActive) : '');
+  });
+}
+
+function watchTyping(roomId) {
+  if (typingUnsub) typingUnsub();
+  typingUnsub = onSnapshot(doc(db,'chats',roomId,'meta','typing'), (snap) => {
+    if (!snap.exists()) { $('typing-row').style.display = 'none'; return; }
+    const d = snap.data();
+    const theirTyping = d[currentChatUid];
+    const isRecent = theirTyping && (Date.now() - theirTyping) < 5000;
+    $('typing-row').style.display = isRecent ? 'flex' : 'none';
+  });
+}
+
+window.handleTypingInput = () => {
+  if (!currentChatUid) return;
+  const roomId = [me.uid, currentChatUid].sort().join('_');
+  setDoc(doc(db,'chats',roomId,'meta','typing'), { [me.uid]: Date.now() }, { merge: true }).catch(()=>{});
+  if (typingTimeout) clearTimeout(typingTimeout);
+  typingTimeout = setTimeout(() => {
+    setDoc(doc(db,'chats',roomId,'meta','typing'), { [me.uid]: 0 }, { merge: true }).catch(()=>{});
+  }, 3000);
+};
+
+window.startReply = (text, roomId) => {
+  if (!text) return;
+  replyToMsg = text;
+  $('reply-bar-txt').textContent = text.slice(0, 60);
+  $('reply-bar').style.display = 'flex';
+  $('chat-input').focus();
+};
+window.cancelReply = () => { replyToMsg = null; $('reply-bar').style.display = 'none'; };
+
+window.closeChat = () => {
+  if(chatUnsub) chatUnsub();
+  if(presenceUnsub) presenceUnsub();
+  if(typingUnsub) typingUnsub();
+  currentChatUid = null; replyToMsg = null;
+  closeModal('chat-modal');
+};
+
+window.sendChatMessage = async () => {
+  const inp = $('chat-input');
+  const txt = inp.value.trim();
+  if(!txt || !currentChatUid) return;
+  inp.value = '';
+  const roomId = [me.uid, currentChatUid].sort().join('_');
+
+  try {
+    // Encrypt before sending
+    const encText = encMsg(txt, roomId);
+    const msgData = { text: encText, imageURL: '', senderId: me.uid, timestamp: Date.now(), seenBy: [me.uid] };
+    if (replyToMsg) { msgData.replyText = encMsg(replyToMsg, roomId); }
+    window.cancelReply();
+
+    await addDoc(collection(db, 'chats', roomId, 'messages'), msgData);
+
+    if (!(meData.recentChats || []).includes(currentChatUid)) {
+       await updateDoc(doc(db, 'users', me.uid), { recentChats: arrayUnion(currentChatUid) });
+       meData.recentChats = [...(meData.recentChats || []), currentChatUid];
+    }
+    await updateDoc(doc(db, 'users', currentChatUid), { recentChats: arrayUnion(me.uid), [`unreadFrom.${me.uid}`]: increment(1) });
+  } catch(e) { toast('Error sending message', 'err'); }
+};
+
+window.sendChatImage = async (e) => {
+  const f = e.target.files[0]; if(!f) return;
+  if(f.size > 5*1024*1024) { toast(t('err_size'), 'err'); return; }
+  $('chat-img-in').value = '';
+  const roomId = [me.uid, currentChatUid].sort().join('_');
+  
+  // Fake loading bubble
+  const tempDiv = document.createElement('div');
+  tempDiv.className = 'msg-bubble me'; 
+  tempDiv.innerHTML = '<div class="spinner" style="width:16px;height:16px;border-width:2px;border-top-color:#fff;"></div> Uploading...';
+  $('chat-box').appendChild(tempDiv); $('chat-box').scrollTop = $('chat-box').scrollHeight;
+
+  try {
+    const imgUrl = await uploadIBB(f);
+    const encImg = encMsg(imgUrl, roomId); // Encrypt image URL
+
+    await addDoc(collection(db, 'chats', roomId, 'messages'), { 
+      text: '', 
+      imageURL: encImg, 
+      senderId: me.uid, 
+      timestamp: Date.now(),
+      seenBy: [me.uid]
+    });
+    if (!(meData.recentChats || []).includes(currentChatUid)) {
+       await updateDoc(doc(db, 'users', me.uid), { recentChats: arrayUnion(currentChatUid) });
+       meData.recentChats = [...(meData.recentChats || []), currentChatUid];
+    }
+    await updateDoc(doc(db, 'users', currentChatUid), { recentChats: arrayUnion(me.uid), [`unreadFrom.${me.uid}`]: increment(1) });
+  } catch(err) { toast(err.message, 'err'); }
+  tempDiv.remove();
+};
+
+document.getElementById('chat-input').addEventListener('keypress', function (e) { if (e.key === 'Enter') sendChatMessage(); });
+
+// POST FUNCTIONS
 function buildPost(id, data, isPinned = false){
   window.postCache[id] = data; 
   const div = document.createElement('div'); div.className = 'post';
@@ -797,10 +1242,18 @@ function buildPost(id, data, isPinned = false){
   const isMe = data.authorUid === me.uid;
   const authorPhotoToUse = (isMe && meData.photoURL) ? meData.photoURL : (data.authorPhoto || '');
   const authorNameToUse = isMe ? meData.displayName : data.authorName;
+  const reactions = data.reactions || {};
+  const myReaction = reactions[me.uid] || null;
+  const reactCounts = {}; Object.values(reactions).forEach(r => { reactCounts[r] = (reactCounts[r]||0)+1; });
+  const totalReacts = Object.keys(reactions).length || cnt;
+  const isReposted = (data.repostedBy||[]).includes(me.uid);
+  const viewCount = data.viewCount || 0;
 
   const uAvId = 'av-' + id + '-' + Math.floor(Math.random()*1000); const uSecId = 'csec-' + id + '-' + Math.floor(Math.random()*1000);
   const uListId = 'clist-' + id + '-' + Math.floor(Math.random()*1000); const uInpId = 'cin-' + id + '-' + Math.floor(Math.random()*1000);
   const uLikeBtnId = 'lb-' + id + '-' + Math.floor(Math.random()*1000); const uLikeCntId = 'lc-' + id + '-' + Math.floor(Math.random()*1000);
+  const uReactPopId = 'rp-' + id + '-' + Math.floor(Math.random()*1000); const uReactSumId = 'rs-' + id + '-' + Math.floor(Math.random()*1000);
+  const uMoreMenuId = 'mm-' + id + '-' + Math.floor(Math.random()*1000);
 
   let commentsHTML = '';
   comments.forEach(c => { 
@@ -839,27 +1292,50 @@ function buildPost(id, data, isPinned = false){
       pollHTML += `<div style="font-size:12px; color:var(--text3);">${totalVotes} votes</div></div>`;
   }
 
+  const reactSummaryHTML = totalReacts > 0 ? `<div class="react-summary" id="${uReactSumId}">${reactionSummaryIcons(reactCounts)}<span>${totalReacts}</span></div>` : `<div class="react-summary" id="${uReactSumId}" style="display:none;"></div>`;
+
   div.innerHTML = `
     <div class="av" id="${uAvId}" style="width:50px;height:50px;font-size:18px;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,0.1)" onclick="loadProfile('${data.authorUid}')"></div>
     <div class="post-r">
+      ${data.isRepost ? `<div class="repost-tag"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="17 1 21 5 17 9"></polyline><path d="M3 11V9a4 4 0 0 1 4-4h14"></path><polyline points="7 23 3 19 7 15"></polyline><path d="M21 13v2a4 4 0 0 1-4 4H3"></path></svg><span onclick="loadProfile('${data.reposterUid}')" style="cursor:pointer;">${esc(data.reposterName)} reposted</span></div>` : ''}
       <div class="post-head">
         <span class="p-name" onclick="loadProfile('${data.authorUid}')">${esc(authorNameToUse)}${data.authorVerified ? getBadgeSVG() : ''}</span>
         <span class="p-handle">@${esc(data.authorUsername)}</span>
         <span class="p-time">${timeAgo(data.createdAt)}</span>
+        <div class="more-menu-wrap" style="margin-left:auto;">
+          <button class="cls-btn" style="width:28px;height:28px;" onclick="toggleMoreMenu('${uMoreMenuId}')"><svg class="ico" style="width:14px;height:14px;" viewBox="0 0 24 24"><circle cx="12" cy="12" r="1"></circle><circle cx="19" cy="12" r="1"></circle><circle cx="5" cy="12" r="1"></circle></svg></button>
+          <div class="more-menu" id="${uMoreMenuId}" style="display:none;">
+            ${!isMe ? `<button onclick="toggleMuteUser('${data.authorUid}', this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 5L6 9H2v6h4l5 4V5z"></path><line x1="23" y1="9" x2="17" y2="15"></line><line x1="17" y1="9" x2="23" y2="15"></line></svg><span>${(meData.mutedUsers||[]).includes(data.authorUid) ? 'Unmute User' : 'Mute User'}</span></button>
+            <button class="danger" onclick="reportEntity('post', '${id}')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"></path><line x1="4" y1="22" x2="4" y2="15"></line></svg><span>Report Post</span></button>` : ''}
+          </div>
+        </div>
       </div>
       ${isPinned ? `<div style="font-size:12px;color:var(--text3);margin-bottom:8px; display:flex; align-items:center; gap:4px;"><svg style="width:14px;height:14px;fill:currentColor;color:var(--accent);" viewBox="0 0 24 24"><path d="M16 11.78L20.24 16H13v6l-1 1-1-1v-6H3.76L8 11.78V5.32L7.31 4.63 8.73 3.21 12 3l3.27.21 1.42 1.42L16 5.32z"></path></svg><span style="color:var(--accent); font-weight:700;">${t('txt_pinned')}</span></div>` : ''}
-      ${data.text ? `<div class="p-text">${formatTextWithMentions(data.text)}</div>` : ''}
+      ${data.text ? `<div class="p-text" id="ptxt-${id}">${formatTextWithMentions(data.text)}${data.edited ? '<span style="font-size:11px;color:var(--text3);margin-left:6px;">(edited)</span>' : ''}</div>` : ''}
       ${pollHTML}
       ${data.imageURL ? `<img class="p-img" src="${data.imageURL}" alt="" style="object-fit:${data.imgStyle || 'cover'};" onclick="openLB('${data.imageURL}')">` : ''}
-      
+      ${reactSummaryHTML}
+
       <div class="p-acts">
-        <button class="act ${liked?'liked':''}" id="${uLikeBtnId}" onclick="toggleLike('${id}', '${uLikeBtnId}', '${uLikeCntId}')"><svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg><span id="${uLikeCntId}">${cnt}</span></button>
+        <div class="react-wrap">
+          <button class="act ${myReaction?'liked':''}" id="${uLikeBtnId}" onclick="quickReact('${id}', '${uLikeBtnId}', '${uLikeCntId}', '${uReactSumId}')" oncontextmenu="event.preventDefault(); openReactPop('${uReactPopId}')" ontouchstart="startReactHold('${uReactPopId}')" ontouchend="endReactHold()">${myReaction ? reactionIconSVG(myReaction) : reactionIconSVG('like')}<span id="${uLikeCntId}">${cnt}</span></button>
+          <div class="react-pop" id="${uReactPopId}" style="display:none;">
+            <button title="Like" onclick="sendReaction('${id}','like','${uLikeBtnId}','${uLikeCntId}','${uReactSumId}','${uReactPopId}')">${reactionIconSVG('like')}</button>
+            <button title="Love" onclick="sendReaction('${id}','heart','${uLikeBtnId}','${uLikeCntId}','${uReactSumId}','${uReactPopId}')">${reactionIconSVG('heart')}</button>
+            <button title="Haha" onclick="sendReaction('${id}','laugh','${uLikeBtnId}','${uLikeCntId}','${uReactSumId}','${uReactPopId}')">${reactionIconSVG('laugh')}</button>
+            <button title="Wow" onclick="sendReaction('${id}','wow','${uLikeBtnId}','${uLikeCntId}','${uReactSumId}','${uReactPopId}')">${reactionIconSVG('wow')}</button>
+            <button title="Sad" onclick="sendReaction('${id}','sad','${uLikeBtnId}','${uLikeCntId}','${uReactSumId}','${uReactPopId}')">${reactionIconSVG('sad')}</button>
+          </div>
+        </div>
         <button class="act" onclick="document.getElementById('${uSecId}').style.display = document.getElementById('${uSecId}').style.display === 'block' ? 'none' : 'block';"><svg viewBox="0 0 24 24"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path></svg><span>${cCnt}</span></button>
+        <button class="act ${isReposted?'reposted':''}" onclick="toggleRepost('${id}', this)" title="Repost"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="17 1 21 5 17 9"></polyline><path d="M3 11V9a4 4 0 0 1 4-4h14"></path><polyline points="7 23 3 19 7 15"></polyline><path d="M21 13v2a4 4 0 0 1-4 4H3"></path></svg></button>
         <button class="act" onclick="sharePost('${id}', event)" title="Share"><svg viewBox="0 0 24 24"><circle cx="18" cy="5" r="3"></circle><circle cx="6" cy="12" r="3"></circle><circle cx="18" cy="19" r="3"></circle><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line></svg></button>
         <button class="act" onclick="toggleSavePost('${id}', this)" title="Save Offline"><svg class="${isSavedLocally ? 'ico-fill' : ''}" viewBox="0 0 24 24"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"></path></svg></button>
         
+        ${isMe && data.text ? `<button class="act" onclick="editPost('${id}')" title="Edit Post"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path></svg></button>` : ''}
         ${isMe ? `<button class="act delete-btn" onclick="delPost('${id}', this)"><svg viewBox="0 0 24 24"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg></button>` : ''}
         ${isMe && document.querySelector('.page.on')?.id === 'pg-profile' ? `<button class="act" style="margin-left:auto; color:var(--text3);" onclick="pinUserPost('${id}')"><svg viewBox="0 0 24 24" style="${meData.pinnedPostId === id ? 'fill:currentColor' : ''}"><path d="M21.44 11.05l-9.19 9.19a6 6 0 0 1-8.49-8.49l9.19-9.19a4 4 0 0 1 5.66 5.66l-9.2 9.19a2 2 0 0 1-2.83-2.83l8.49-8.48"></path></svg></button>` : ''}
+        <div class="view-count" style="margin-left:${isMe && document.querySelector('.page.on')?.id === 'pg-profile' ? '0' : 'auto'};"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg><span>${viewCount}</span></div>
       </div>
       
       <div class="comments-sec" id="${uSecId}">
@@ -869,6 +1345,7 @@ function buildPost(id, data, isPinned = false){
     </div>`;
   
   requestAnimationFrame(() => { setAv($(`${uAvId}`), {displayName:authorNameToUse, username:data.authorUsername, photoURL:authorPhotoToUse}); });
+  queueViewCount(id, data.authorUid);
   return div;
 }
 
@@ -919,7 +1396,7 @@ window.postIt = async () => {
 
   try {
     let imageURL=''; if (selFile) imageURL = await uploadIBB(selFile);
-    const docData = { text: txt, imageURL, imgStyle: 'cover', authorUid: me.uid, authorName: meData.displayName, authorUsername: meData.username, authorPhoto: meData.photoURL||'', authorVerified: meData.isVerified || false, likes:[], comments:[], createdAt: serverTimestamp() };
+    const docData = { text: txt, imageURL, imgStyle: 'cover', authorUid: me.uid, authorName: meData.displayName, authorUsername: meData.username, authorPhoto: meData.photoURL||'', authorVerified: meData.isVerified || false, likes:[], comments:[], viewCount: 0, viewedBy: [], createdAt: serverTimestamp() };
     if(pollData) docData.poll = pollData;
 
     const docRef = await addDoc(collection(db,'posts'), docData);
@@ -930,11 +1407,169 @@ window.postIt = async () => {
   btn.disabled=false; btn.textContent=t('btn_post');
 };
 
-window.toggleLike = async (id, btnId, cntId) => {
+// ===== REACTIONS SYSTEM (replaces simple like with SVG-based multi-reaction) =====
+const REACTION_TYPES = ['like','heart','laugh','wow','sad'];
+
+function reactionIconSVG(type) {
+  const icons = {
+    like:  '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 9V5a3 3 0 0 0-3-3l-4 9v11h11.28a2 2 0 0 0 2-1.7l1.38-9a2 2 0 0 0-2-2.3z"></path><path d="M7 22H4a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2h3"></path></svg>',
+    heart: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>',
+    laugh: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><path d="M8 14s1.5 2 4 2 4-2 4-2"></path><line x1="9" y1="9" x2="9.01" y2="9"></line><line x1="15" y1="9" x2="15.01" y2="9"></line></svg>',
+    wow:   '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><circle cx="12" cy="15" r="1.5"></circle><line x1="9" y1="9" x2="9.01" y2="9"></line><line x1="15" y1="9" x2="15.01" y2="9"></line></svg>',
+    sad:   '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><path d="M8 16s1.5-2 4-2 4 2 4 2"></path><line x1="9" y1="9" x2="9.01" y2="9"></line><line x1="15" y1="9" x2="15.01" y2="9"></line></svg>'
+  };
+  return icons[type] || icons.like;
+}
+
+function reactionSummaryIcons(reactCounts) {
+  return Object.keys(reactCounts).sort((a,b)=>reactCounts[b]-reactCounts[a]).slice(0,3)
+    .map(type => `<span class="react-chip"><span class="ric">${reactionIconSVG(type)}</span></span>`).join('');
+}
+
+window.toggleMoreMenu = (id) => {
+  document.querySelectorAll('.more-menu').forEach(m => { if(m.id !== id) m.style.display = 'none'; });
+  const m = $(id); if(m) m.style.display = m.style.display === 'none' ? 'flex' : 'none';
+};
+document.addEventListener('click', (e) => {
+  if (!e.target.closest('.more-menu-wrap')) document.querySelectorAll('.more-menu').forEach(m => m.style.display = 'none');
+  if (!e.target.closest('.react-wrap')) document.querySelectorAll('.react-pop').forEach(p => p.style.display = 'none');
+});
+
+let reactHoldTimer = null;
+window.startReactHold = (popId) => { reactHoldTimer = setTimeout(() => openReactPop(popId), 400); };
+window.endReactHold = () => { if(reactHoldTimer) clearTimeout(reactHoldTimer); };
+window.openReactPop = (popId) => {
+  document.querySelectorAll('.react-pop').forEach(p => { if(p.id !== popId) p.style.display = 'none'; });
+  const p = $(popId); if(p) p.style.display = p.style.display === 'none' ? 'flex' : 'none';
+};
+
+window.quickReact = async (id, btnId, cntId, sumId) => {
   const ref = doc(db,'posts',id); const snap = await getDoc(ref); if (!snap.exists()) return;
-  const likes = snap.data().likes||[]; const had = likes.includes(me.uid);
-  await updateDoc(ref, { likes: had ? arrayRemove(me.uid) : arrayUnion(me.uid) });
-  const btn = $(btnId), cnt = $(cntId); if (btn) btn.className='act '+(had?'':'liked'); if (cnt) cnt.textContent = had ? likes.length-1 : likes.length+1;
+  const data = snap.data(); const reactions = data.reactions || {};
+  const had = !!reactions[me.uid];
+  await sendReactionCore(id, had ? null : 'like', btnId, cntId, sumId);
+};
+
+window.sendReaction = async (id, type, btnId, cntId, sumId, popId) => {
+  const p = $(popId); if(p) p.style.display = 'none';
+  await sendReactionCore(id, type, btnId, cntId, sumId);
+};
+
+async function sendReactionCore(id, type, btnId, cntId, sumId) {
+  const ref = doc(db,'posts',id); const snap = await getDoc(ref); if (!snap.exists()) return;
+  const data = snap.data(); const reactions = { ...(data.reactions || {}) };
+  const prevType = reactions[me.uid];
+  if (type === null) { delete reactions[me.uid]; } else { reactions[me.uid] = type; }
+  const likesArr = Object.keys(reactions); // keep `likes` array in sync for backward compat / count queries
+  await updateDoc(ref, { reactions, likes: likesArr });
+
+  const btn = $(btnId), cnt = $(cntId), sum = $(sumId);
+  const total = likesArr.length;
+  if (btn) { btn.className = 'act ' + (type ? 'liked' : ''); btn.innerHTML = reactionIconSVG(type || 'like') + `<span id="${cntId}">${total}</span>`; }
+  if (sum) {
+    const reactCounts = {}; Object.values(reactions).forEach(r => { reactCounts[r] = (reactCounts[r]||0)+1; });
+    if (total > 0) { sum.style.display='flex'; sum.innerHTML = reactionSummaryIcons(reactCounts) + `<span>${total}</span>`; }
+    else { sum.style.display='none'; sum.innerHTML=''; }
+  }
+}
+
+// ===== REPOST =====
+window.toggleRepost = async (id, btnNode) => {
+  try {
+    const origRef = doc(db, 'posts', id); const origSnap = await getDoc(origRef); if(!origSnap.exists()) return;
+    const origData = origSnap.data();
+    const repostedBy = origData.repostedBy || [];
+    const already = repostedBy.includes(me.uid);
+
+    if (already) {
+      await updateDoc(origRef, { repostedBy: arrayRemove(me.uid) });
+      const mySnap = await getDocs(query(collection(db,'posts'), where('repostOfId','==',id), where('reposterUid','==',me.uid), limit(1)));
+      mySnap.forEach(d => deleteDoc(doc(db,'posts',d.id)));
+      toast('Repost removed', 'ok');
+      btnNode.classList.remove('reposted');
+    } else {
+      await updateDoc(origRef, { repostedBy: arrayUnion(me.uid) });
+      const repostDoc = {
+        isRepost: true, repostOfId: id, reposterUid: me.uid, reposterName: meData.displayName,
+        text: origData.text || '', imageURL: origData.imageURL || '', imgStyle: origData.imgStyle || 'cover',
+        authorUid: origData.authorUid, authorName: origData.authorName, authorUsername: origData.authorUsername,
+        authorPhoto: origData.authorPhoto || '', authorVerified: origData.authorVerified || false,
+        likes: [], reactions: {}, comments: [], createdAt: serverTimestamp()
+      };
+      if (origData.poll) repostDoc.poll = origData.poll;
+      await addDoc(collection(db,'posts'), repostDoc);
+      toast('Reposted to your feed', 'ok');
+      btnNode.classList.add('reposted');
+    }
+  } catch(e) { toast('Could not repost', 'err'); }
+};
+
+// ===== VIEW COUNT (one view per account per post, batched to save writes) =====
+window._viewQueue = window._viewQueue || new Set();
+window._viewTimer = null;
+function queueViewCount(id, authorUid) {
+  if (!id || authorUid === me.uid) return; // don't count the author's own views
+  if (window._viewedThisSession?.has(id)) return;
+  const cachedData = window.postCache[id];
+  if (cachedData && (cachedData.viewedBy||[]).includes(me.uid)) return; // already viewed before, never count again
+  window._viewedThisSession = window._viewedThisSession || new Set();
+  window._viewedThisSession.add(id);
+  window._viewQueue.add(id);
+  if (window._viewTimer) return;
+  window._viewTimer = setTimeout(flushViewQueue, 4000);
+}
+async function flushViewQueue() {
+  const ids = Array.from(window._viewQueue); window._viewQueue.clear(); window._viewTimer = null;
+  for (const id of ids) {
+    try {
+      const ref = doc(db,'posts',id);
+      const snap = await getDoc(ref);
+      if (!snap.exists()) continue;
+      const viewedBy = snap.data().viewedBy || [];
+      if (viewedBy.includes(me.uid)) continue; // someone else's check beat us to it; skip
+      await updateDoc(ref, { viewCount: increment(1), viewedBy: arrayUnion(me.uid) });
+      if (window.postCache[id]) { window.postCache[id].viewedBy = [...viewedBy, me.uid]; window.postCache[id].viewCount = (window.postCache[id].viewCount||0) + 1; }
+    } catch(e) {}
+  }
+}
+
+// ===== MUTE USER =====
+window.toggleMuteUser = async (uid, btnEl) => {
+  const muted = meData.mutedUsers || [];
+  const isMuted = muted.includes(uid);
+  await updateDoc(doc(db,'users',me.uid), { mutedUsers: isMuted ? arrayRemove(uid) : arrayUnion(uid) });
+  meData.mutedUsers = isMuted ? muted.filter(u=>u!==uid) : [...muted, uid];
+  toast(isMuted ? 'User unmuted' : 'User muted', 'ok');
+  if(btnEl) { const span = btnEl.querySelector('span'); if(span) span.textContent = isMuted ? 'Mute User' : 'Unmute User'; }
+  document.querySelectorAll('.more-menu').forEach(m => m.style.display = 'none');
+};
+
+// ===== BLOCK USER (chat) =====
+window.toggleBlockUser = async () => {
+  if (!currentChatUid) return;
+  const blocked = meData.blockedUsers || [];
+  const isBlocked = blocked.includes(currentChatUid);
+  await updateDoc(doc(db,'users',me.uid), { blockedUsers: isBlocked ? arrayRemove(currentChatUid) : arrayUnion(currentChatUid) });
+  meData.blockedUsers = isBlocked ? blocked.filter(u=>u!==currentChatUid) : [...blocked, currentChatUid];
+  toast(isBlocked ? 'User unblocked' : 'User blocked', 'ok');
+  $('chat-block-label').textContent = isBlocked ? 'Block User' : 'Unblock User';
+  $('chat-more-menu').style.display = 'none';
+};
+
+window.toggleChatMoreMenu = () => {
+  const m = $('chat-more-menu');
+  if (m.style.display !== 'flex') { $('chat-block-label').textContent = (meData.blockedUsers||[]).includes(currentChatUid) ? 'Unblock User' : 'Block User'; }
+  m.style.display = m.style.display === 'flex' ? 'none' : 'flex';
+};
+
+// ===== REPORT =====
+window.reportEntity = async (type, targetId) => {
+  document.querySelectorAll('.more-menu').forEach(m => m.style.display = 'none');
+  if (!confirm(`Report this ${type}? Our team will review it.`)) return;
+  try {
+    await addDoc(collection(db,'reports'), { type, targetId, reportedBy: me.uid, createdAt: serverTimestamp() });
+    toast('Report submitted. Thank you.', 'ok');
+  } catch(e) { toast('Could not submit report', 'err'); }
 };
 
 window.votePoll = async (id, idx) => {
@@ -946,7 +1581,7 @@ window.addComment = async (id, authorUid, inpId, listId) => {
   try {
     const ts = Date.now(); const newC = { uid: me.uid, name: meData.displayName, handle: meData.username, photoURL: meData.photoURL||'', text: txt, ts: ts, isVerified: meData.isVerified || false };
     await updateDoc(doc(db, 'posts', id), { comments: arrayUnion(newC) });
-    if(authorUid !== me.uid) { await addDoc(collection(db, 'notifications'), { uid: authorUid, fromUid: me.uid, fromUsername: meData.username, type: 'comment', postId: id, createdAt: serverTimestamp() }); }
+    if(authorUid !== me.uid) { await addDoc(collection(db, 'notifications'), { uid: authorUid, fromUid: me.uid, fromUsername: meData.username, type: 'comment', postId: id, createdAt: serverTimestamp() }); await updateDoc(doc(db,'users',authorUid), { unreadNotifs: increment(1) }).catch(()=>{}); }
     await notifyMentions(txt, id);
     inp.value = ''; const clist = $(listId);
     const nCItem = document.createElement('div'); nCItem.className = 'c-item'; nCItem.setAttribute('data-ts', ts);
@@ -972,6 +1607,20 @@ window.delComment = async (postId, ts, btnEl) => {
         await updateDoc(ref, { comments: snap.data().comments.filter(c => c.ts !== ts) });
         btnEl.closest('.c-item').remove(); toast('Deleted', 'ok');
     } catch(e) {}
+};
+
+window.editPost = async (id) => {
+  const data = window.postCache[id]; if (!data) return;
+  const oldText = data.text || '';
+  const newText = prompt('Edit post:', oldText);
+  if (newText === null || !newText.trim() || newText === oldText) return;
+  try {
+    await updateDoc(doc(db,'posts',id), { text: newText.trim(), edited: true });
+    data.text = newText.trim(); data.edited = true;
+    const txtEl = document.getElementById('ptxt-' + id);
+    if (txtEl) txtEl.innerHTML = formatTextWithMentions(newText.trim()) + '<span style="font-size:11px;color:var(--text3);margin-left:6px;">(edited)</span>';
+    toast('Post updated', 'ok');
+  } catch(e) { toast('Could not edit post', 'err'); }
 };
 
 window.delPost = async (id, btnNode) => {
@@ -1005,7 +1654,11 @@ window.loadProfile = async uid => {
 
   const acts = $('pp-acts');
   if (uid === me.uid){ acts.innerHTML = `<button class="btn-outline" onclick="openEditModal()">${t('btn_edit')}</button>`; } 
-  else { const isF = (meData.following||[]).includes(uid); acts.innerHTML = `<button class="btn-follow ${isF?'on':''}" id="fp-${uid}" onclick="toggleFollow('${uid}')">${isF?t('btn_unfollow'):t('btn_follow')}</button>`; }
+  else { 
+      const isF = (meData.following||[]).includes(uid); 
+      acts.innerHTML = `<button class="btn-follow ${isF?'on':''}" id="fp-${uid}" onclick="toggleFollow('${uid}')">${isF?t('btn_unfollow'):t('btn_follow')}</button>
+      <button class="btn-outline" onclick="openChat('${uid}', '${esc(d.displayName)}')">${t('btn_msg')}</button>`; 
+  }
 
   try {
     const ps = await getDocs(query(collection(db,'posts'), where('authorUid','==',uid)));
